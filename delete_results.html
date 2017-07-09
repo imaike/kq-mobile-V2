@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html manifest="delete_results.appcache">
+<head>
+	<meta charset="utf-8">
+	
+<!-- apple viewport standalone -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+<!-- load libraries-->
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+
+<title>Mobile Q Sorter</title>
+
+<style>
+
+/*  *************** page specific styles*/
+	   p  {
+      font-family: HelveticaNeue-CondensedBlack;
+      color: white;
+      font-size: 44px;
+      position: absolute;
+      width: 741px;
+      left: 210px;
+      top: 135px;
+   }
+
+   #clearResultsButton  {
+      position: absolute;
+      left: 141px;
+      top: 385px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      font-family: HelveticaNeue-CondensedBlack;
+      appearance: none;
+      margin-left: 5px;
+      width: 300px;
+      margin-top: 2px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      height: 200px;
+      background: #ff0000;
+      border: 0px solid #666;
+      cursor: pointer;
+      -webkit-border-radius:5px;
+   }   
+   #clearResultsButton:active { 
+      border: 3px solid #666;
+   }
+   #clearResultsButton span {
+      display: block;
+      padding-top: 0px;
+      font-size: 350%;
+      padding-left: 0px;
+      padding-bottom: 9px;
+      text-align: center;
+      line-height: 1em;
+      color: #ffffff;
+   }
+  #keepResultsGoBackButton  {
+      position: absolute;
+      left: 582px;
+      top: 385px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      font-family: HelveticaNeue-CondensedBlack;
+      appearance: none;
+      margin-left: 5px;
+      width: 300px;
+      margin-top: 2px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      height: 200px;
+      background: #1985c5;
+      border: 0px solid #666;
+      cursor: pointer;
+      -webkit-border-radius:5px;
+  }   
+  #keepResultsGoBackButton:active { 
+      border: 3px solid #666;
+  }
+  #keepResultsGoBackButton span {
+      display: block;
+      padding-top: 0px;
+      font-size: 350%;
+      padding-left: 0px;
+      padding-bottom: 9px;
+      text-align: center;
+      line-height: 1em;
+      color: #2d343c;
+   }
+   #keepResultsGoBackButton a:link {
+      color: #ffffff;
+      text-decoration: none;
+   }
+   
+/* *****************  end page specific styles*/
+
+		body {
+		/* On modern browsers, prevent the whole page to bounce */
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background-color:#2d343c;
+		}
+
+
+		/* Nav menu styling */
+		nav { position: absolute; 
+			bottom: 5px; 
+			left: 240px; 
+			border-spacing: 0px;
+			margin-top: 5px;
+			}
+		nav a { padding: 5px 15px 15px 15px; text-align: center;  background-color: #1985c5;border-top-left-radius: 5px; border-top-right-radius: 5px; border: 3px solid #1985c5; margin-right: -4px; margin-left: -4px;
+			}
+		a { color: #2d343c; text-align: center; font-weight: bold; font-family: HelveticaNeue-CondensedBlack; text-decoration: none;}    
+
+		#delayContainer {display:none}
+</style>
+
+</head>
+
+<body>
+
+<div id="delayContainer">
+
+<p> Delete all results and comments? </br> This action cannot be reversed!</p>
+	
+   <button id = "clearResultsButton"><span>Yes, Delete all results and comments</span></button>
+  
+
+   <button id = "keepResultsGoBackButton"><span>Cancel</span></button>
+ 
+
+  <nav>
+  <a href="controls.html" class="stay"></a>
+  </nav> 
+
+  
+</div> <!-- end delayContainer -->
+</body>
+
+<script type="text/javascript">
+
+	$(document).ready(function () { 
+	  $( "#delayContainer").fadeIn(500);
+	  $( "nav").hide();
+	});
+</script>
+
+<script>
+   // *** clear results ***
+    ( function () {
+      $('#clearResultsButton').on({'touchstart' : function() {
+        localStorage.setItem("currentResults", " ");
+		localStorage.setItem("currentComments", " ");
+        $('nav a:nth-child(1)').trigger('touchstart');
+      }}); 
+  
+      $('#keepResultsGoBackButton').on({'touchstart' : function() {
+        $('nav a:nth-child(1)').trigger('touchstart');
+      }}); 
+    })();
+  </script>
+
+<script>
+
+// stay standalone 
+    //https://github.com/mrmoses/jQuery.stayInWebApp
+    (function($){$.extend({stayInWebApp:function(b){"standalone"in window.navigator&&window.navigator.standalone&&(b||(b="a"),$("body").delegate(b,"touchstart",function(b){if($(this).attr("target")==void 0||$(this).attr("target")==""||$(this).attr("target")=="_self"){var c=$(this).attr("href");if(!c.match(/^http(s?)/g))b.preventDefault(),self.location=c}}))}})})(jQuery);    
+    $(function() { $.stayInWebApp('a.stay'); });
+        // This use only links with the class stay. 
+        // $(function() { $.stayInWebApp('a.stay');});
+// end stay standalone 
+</script>
+
+
+
+</html>	

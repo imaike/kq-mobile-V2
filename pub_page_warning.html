@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html manifest="pub_page_warning.appcache">
+<head>
+   <meta charset="utf-8">
+   
+<!-- apple viewport standalone -->
+   <meta name="apple-mobile-web-app-capable" content="yes" />
+   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   
+
+<!-- load iscroll5 -->
+   <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+
+<!-- initialize iscroll5 -->
+   
+
+<title>Post Sort Comments</title>
+
+<style>
+
+/*  *************** page specific styles*/
+   p {
+      font-family: Georgia;
+      color: #1985c5;
+      font-size: 25px;
+      font-family: HelveticaNeue-CondensedBlack;
+      line-height: 1.5em;
+      margin-bottom: 20px;
+      margin-top: 10px;
+      width: 900px;
+    }
+
+  strong {
+      color: #ffffff;
+    }
+
+      #title {
+      display: block;
+      width: 100%;
+      font-size: 80px;
+      font-family: HelveticaNeue-CondensedBlack;
+      color: white;
+      position: fixed;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    #infoText {
+      font-size: 20px;
+    }
+
+    #description {
+      position: relative;
+      top: 170px
+    }
+
+    #publicationNameInputBox {
+      position: relative;
+      top: 320px;
+      left: 100px;
+    }
+
+   #GoPubPageButton  {
+      position: absolute;
+      left: 350px;
+      top: 500px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      font-family: HelveticaNeue-CondensedBlack;
+      appearance: none;
+      margin-left: 5px;
+      margin-bottom: 0px;
+      width: 300px;
+      margin-top: 2px;
+      padding-top: 50px;
+      padding-bottom: 0px;
+      height: 100px;
+      background: #55b262;
+      border: 0px solid #666;
+      cursor: pointer;
+      -webkit-border-radius:5px;
+   }
+   #GoPubPageButton:active {
+      border: 3px solid #666;
+   }
+   #GoPubPageButton span {
+      display: block;
+      padding-top: 0px;
+      font-size: 250%;
+      padding-left: 0px;
+      padding-bottom: 9px;
+      text-align: center;
+      line-height: 1em;
+      color: #2d343c;
+   }
+
+
+/* *****************  end page specific styles*/
+
+      body {
+      /* On modern browsers, prevent the whole page to bounce */
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+       background-color:#2d343c;
+      }
+
+      #wrapper {
+      position: relative;
+      margin-top: 20px;
+      height: 748px;
+      width: 100%;
+      overflow: hidden;
+
+      /* Prevent native touch events on Windows */
+      -ms-touch-action: none;
+
+      /* Prevent the callout on tap-hold and text selection */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      /* Prevent text resize on orientation change, useful for web-apps */
+      -webkit-text-size-adjust: none;
+      -moz-text-size-adjust: none;
+      -ms-text-size-adjust: none;
+      -o-text-size-adjust: none;
+      text-size-adjust: none;
+      }
+
+      #scroller {
+      position: absolute;
+
+      /* Prevent elements to be highlighted on tap */
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+      /* Put the scroller into the HW Compositing layer right from the start */
+      -webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      -o-transform: translateZ(0);
+      transform: translateZ(0);
+      }
+
+      /* Nav menu styling */
+      nav { position: absolute;
+         bottom: 5px;
+         left: 240px;
+         border-spacing: 0px;
+         margin-top: 5px;
+         }
+      nav a { padding: 5px 15px 15px 15px; text-align: center;  background-color: #1985c5;border-top-left-radius: 5px; border-top-right-radius: 5px; border: 3px solid #1985c5; margin-right: -4px; margin-left: -4px;
+         }
+      nav a.selected { background-color: white; color: #1985c5;}
+      a { color: #2d343c; text-align: center; font-weight: bold; font-family: HelveticaNeue-CondensedBlack; text-decoration: none;}    /* changes the color of the a links */
+      
+
+      #textContainer {
+         margin-left: 35px;
+      }
+
+</style>
+
+<script type="text/javascript">
+//**** stay standalone ***********************************************************
+    //https://github.com/mrmoses/jQuery.stayInWebApp
+    (function($){$.extend({stayInWebApp:function(b){"standalone"in window.navigator&&window.navigator.standalone&&(b||(b="a"),$("body").delegate(b,"touchend",function(b){if($(this).attr("target")==void 0||$(this).attr("target")==""||$(this).attr("target")=="_self"){var c=$(this).attr("href");if(!c.match(/^http(s?)/g))b.preventDefault(),self.location=c}}))}})})(jQuery);
+    $(function() { $.stayInWebApp( ); });
+        // This use only links with the class stay.
+        // $(function() { $.stayInWebApp('a.stay');});
+    // end stay standalone
+</script>
+
+</head>
+<body>
+
+ <p id="title">Q-sort Publication Images</p>
+   <div id="textContainer">
+   <p id="description"> This page is for making publication-ready images of sample Q-sorts from your project. Once you have positioned all of the statements, press and <strong> continue to hold</strong> the <strong>Sleep/Wake button</strong> on your iPad. Then press and release the <strong>Home button</strong>. If successful, you should hear the camera shutter sound. An image of the Q-sort is now in your Photos application.
+   <br/><br/><strong>To exit</strong> the Publication Image Q-sorter page, <strong>tap</strong> the the <strong>bottom right corner</strong> of the screen.</p>
+   </div>
+
+<form>
+   <div id="publicationNameInputBox">
+       <p style="color: white; display: inline-block">Q-sort Label: <input type="text" name="labelInputText" id="labelText" maxlength="50" autocapitalize="off" autocorrect="off"></p>
+   </div>
+</form>
+
+
+
+   <a class="button" id="GoPubPageButton" class="stay" href="publication.html"><span>OK!</span></a>
+
+
+
+<!-- enabling textfield persistance in statement -->
+   <script type="text/javascript">
+
+
+$(document).ready(function () {
+  var input = document.getElementById("labelText");
+    //retrieve
+
+        input.value = localStorage.getItem("labelInputText");
+    　
+         $('#labelText').on('input propertychange change', function() {
+         localStorage.setItem(this.name, this.value);
+  　　　 });
+
+    });  // end document ready function
+
+    // retrieve
+     // var formData = localStorage.getItem("labelInputText");
+      // $('form input:text').append(formData);
+    　    　
+    // set
+
+     //   });
+
+    // });
+   </script>
+
+
+   
+
+</body>
+</html>
+   

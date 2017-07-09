@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+
+<!--
+Copyright © 2015, by Shawn Banasick. All rights reserved.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+-->
+
+
+<html manifest="controls.appcache">
+
+<head>
+    <meta charset="utf-8">
+
+    <!-- apple viewport standalone -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+
+    <title>Mobile Q Sorter</title>
+
+    <style>
+        /*  *************** page specific styles*/
+        
+        .goButton {
+            position: absolute;
+            left: 765px;
+            top: 30px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            font-family: HelveticaNeue-CondensedBlack;
+            appearance: none;
+            margin-left: 5px;
+            width: 220px;
+            margin-top: 2px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            height: 220px;
+            background: #55b262;
+            border: 0px solid #666;
+            cursor: pointer;
+            -webkit-border-radius: 5px;
+        }
+        
+        .goButton:active {
+            border: 3px solid #666;
+        }
+        
+        #qSortButton {
+            display: block;
+            padding-top: 16px;
+            font-size: 175px;
+            padding-left: 0px;
+            padding-bottom: 9px;
+            text-align: center;
+            line-height: 1em;
+            color: #2d343c;
+        }
+        
+        .emailResultsButton {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            font-family: HelveticaNeue-CondensedBlack;
+            appearance: none;
+            margin-left: 5px;
+            width: 200px;
+            margin-top: 2px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            height: 100px;
+            background: #1985c5;
+            border: 0px solid #666;
+            cursor: pointer;
+            -webkit-border-radius: 5px;
+        }
+        
+        .emailResultsButton:active {
+            border: 3px solid #666;
+        }
+        
+        .emailResultsButton span {
+            display: block;
+            padding-top: 5px;
+            font-size: 300%;
+            padding-left: 0px;
+            padding-bottom: 9px;
+            text-align: center;
+            line-height: 1.15em;
+        }
+        
+        .emailResultsButton a:link {
+            color: #2d343c;
+            text-decoration: none;
+        }
+        
+        .emailStatementsButton {
+            position: absolute;
+            left: 30px;
+            top: 150px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            font-family: HelveticaNeue-CondensedBlack;
+            appearance: none;
+            margin-left: 5px;
+            width: 200px;
+            margin-top: 2px;
+            padding-top: 5px;
+            padding-bottom: 0px;
+            height: 100px;
+            background: #1985c5;
+            border: 0px solid #666;
+            cursor: pointer;
+            -webkit-border-radius: 5px;
+        }
+        
+        .emailStatementsButton:active {
+            border: 3px solid #666;
+        }
+        
+        .emailStatementsButton span {
+            display: block;
+            padding-top: 0px;
+            font-size: 300%;
+            padding-left: 0px;
+            padding-bottom: 9px;
+            text-align: center;
+            line-height: 1.15em;
+            font-color: #a8a8a8;
+        }
+        
+        .emailStatementsButton a:link {
+            color: #2d343c;
+            text-decoration: none;
+        }
+        
+        .results {
+            overflow: hidden;
+            padding: 20;
+            position: relative !important;
+            line-height: 1.5;
+        }
+        
+        .results .pep {
+            cursor: pointer;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .results .loading,
+        .results .pull {
+            text-align: center;
+            position: absolute;
+            top: -30px;
+            width: 100%;
+            -moz-transition: all 100ms;
+            -o-transition: all 100ms;
+            -webkit-transition: all 100ms;
+            transition: all 100ms;
+        }
+        
+        .results .loading.shown,
+        .results .pull.shown {
+            top: 10px;
+        }
+        
+        #incomingResults {
+            padding-left: 60px;
+        }
+        
+        #sortResultsDisplay {
+            position: absolute;
+            margin-left: 27px;
+            top: 291px;
+            background: #ffffff;
+            width: 953px;
+            height: 185px;
+            border: 1px solid;
+        }
+        
+        #sortCommentsDisplay {
+            position: absolute;
+            margin-left: 27px;
+            top: 324px;
+            background: #ffffff;
+            width: 953px;
+            height: 185px;
+            border: 1px solid;
+        }
+        
+        .clearDataButton {
+            position: absolute;
+            left: 250px;
+            top: 30px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            font-family: HelveticaNeue-CondensedBlack;
+            appearance: none;
+            margin-left: 5px;
+            width: 200px;
+            margin-top: 2px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            height: 100px;
+            background: #1985c5;
+            border: 0px solid #666;
+            cursor: pointer;
+            -webkit-border-radius: 5px;
+        }
+        
+        .clearDataButton:active {
+            border: 3px solid #666;
+        }
+        
+        .clearDataButton span {
+            display: block;
+            padding-top: 0px;
+            font-size: 250%;
+            padding-left: 0px;
+            padding-bottom: 9px;
+            text-align: center;
+            line-height: 1em;
+            color: #2d343c;
+        }
+        
+        .blackWhiteButton {
+            position: absolute;
+            left: 250px;
+            top: 150px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            font-family: HelveticaNeue-CondensedBlack;
+            appearance: none;
+            margin-left: 5px;
+            width: 200px;
+            margin-top: 2px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            height: 100px;
+            background: #1985c5;
+            border: 0px solid #666;
+            cursor: pointer;
+            -webkit-border-radius: 5px;
+        }
+        
+        .blackWhiteButton:active {
+            border: 3px solid #666;
+        }
+        
+        .blackWhiteButton span {
+            display: block;
+            margin-top: 13px;
+            font-size: 22px;
+            padding-left: 0px;
+            padding-bottom: 11px;
+            text-align: center;
+            line-height: 1em;
+            color: #2d343c;
+        }
+        
+        #studyNameInputBox {
+            position: absolute;
+            font-family: HelveticaNeue-CondensedBlack;
+            left: 500px;
+            top: 10px;
+            font-size: 22px;
+            width: 250px;
+        }
+        
+        #emailInputBox {
+            position: absolute;
+            font-family: HelveticaNeue-CondensedBlack;
+            left: 500px;
+            top: 75px;
+            font-size: 22px;
+            width: 150px;
+        }
+        
+        .displayBox {
+            position: relative;
+            margin-left: 20px;
+            font-size: 14px;
+            font-style: normal;
+            line-height: 2em;
+            font-weight: normal;
+            font-family: ArialMT;
+        }
+        
+        ul {
+            list-style-type: none;
+            font-size: 12px;
+            font-style: normal;
+            line-height: 2em;
+            font-weight: normal;
+            font-family: ArialMT;
+        }
+        
+        #resultsLabel {
+            position: absolute;
+            font-family: HelveticaNeue-CondensedBlack;
+            top: 255px;
+            color: #ffffff;
+            margin-left: 27px;
+        }
+        
+        #commentsLabel {
+            position: absolute;
+            font-family: HelveticaNeue-CondensedBlack;
+            top: 477px;
+            color: #ffffff;
+            margin-left: 27px;
+        }
+        
+        #radioButtonDiv {
+            position: absolute;
+            left: 466px;
+            top: 160px;
+            cursor: pointer;
+        }
+        
+        input[type=radio]:not(old) {
+            width: 2em;
+            margin: 0;
+            padding: 0;
+            font-size: 2.0em;
+            font-family: HelveticaNeue-CondensedBlack;
+            opacity: 0;
+        }
+        
+        input[type=radio]:not(old) + label {
+            display: inline-block;
+            margin-left: -2em;
+            line-height: 2.0em;
+            color: white;
+            font-family: HelveticaNeue-CondensedBlack;
+        }
+        
+        input[type=radio]:not(old) + label > span {
+            display: inline-block;
+            width: 1.2em;
+            height: 1.2em;
+            margin: 0.25em 0.5em 0.25em 0.25em;
+            border: 0.0625em solid rgb(192, 192, 192);
+            border-radius: 0.25em;
+            background: rgb(224, 224, 224);
+            background-image: -webkit-linear-gradient(rgb(240, 240, 240), rgb(224, 224, 224));
+            background-image: linear-gradient(rgb(240, 240, 240), rgb(224, 224, 224));
+            vertical-align: bottom;
+        }
+        
+        input[type=radio]:not(old):checked + label > span {
+            background-image: -webkit-linear-gradient(rgb(224, 224, 224), rgb(240, 240, 240));
+            background-image: linear-gradient(rgb(224, 224, 224), rgb(240, 240, 240));
+        }
+        
+        input[type=radio]:not(old):checked + label > span > span {
+            display: block;
+            width: 0.8em;
+            height: 0.8em;
+            margin: 0.125em;
+            border: 0.0625em solid rgb(115, 153, 77);
+            border-radius: 0.125em;
+            background: rgb(153, 204, 102);
+            background-image: rgb(85, 178, 98);
+        }
+        
+        .squaredOne {
+            width: 36px;
+            height: 36px;
+            background: #fcfff4;
+            background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0);
+            margin: 5px 5px;
+            margin-top: 34px;
+            -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+            position: relative;
+            left: 22px;
+            border-radius: 3px;
+        }
+        
+        .squaredOne label {
+            cursor: pointer;
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            left: 5px;
+            top: 5px;
+            -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+            -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+            box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+            background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+            background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+            background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+            background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+            background: linear-gradient(top, #222 0%, #45484d 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d', GradientType=0);
+        }
+        /*        green dot */
+        
+        .squaredOne label:after {
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: alpha(opacity=0);
+            opacity: 0;
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #00bf00;
+            background: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
+            background: -moz-linear-gradient(top, #00bf00 0%, #009400 100%);
+            background: -o-linear-gradient(top, #00bf00 0%, #009400 100%);
+            background: -ms-linear-gradient(top, #00bf00 0%, #009400 100%);
+            background: linear-gradient(top, #00bf00 0%, #009400 100%);
+            top: 1px;
+            left: 1px;
+            -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .squaredOne label:hover::after {
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+            filter: alpha(opacity=30);
+            opacity: 0.3;
+        }
+        
+        .squaredOne input[type=checkbox]:checked + label:after {
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            filter: alpha(opacity=100);
+            opacity: 1;
+        }
+        
+        #colorGridCheckboxLabel {
+            padding-left: 5px;
+            float: left;
+            width: 75px;
+            color: white;
+            position: relative;
+            top: -28px;
+            left: -20px;
+            font-family: HelveticaNeue-CondensedBlack;
+        }
+        
+        #colorGridCheckboxDiv {
+            border: 3px solid #1985c5;
+            border-radius: 5px;
+            position: absolute;
+            left: 653px;
+            top: 166px;
+            width: 90px;
+            height: 80px;
+        }
+        
+        #squaredOne {
+            position: relative;
+            top: -15px;
+            left: 10px;
+        }
+        /* *****************  end page specific styles*/
+        
+        body {
+            /* On modern browsers, prevent the whole page to bounce */
+            
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #2d343c;
+        }
+        /* Nav menu styling */
+        
+        nav {
+            position: absolute;
+            bottom: 5px;
+            left: 240px;
+            border-spacing: 0px;
+            margin-top: 5px;
+        }
+        
+        nav a {
+            padding: 5px 15px 15px 15px;
+            text-align: center;
+            background-color: #1985c5;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border: 3px solid #1985c5;
+            margin-right: -4px;
+            margin-left: -4px;
+        }
+        
+        a {
+            color: #2d343c;
+            text-align: center;
+            font-weight: bold;
+            font-family: HelveticaNeue-CondensedBlack;
+            text-decoration: none;
+        }
+        
+        #delayContainer {
+            display: none
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="delayContainer">
+
+        <div class="goButton" id="qSortGo"><span id="qSortButton">Q</span>
+        </div>
+
+
+        <button class="emailResultsButton"><a id="email" href="#"><span>Email<br/>Results</span></a>
+        </button>
+
+        <button class="emailStatementsButton"><a id="emailStatements" href="#!"><span>Email<br/>Statements</span></a>
+        </button>
+
+        <button class="clearDataButton" id="clearData"><span>Delete<br/>Results and<br/>Comments</span>
+        </button>
+
+        <button class="blackWhiteButton" id="blackWhite"><span>Create B/W<br/>Q-sort Images<br/>for Publication</span>
+        </button>
+
+
+        <form data-persist="garlic" data-domain="true">
+            <div id="studyNameInputBox">
+                <p style="color: white; display: inline-block">Project Name:
+                    <input type="text" ; class="outer persisted-text" ; style="width:245px" ; maxlength="15" ; name="studyName" ; autocapitalize="off" ; autocorrect="off">
+                </p>
+            </div>
+
+            <div id="emailInputBox">
+                <p style="color: white">Email:
+                    <input type="text" ; class="outer persisted-text" ; name="emailInput" ; style="width:245px" ; autocapitalize="off" ; autocorrect="off">
+                </p>
+            </div>
+        </form>
+
+        <div id="radioButtonDiv">
+            <div>
+                <input id="radio1" type="radio" name="radio" value="state37" checked="checked">
+                <label for="radio1"><span><span></span></span>37 Statements</label>
+            </div>
+            <div>
+                <input id="radio2" type="radio" name="radio" value="state39">
+                <label for="radio2"><span><span></span></span>39 Statements</label>
+            </div>
+            <div>
+                <input id="radio3" type="radio" name="radio" value="state41">
+                <label for="radio3"><span><span></span></span>41 Statements</label>
+            </div>
+        </div>
+
+        <form data-persist="garlic">
+            <div id="colorGridCheckboxDiv">
+                <div class="squaredOne">
+                    <span id="colorGridCheckboxLabel">Color Grid</span>
+                    <input type="checkbox" value="None" id="squaredOne" name="check" />
+                    <label for="squaredOne"></label>
+                </div>
+            </div>
+        </form>
+
+        <p id="resultsLabel">Q-Sort Results</p>
+        <div id="sortResultsDisplay" class='results scroller'>
+            <div class='loading'></div>
+
+            <div class='pep'>
+                <p id="incomingResults" class="displayBox"></p>
+            </div>
+        </div>
+        <p id="commentsLabel">Q-Sort Comments</p>
+        <div id="sortCommentsDisplay" class='results scroller'>
+            <div class='loading'></div>
+            <div class='pull'></div>
+            <div class='pep'>
+                <ul id="incomingComments"></ul>
+            </div>
+        </div>
+
+        <ul id="statementHolder" style="visibility:hidden; list-style:none"></ul>
+        <p id="emailHeader" style="visibility:hidden"> </p>
+
+        <nav>
+            <a href="information.html" class="stay">Information</a>
+            <a style=" background-color: white; color: #1985c5;" class="stay" href="controls.html">Controls</a>
+            <a href="statements.html" class="stay">Q Statements</a>
+            <a href="presort.html" class="stay">Presort</a>
+            <a href="qsort.html" class="stay">Sort</a>
+            <a href="postsort.html" class="stay">Postsort</a>
+            <a href="reset.html" class="stay">Reset</a>
+            <a href="pub_page_warning.html" class="stay"></a>
+        </nav>
+
+
+    </div>
+    <!-- end delayContainer -->
+
+
+    <!-- ************************************************************************ -->
+    <!-- Javascript Functions -->
+    <!-- ************************************************************************ -->
+
+    <!-- load libraries-->
+    <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="jquery.pep.min.js"></script>
+    <script type="text/javascript" src="garlic.js"></script>
+
+
+    <!-- prevent default scroll -->
+    <script type="text/javascript">
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, false);
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#delayContainer").fadeIn(500);
+
+            $('nav a:nth-child(7)').hide();
+            $('nav a:nth-child(8)').hide();
+
+
+            checkNewResults();
+        });
+
+
+        // **** set event handlers ***************************************************
+        (function () {
+            var checkForCurrentResults = localStorage.getItem('currentResults');
+            if (checkForCurrentResults != null) {
+                $('#incomingResults').html(localStorage.getItem('currentResults'));
+                $('#incomingComments').html(localStorage.getItem('currentComments'));
+            }
+
+            $('#qSortGo').on({
+                'touchstart': function () {
+                    firePromptRespondentCode();
+                }
+            });
+
+            $('#email').on({
+                'touchstart': function () {
+                    fireEmailResults();
+                }
+            });
+
+            $('#emailStatements').on({
+                'touchstart': function () {
+                    fireEmailStatements();
+                }
+            });
+
+            $('#clearData').on({
+                'touchstart': function () {
+                    fireDataClear();
+                }
+            });
+
+            $('#blackWhite').on({
+                'touchstart': function () {
+                    firePublicationPage();
+                }
+            });
+
+            // localStorage.setItem('sortCardNumber', $('input[name="radio"]:checked').val());
+
+        })(); // end event handlers
+
+
+        //**** persist radio selection for Q-sort structure *****************************
+        $('input[type="radio"]').click(function () {
+            setActiveBox($(this));
+        });
+
+        function setActiveBox($radioButton) {
+            if (!($radioButton instanceof jQuery)) {
+                $radioButton = $($radioButton);
+            }
+
+            var value = $radioButton.attr("value");
+            saveData("activeRadio", value);
+        }
+
+        function saveData(key, value) {
+            localStorage.setItem(key, value);
+        }
+
+        function getData(key) {
+            return localStorage.getItem(key);
+        }
+
+        //**** check stored radioButton on page load ************************************
+        var $radioButton = $("[value=" + getData("activeRadio") + "]");
+        $($radioButton).attr("checked", true);
+        setActiveBox($radioButton);
+        // alert("radio button function complete");
+
+
+        //* * * * check color grid checkbox status * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+        $('input[type="checkbox"]').click(function () {
+
+            if ($('#squaredOne').is(":checked")) {
+                localStorage.setItem("useColorGrid", "yes");
+            } else {
+                localStorage.setItem("useColorGrid", "no");
+            };
+            var testMe = localStorage.getItem("useColorGrid");
+            console.log(testMe);
+        });
+
+
+        //**** pull results in localStorage from Q-sort page ****************************
+
+
+        var checkNewResults = function () {
+            var respondentCode = localStorage.getItem("respondentCodeId");
+            var respondentCodeCheck = localStorage.getItem("respondentCodeCheck");
+            // alert("respondent variables loaded");
+            //  $('#incomingComments').html(localStorage.getItem('currentComments'));
+            // $('#incomingResults').html(localStorage.getItem('currentResults'));
+            if ((respondentCode === null) || (respondentCode === respondentCodeCheck)) {} else {
+                $('#incomingResults').html(localStorage.getItem('currentResults'));
+                // alert("ready to pullResults");
+                pullResults();
+                pullComments();
+                var respondentCodeCheck = respondentCode;
+                localStorage.setItem("respondentCodeCheck", respondentCodeCheck);
+            }
+        };
+
+        var pullResults = function () {
+            // $('#incomingResults').html(localStorage.getItem('currentResults'));
+            // alert("pull results function fired");
+            // var prepRetreiveResults = localStorage.getItem("theResults");
+            // var retreiveResults = JSON.parse(prepRetreiveResults);
+            var retreiveResults1 = localStorage.getItem("theResults");
+            // alert("retreiveResults1 = " + retreiveResults1);
+            var retreiveResults2 = retreiveResults1.replace(/,/g, " ");
+            // alert("retreiveResults2 = " + retreiveResults2);
+            var retreiveResults3 = retreiveResults2.replace(/ -/g, "-");
+            // alert("retreiveResults3 = " + retreiveResults3);
+            var retreiveResults4 = retreiveResults3.replace(/[\[\]']+/g, '');
+
+            //****  add spacers between results and respondent name
+            var cardLength = localStorage.getItem("activeRadio");
+            var retreiveResults5 = String(retreiveResults4);
+            switch (cardLength) {
+            case "state41":
+                if (retreiveResults5.length < 82) {
+                    var retreiveResults6 = " " + retreiveResults5;
+                } else {
+                    var retreiveResults6 = retreiveResults5;
+                };
+                break;
+            case "state39":
+                if (retreiveResults5.length < 78) {
+                    var retreiveResults6 = " " + retreiveResults5;
+                } else {
+                    var retreiveResults6 = retreiveResults5;
+                };
+                break;
+            default:
+                if (retreiveResults5.length < 74) {
+                    var retreiveResults6 = " " + retreiveResults5;
+                } else {
+                    var retreiveResults6 = retreiveResults5;
+                };
+            }; // end switch
+
+            var retrieveRespondentCode = localStorage.getItem("respondentCodeId");
+            $("#incomingResults").append("<pre>" + retrieveRespondentCode + "  " + retreiveResults6 + "</br></pre>");
+            var currentResults = $("#incomingResults").html();
+            localStorage.setItem('currentResults', currentResults);
+        };
+
+        var pullComments = function () {
+            // alert("pull comments is fired");
+            // alert("responseGreenState1 - " +  localStorage.getItem("responseGreenState1"));
+            var retrieveGreenComments = localStorage.getItem("responseGreenState1");
+            var retrieveGrayComments = localStorage.getItem("responseGrayState1");
+            var retrievePinkComments = localStorage.getItem("responsePinkState1");
+            // alert("greenReview - " + localStorage.getItem("greenReview");
+            var prepGreenSet = localStorage.getItem("greenReview");
+            var greenSet = JSON.parse(prepGreenSet);
+            var prepGraySet = localStorage.getItem("grayReview");
+            var graySet = JSON.parse(prepGraySet);
+            var prepPinkSet = localStorage.getItem("pinkReview");
+            var pinkSet = JSON.parse(prepPinkSet);
+
+            if ((retrieveGreenComments === null) && (retrieveGrayComments === null) && (retrievePinkComments === null)) {} else {
+
+                var retrieveRespondentCommentCode = localStorage.getItem("respondentCodeId");
+                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; AGREE; " + greenSet + "; " + retrieveGreenComments + "</li>");
+                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; AMBIV;  " + graySet + "; " + retrieveGrayComments + "</li>");
+                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; DISAGREE; " + pinkSet + "; " + retrievePinkComments + "</li>");
+                var currentComments = $("#incomingComments").html();
+                localStorage.setItem('currentComments', currentComments);
+            }
+        };
+
+        var pullEmailHeader = function () {
+                // crude hack to get number respondents
+                var numberRespondentResults = $("#incomingComments li").length / 3;
+                var paddedNumberRespondentResults = pad(numberRespondentResults, 3);
+                var studyName1 = localStorage.getItem('studyName');
+                var activeRadioValue = localStorage.getItem("activeRadio");
+                switch (activeRadioValue) {
+                case "state37":
+                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 37 " + studyName1 + "</pre>");
+                    $("#emailHeader").append("<pre> -3  3  0  0  0  4  5  6  7  6  5  4  0  0  0  0  0  0  0  0  0  0</pre>");
+                    break;
+                case "state39":
+                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 39 " + studyName1 + "</pre>");
+                    $("#emailHeader").append("<pre> -3  3  0  0  0  5  5  6  7  6  5  5  0  0  0  0  0  0  0  0  0  0</pre>");
+                    break;
+                default:
+                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 41 " + studyName1 + "</pre>");
+                    $("#emailHeader").append("<pre> -3  3  0  0  0  5  6  6  7  6  6  5  0  0  0  0  0  0  0  0  0  0</pre>");
+                }; // end switch
+
+            } // end pullEmailHeader function
+
+        //****  adds variable # padding 0s to respon. numbers to keep ******************
+        //****  pqmethod spacing requirements ******************************************
+        function pad(n, width, z) {
+            z = z || ' ';
+            n = n + '';
+            return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+        }
+    </script>
+
+
+    <script>
+        // *** email qSort results ***********************************************
+        var fireEmailResults = function () {
+            pullEmailHeader();
+            var link = document.getElementById('email');
+            var emailAddress = localStorage.getItem('emailInput');
+            link.onclick = function () {
+                this.href = "mailto:" + emailAddress + "?" + "subject=Ken-Q Mobile Data&body=";
+                this.href += getBody();
+            };
+
+            function getBody() {
+                var emailText1 = $("#emailHeader").html();
+                var emailText2 = $("#incomingResults").html() + "<br><br>";
+                var emailText3 = $("#incomingComments").html();
+                var emailTextResults = emailText1 + emailText2;
+                return [emailTextResults, emailText3];
+            }
+        };
+
+        // *** get respondent code and start Q sort process **************************
+        var firePromptRespondentCode = function () {
+            var link2 = document.getElementById('qSortGo');
+            link2.onclick = function () {
+                var respondentCode = prompt('Please enter an 8 character Respondent Code.');
+                $(this).focus();
+                while ((respondentCode.length < 8) || (respondentCode.length > 8)) {
+                    var respondentCode = prompt('Please re-enter the Respondent Code. It must be exactly 8 characters in length.');
+                };
+                localStorage.setItem("respondentCodeId", respondentCode);
+                $('nav a:nth-child(4)').trigger('touchstart');
+            }
+        };
+    </script>
+
+    <script>
+        // email Statements (call from localStorage on Statements page)****************
+        var fireEmailStatements = function () {
+            var link2 = document.getElementById('emailStatements');
+            var emailAddress = localStorage.getItem('emailInput');
+            var statementLengthEmail = localStorage.getItem("activeRadio");
+            var last2NumberStatements = parseInt(statementLengthEmail.slice(-2));
+            link2.onclick = function () {
+
+                this.href = "mailto:" + emailAddress + "?" + "subject=Ken-Q Mobile Statements&body=";
+                this.href += getBody();
+            };
+
+            function getBody() {
+                var lengthStatesEmail = last2NumberStatements + 1;
+                for (var i = 1; i < lengthStatesEmail; i++) {
+                    var statement = localStorage.getItem("state" + [i]);
+                    $("#statementHolder").append("<pre>" + statement + "</pre></br>").html;
+                };
+                return $("#statementHolder").html();
+            }
+        };
+    </script>
+
+    <script type="text/javascript">
+        //**** stay standalone ***********************************************************
+        //https://github.com/mrmoses/jQuery.stayInWebApp
+        (function ($) {
+            $.extend({
+                stayInWebApp: function (b) {
+                    "standalone" in window.navigator && window.navigator.standalone && (b || (b = "a"), $("body").delegate(b, "touchstart", function (b) {
+                        if ($(this).attr("target") == void 0 || $(this).attr("target") == "" || $(this).attr("target") == "_self") {
+                            var c = $(this).attr("href");
+                            if (!c.match(/^http(s?)/g)) b.preventDefault(), self.location = c
+                        }
+                    }))
+                }
+            })
+        })(jQuery);
+        $(function () {
+            $.stayInWebApp('a.stay');
+        });
+        // This use only links with the class stay.
+        // $(function() { $.stayInWebApp('a.stay');});
+        // end stay standalone
+    </script>
+
+
+    <script>
+        //**** go to publication images Q-sort page ***************************************
+        var firePublicationPage = function () {
+            $('nav a:nth-child(8)').trigger('touchstart');
+        };
+
+        var fireDataClear = function () {
+            $('nav a:nth-child(7)').trigger('touchstart');
+        };
+    </script>
+
+    <!-- enabling textfield persistance in statements - part of garlic.js ******** -->
+    <script type="text/javascript">
+        var supported = '',
+            unsupported = 'Your browser does not support localStorage.';
+        if (window.localStorage) {
+            $('.persisted-text').keyup(function () {
+                localStorage.setItem(this.name, this.value);
+            }).val(function () {
+                return localStorage.getItem(this.name) || supported
+            })
+        } else {
+            $('.persisted-text').val(unsupported);
+        }
+    </script>
+
+    <!-- PEP SCROLLER REQUIRED JS - DO NOT MODIFY  ******************************* -->
+    <script>
+        // Apply pep to the object.
+        $('#incomingResults, #incomingComments').pep({
+            axis: "y",
+            easeDuration: 500,
+            drag: handlePull,
+            useCSSTranslation: false,
+            stop: function (ev, obj) {
+                hidePull(ev, obj);
+                outOfBounds(ev, obj);
+                handleLoader(ev, obj);
+            },
+            rest: function (ev, obj) {
+                outOfBounds(ev, obj)
+            }
+        });
+
+        // Fill in our loader and pull to refresh divs.
+        $('.results.scroller .loading').text('loading...');
+        $('.results.scroller .pull').text('pull to refresh');
+
+        // Stop propagation for some elements like links.
+        $('.results.scroller .pep').find('a').on('touchstart mousedown MSPointerDown', function (e) {
+            e.stopPropagation();
+            // alert('You clicked on me, I feel special!')
+        })
+
+        // Check if the text went outside its parent
+        function outOfBounds(ev, obj) {
+
+            if (-obj.$el.position().top > (obj.$el.outerHeight() - obj.$el.parent().outerHeight())) {
+                obj.$el.css({
+                    top: -obj.$el.outerHeight() + obj.$el.parent().outerHeight()
+                })
+            }
+
+            if (obj.$el.position().top > 0) {
+                setTimeout(function () {
+                    obj.$el.css({
+                        top: 0
+                    });
+                }, 500);
+            }
+        }
+
+        function handleLoader(ev, obj) {
+            if (obj.$el.position().top > 50) {
+                var $loading = obj.$el.css({
+                    top: 50
+                }).parent().find('.loading').addClass('shown');
+
+                setTimeout(function () {
+                    $loading.removeClass('shown');
+                }, 500);
+            }
+        }
+
+
+        function handlePull(ev, obj) {
+            if (obj.$el.position().top > 0) {
+                var $pull = obj.$el.parent().find('.pull').addClass('shown');
+            }
+        }
+
+        function hidePull(ev, obj) {
+            obj.$el.parent().find('.pull').removeClass('shown');
+        }
+    </script>
+
+</body>
+
+</html>

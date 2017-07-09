@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html manifest="statements.appcache">
+<head>
+	<meta charset="utf-8">
+
+<!-- apple viewport standalone -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+<!-- load iscroll5 -->
+	<script type="text/javascript" src="iscroll-lite.js"></script>
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+
+<!-- initialize iscroll5 -->
+	<script type="text/javascript">
+		var myScroll;
+		function loaded () {
+		myScroll = new IScroll('#wrapper');
+		}
+		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	</script>
+
+<title>Q-Sort Statements</title>
+
+<style>
+
+/*  *************** page specific styles*/
+
+
+	p {
+
+	    font-family: HelveticaNeue-CondensedBlack;
+		display: inline-block;
+		font-size: 15px;
+	}
+
+	input {
+		display: inline-block;
+		width: 875px;
+		font-size: 17px;
+		font-family: AvenirNextCondensed-Regular;
+/*		font-family: Menlo-Regular;*/
+	}
+
+	h1 {
+		 font-family: HelveticaNeue-CondensedBlack;
+		 line-height: 1.50em;
+		 font-size: 45px;
+		 margin-left: 30px;
+		 color: #1985c5;
+		 margin-top: 50px;
+	}
+
+	#myStatements {
+		margin-left: 30px;
+		text-align: center;
+
+	}
+
+
+
+/* *****************  end page specific styles*/
+
+	body {
+		/* On modern browsers, prevent the whole page to bounce */
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		}
+
+	#wrapper {
+		position: relative;
+		margin-top: 20px;
+		height: 748px;
+		width: 100%;
+		overflow: hidden;
+
+		/* Prevent native touch events on Windows */
+		-ms-touch-action: none;
+
+		/* Prevent the callout on tap-hold and text selection */
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+
+		/* Prevent text resize on orientation change, useful for web-apps */
+		-webkit-text-size-adjust: none;
+		-moz-text-size-adjust: none;
+		-ms-text-size-adjust: none;
+		-o-text-size-adjust: none;
+		text-size-adjust: none;
+		}
+
+	#scroller {
+		position: absolute;
+
+		/* Prevent elements to be highlighted on tap */
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+		/* Put the scroller into the HW Compositing layer right from the start */
+		-webkit-transform: translateZ(0);
+		-moz-transform: translateZ(0);
+		-ms-transform: translateZ(0);
+		-o-transform: translateZ(0);
+		transform: translateZ(0);
+		}
+
+		/* Nav menu styling */
+	nav { position: absolute;
+			bottom: 0px;
+			left: 240px;
+			border-spacing: 0px;
+			margin-top: 5px;
+			}
+	nav a { padding: 5px 15px 5px 15px; text-align: center;  background-color: #1985c5;border-top-left-radius: 5px; border-top-right-radius: 5px; border: 3px solid #1985c5; margin-right: -4px; margin-left: -4px;
+			text-decoration: none;
+			}
+	nav a.selected { background-color: white; color: #1985c5;}
+
+	a { color: #2d343c; text-align: center; font-weight: bold; font-family: HelveticaNeue-CondensedBlack;}    /* changes the color of the a links */
+
+	#delayContainer {display:none}
+
+</style>
+
+<!-- Stay standalone link wrapper -->
+	<script>
+	// stay standalone
+	//https://github.com/mrmoses/jQuery.stayInWebApp
+	(function($){$.extend({stayInWebApp:function(b){"standalone"in window.navigator&&window.navigator.standalone&&(b||(b="a"),$("body").delegate(b,"touchstart",function(b){if($(this).attr("target")==void 0||$(this).attr("target")==""||$(this).attr("target")=="_self"){var c=$(this).attr("href");if(!c.match(/^http(s?)/g))b.preventDefault(),self.location=c}}))}})})(jQuery);
+	$(function() { $.stayInWebApp('a.stay'); });
+		// This use only links with the class stay.
+		// $(function() { $.stayInWebApp('a.stay');});
+		// end stay standalone
+	</script>
+
+</head>
+<body  onload="loaded()">
+
+	<div id="delayContainer">
+
+	<div id="wrapper"> <!--container for iscroll5 -->
+	<div id="scroller">
+
+	<h1>Q Sort Statement Input</h1>
+
+	<!-- instantiate garlic.js for the entire form -->
+<form>
+
+	<div id="myStatements">
+
+		<div style="float:left">
+		  <p>Statement 1: <input type="text"  class="outer persisted-text" size="116" maxlength="130" name="state1"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 2: <input type="text"  class="outer persisted-text" size="116" maxlength="130" name="state2"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 3: <input type="text"  class="outer persisted-text" size="116" maxlength="130" name="state3"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 4: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state4"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 5: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state5"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 6: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state6"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 7: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state7"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 8: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state8"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 9: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state9"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 10: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state10"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 11: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state11"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 12: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state12"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 13: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state13"></p>
+		 </div>
+
+		<div style="float:left">
+		  <p>Statement 14: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state14"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 15: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state15"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 16: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state16"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 17: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state17"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 18: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state18"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 19: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state19"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 20: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state20"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 21: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state21"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 22: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state22"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 23: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state23"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 24: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state24"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 25: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state25"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 26: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state26"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 27: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state27"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 28: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state28"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 29: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state29"></p>
+		 </div>
+
+		
+
+		<div style="float:left">
+		  <p>Statement 30: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state30"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 31: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state31"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 32: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state32"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 33: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state33"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 34: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state34"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 35: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state35"></p>
+		 </div>
+
+
+		<div style="float:left">
+		  <p>Statement 36: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state36"></p>
+		 </div>
+		
+		<div style="float:left">
+			<p>Statement 37: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state37"></p>
+		</div>
+		
+		
+<!-- 37 statements div -->
+<div id="37states">
+		
+		<div style="float:left">
+			<p>Statement 38: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state38"></p>
+		</div>
+		
+		<div style="float:left">
+			<p>Statement 39: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state39"></p>
+		</div>
+		
+<!-- 39 statements div -->
+<div id="39states">
+			
+		<div style="float:left">
+			<p>Statement 40: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state40"></p>
+		</div>
+		
+		<div style="float:left">
+			<p>Statement 41: <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state41"></p>
+		</div>
+
+</div>  <!-- end of 39states div -->
+</div>  <!-- end of 37states div -->
+</div>  <!-- end of myStatements div -->
+
+</form>
+
+	<div style="width:100%">
+		<p><span style="float: left; margin-top:100px">End of Statements</span></p>
+	</div>
+<br/>
+<br/>
+
+	</div>  <!--end scroller for iscroll5 -->
+	</div>  <!--end wrapper for iscroll5-->
+
+<nav>
+	<a class="stay" href="information.html">Information</a>
+	<a class="stay" href="controls.html">Controls</a>
+	<a class="stay" style=" background-color: white; color: #1985c5;" href="statements.html">Q Statements</a>
+	<a class="stay" href="presort.html">Presort</a>
+	<a class="stay" href="qsort.html">Sort</a>
+	<a class="stay" href="postsort.html">Postsort</a>
+</nav>
+
+</div>   <!--   end fade in div delayContainer -->
+
+
+<!-- *****************************************************************-->
+<!--   Javascript  -->
+<!-- *****************************************************************-->
+
+
+<!-- show / hide statements according to persisted activeRadio -->
+<!-- clear statements event handler -->
+<!-- form persistence on keyup -->
+
+<script type="text/javascript">
+ $(document).ready(function () {
+		$( "#delayContainer").fadeIn(500);
+
+	  var activeRadioValue = localStorage.getItem("activeRadio");
+	  switch (activeRadioValue) {
+	    case "state41":
+	       break;
+	    case "state39":
+	       $('#39states').hide();
+	       break;
+	    default:
+	       $('#37states').hide();
+	  };
+
+
+
+		var input = document.getElementsByTagName('input');
+	 	
+		//retrieve
+		 for (var i = 0; i < input.length; i++){
+		    input[i].value = localStorage.getItem(input[i].name);
+		　}
+
+		　$('form input, form textarea').on('input propertychange change', function() {
+	    　for (var i = 0; i < input.length; i++){
+	        localStorage.setItem(input[i].name, input[i].value);
+	    　}
+	　　　});
+
+	});  // end document ready function
+</script>
+
+
+</body>
+</html>
