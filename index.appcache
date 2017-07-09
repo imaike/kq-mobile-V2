@@ -1,9 +1,9 @@
 CACHE MANIFEST
 
-# V160
+# V161
 
 CACHE:
-information.html
+index.html
 iscroll-lite.js
 jquery-1.10.2.min.js
 images/37cardsVerySmall.png
