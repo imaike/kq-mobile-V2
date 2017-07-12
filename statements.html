@@ -51,9 +51,45 @@
 			line-height: 1.50em;
 			font-size: 45px;
 			margin-left: 30px;
+			color: black;
+			margin-top: 50px;
+		}
+
+		h2 {
+			font-family: HelveticaNeue-CondensedBlack;
+			line-height: 1.50em;
+			font-size: 25px;
+			margin-left: 30px;
 			color: #1985c5;
 			margin-top: 50px;
 		}
+
+		.pasteStatements {
+			float: right;
+			margin-right: 12%;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			font-family: HelveticaNeue-CondensedBlack;
+			appearance: none;
+			margin-left: 5px;
+			width: 200px;
+			margin-top: 2px;
+			padding-top: 5px;
+			padding-bottom: 0px;
+			height: 40px;
+			background: #1985c5;
+			border: 0px solid #666;
+			cursor: pointer;
+			-webkit-border-radius: 5px;
+			font-size: 120%;
+			color: white;
+			letter-spacing: .80px;
+		}
+
+		.pasteStatements:active {
+			border: 3px solid #666;
+		}
+
 
 		#myStatements {
 			margin-left: 30px;
@@ -66,6 +102,8 @@
 			width: 100%;
 			height: 100%;
 			overflow: hidden;
+			margin-left: 0 !important;
+			/* touch-action: pan-up pan-down; */
 		}
 
 		#wrapper {
@@ -74,6 +112,7 @@
 			height: 748px;
 			width: 100%;
 			overflow: hidden;
+
 
 			/* Prevent native touch events on Windows */
 			-ms-touch-action: none;
@@ -143,20 +182,13 @@
 
 		textarea {
 			padding: 10px;
-			width: 75%;
+			width: 90%;
 			height: 150px;
 			font-size: 14px;
-			margin: 10px auto;
+			margin: 2% auto;
 			display: block;
 			border-radius: 10px;
 			border: 6px solid #1985c5;
-		}
-
-		#pasteStatementsButton {
-			background: #1985c5;
-			color: white;
-			float: right;
-			margin-right: 12%;
 		}
 
 		#delayContainer {
@@ -201,11 +233,12 @@
 			<div id="scroller">
 
 				<h1>Q Sort Statement Input</h1>
+				<h2>Directly input or paste statements for your project</h2>
 
 
 				<div id="statementPasteBox">
-					<textarea rows='1' placeholder='Paste Statements'></textarea>
-					<button id="pasteStatementsButton">Add Statements</button>
+					<textarea rows='1' id="inputBox" placeholder='Paste Statements'></textarea>
+					<button class="pasteStatements" id="pasteStatementsButton">Add Statements</button>
 				</div>
 
 
@@ -262,26 +295,36 @@
 					$('#37states').hide();
 			};
 
-			// get number of statements from local storage value
-			var stateNum = activeRadioValue.slice(5, 7);
+			// get number of statements from local storage value - default to 37
+			var stateNum = activeRadioValue.slice(5, 7) || 37;
 			// loop and append to DOM
 			for (var i = 0; i < stateNum; i++) {
 				var sNumber = i + 1;
 				$("#myStatements").append('	<div style="float:left"><p>Statement ' + sNumber +
-					': <input type="text" class="outer persisted-text" size="116" maxlength="130" name="state' + sNumber +
+					': <input type="text" class="outer-persisted-text" size="116" maxlength="130" name="state' + sNumber +
 					'"></p></div>')
 			}
 
-
+			//retrieve statements from local storage
 			var input = document.getElementsByTagName('input');
-
-			//retrieve
 			for (var i = 0; i < input.length; i++) {
 				input[i].value = localStorage.getItem(input[i].name);　
 			}
 
+			// transfer pasted statements to input and then to localStorage
+			$('.pasteStatements').on('touchstart', function () {
+				var statementText = $("#inputBox").val().split('\n');
+				statementText = statementText.filter(function (e) {
+					return e
+				});
+				for (var k = 0; k < input.length; k++) {
+					input[k].value = statementText[k];
+					localStorage.setItem(input[k].name, input[k].value);
+				}
+			})
+
 			　
-			$('form input, form textarea').on('input propertychange change', function () {　
+			$('.outer-persisted-text').on('input propertychange change', function () {　
 				for (var i = 0; i < input.length; i++) {
 					localStorage.setItem(input[i].name, input[i].value);　
 				}　　　
