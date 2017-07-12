@@ -8,7 +8,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 -->
 
 
-<html manifest="controls.appcache">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -24,7 +24,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
     <style>
         /*  *************** page specific styles*/
-        
+
         .goButton {
             position: absolute;
             left: 765px;
@@ -44,11 +44,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             cursor: pointer;
             -webkit-border-radius: 5px;
         }
-        
+
         .goButton:active {
             border: 3px solid #666;
         }
-        
+
         #qSortButton {
             display: block;
             padding-top: 16px;
@@ -59,7 +59,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             line-height: 1em;
             color: #2d343c;
         }
-        
+
         .emailResultsButton {
             position: absolute;
             left: 30px;
@@ -79,11 +79,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             cursor: pointer;
             -webkit-border-radius: 5px;
         }
-        
+
         .emailResultsButton:active {
             border: 3px solid #666;
         }
-        
+
         .emailResultsButton span {
             display: block;
             padding-top: 5px;
@@ -93,12 +93,12 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             text-align: center;
             line-height: 1.15em;
         }
-        
+
         .emailResultsButton a:link {
             color: #2d343c;
             text-decoration: none;
         }
-        
+
         .emailStatementsButton {
             position: absolute;
             left: 30px;
@@ -118,11 +118,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             cursor: pointer;
             -webkit-border-radius: 5px;
         }
-        
+
         .emailStatementsButton:active {
             border: 3px solid #666;
         }
-        
+
         .emailStatementsButton span {
             display: block;
             padding-top: 0px;
@@ -133,25 +133,25 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             line-height: 1.15em;
             font-color: #a8a8a8;
         }
-        
+
         .emailStatementsButton a:link {
             color: #2d343c;
             text-decoration: none;
         }
-        
+
         .results {
             overflow: hidden;
             padding: 20;
             position: relative !important;
             line-height: 1.5;
         }
-        
+
         .results .pep {
             cursor: pointer;
             margin: 0;
             padding: 20px;
         }
-        
+
         .results .loading,
         .results .pull {
             text-align: center;
@@ -163,16 +163,16 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             -webkit-transition: all 100ms;
             transition: all 100ms;
         }
-        
+
         .results .loading.shown,
         .results .pull.shown {
             top: 10px;
         }
-        
+
         #incomingResults {
             padding-left: 60px;
         }
-        
+
         #sortResultsDisplay {
             position: absolute;
             margin-left: 27px;
@@ -182,7 +182,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             height: 185px;
             border: 1px solid;
         }
-        
+
         #sortCommentsDisplay {
             position: absolute;
             margin-left: 27px;
@@ -192,7 +192,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             height: 185px;
             border: 1px solid;
         }
-        
+
         .clearDataButton {
             position: absolute;
             left: 250px;
@@ -212,11 +212,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             cursor: pointer;
             -webkit-border-radius: 5px;
         }
-        
+
         .clearDataButton:active {
             border: 3px solid #666;
         }
-        
+
         .clearDataButton span {
             display: block;
             padding-top: 0px;
@@ -227,7 +227,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             line-height: 1em;
             color: #2d343c;
         }
-        
+
         .blackWhiteButton {
             position: absolute;
             left: 250px;
@@ -247,11 +247,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             cursor: pointer;
             -webkit-border-radius: 5px;
         }
-        
+
         .blackWhiteButton:active {
             border: 3px solid #666;
         }
-        
+
         .blackWhiteButton span {
             display: block;
             margin-top: 13px;
@@ -262,7 +262,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             line-height: 1em;
             color: #2d343c;
         }
-        
+
         #studyNameInputBox {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
@@ -271,7 +271,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             font-size: 22px;
             width: 250px;
         }
-        
+
         #emailInputBox {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
@@ -280,7 +280,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             font-size: 22px;
             width: 150px;
         }
-        
+
         .displayBox {
             position: relative;
             margin-left: 20px;
@@ -290,7 +290,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             font-weight: normal;
             font-family: ArialMT;
         }
-        
+
         ul {
             list-style-type: none;
             font-size: 12px;
@@ -299,7 +299,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             font-weight: normal;
             font-family: ArialMT;
         }
-        
+
         #resultsLabel {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
@@ -307,7 +307,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             color: #ffffff;
             margin-left: 27px;
         }
-        
+
         #commentsLabel {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
@@ -315,14 +315,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             color: #ffffff;
             margin-left: 27px;
         }
-        
+
         #radioButtonDiv {
             position: absolute;
             left: 466px;
             top: 160px;
             cursor: pointer;
         }
-        
+
         input[type=radio]:not(old) {
             width: 2em;
             margin: 0;
@@ -331,16 +331,16 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             font-family: HelveticaNeue-CondensedBlack;
             opacity: 0;
         }
-        
-        input[type=radio]:not(old) + label {
+
+        input[type=radio]:not(old)+label {
             display: inline-block;
             margin-left: -2em;
             line-height: 2.0em;
             color: white;
             font-family: HelveticaNeue-CondensedBlack;
         }
-        
-        input[type=radio]:not(old) + label > span {
+
+        input[type=radio]:not(old)+label>span {
             display: inline-block;
             width: 1.2em;
             height: 1.2em;
@@ -352,13 +352,13 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             background-image: linear-gradient(rgb(240, 240, 240), rgb(224, 224, 224));
             vertical-align: bottom;
         }
-        
-        input[type=radio]:not(old):checked + label > span {
+
+        input[type=radio]:not(old):checked+label>span {
             background-image: -webkit-linear-gradient(rgb(224, 224, 224), rgb(240, 240, 240));
             background-image: linear-gradient(rgb(224, 224, 224), rgb(240, 240, 240));
         }
-        
-        input[type=radio]:not(old):checked + label > span > span {
+
+        input[type=radio]:not(old):checked+label>span>span {
             display: block;
             width: 0.8em;
             height: 0.8em;
@@ -368,7 +368,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             background: rgb(153, 204, 102);
             background-image: rgb(85, 178, 98);
         }
-        
+
         .squaredOne {
             width: 36px;
             height: 36px;
@@ -388,7 +388,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             left: 22px;
             border-radius: 3px;
         }
-        
+
         .squaredOne label {
             cursor: pointer;
             position: absolute;
@@ -407,7 +407,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d', GradientType=0);
         }
         /*        green dot */
-        
+
         .squaredOne label:after {
             -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
             filter: alpha(opacity=0);
@@ -428,19 +428,19 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
             box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
         }
-        
+
         .squaredOne label:hover::after {
             -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
             filter: alpha(opacity=30);
             opacity: 0.3;
         }
-        
-        .squaredOne input[type=checkbox]:checked + label:after {
+
+        .squaredOne input[type=checkbox]:checked+label:after {
             -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
             filter: alpha(opacity=100);
             opacity: 1;
         }
-        
+
         #colorGridCheckboxLabel {
             padding-left: 5px;
             float: left;
@@ -451,7 +451,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             left: -20px;
             font-family: HelveticaNeue-CondensedBlack;
         }
-        
+
         #colorGridCheckboxDiv {
             border: 3px solid #1985c5;
             border-radius: 5px;
@@ -461,24 +461,23 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             width: 90px;
             height: 80px;
         }
-        
+
         #squaredOne {
             position: relative;
             top: -15px;
             left: 10px;
         }
         /* *****************  end page specific styles*/
-        
+
         body {
             /* On modern browsers, prevent the whole page to bounce */
-            
             width: 100%;
             height: 100%;
             overflow: hidden;
             background-color: #2d343c;
         }
         /* Nav menu styling */
-        
+
         nav {
             position: absolute;
             bottom: 5px;
@@ -486,7 +485,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             border-spacing: 0px;
             margin-top: 5px;
         }
-        
+
         nav a {
             padding: 5px 15px 15px 15px;
             text-align: center;
@@ -497,7 +496,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             margin-right: -4px;
             margin-left: -4px;
         }
-        
+
         a {
             color: #2d343c;
             text-align: center;
@@ -505,7 +504,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             font-family: HelveticaNeue-CondensedBlack;
             text-decoration: none;
         }
-        
+
         #delayContainer {
             display: none
         }
@@ -537,7 +536,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         <form data-persist="garlic" data-domain="true">
             <div id="studyNameInputBox">
                 <p style="color: white; display: inline-block">Project Name:
-                    <input type="text" ; class="outer persisted-text" ; style="width:245px" ; maxlength="15" ; name="studyName" ; autocapitalize="off" ; autocorrect="off">
+                    <input type="text" ; class="outer persisted-text" ; style="width:245px" ; maxlength="15" ; name="studyName" ; autocapitalize="off"
+                        ; autocorrect="off">
                 </p>
             </div>
 
@@ -760,26 +760,26 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             var cardLength = localStorage.getItem("activeRadio");
             var retreiveResults5 = String(retreiveResults4);
             switch (cardLength) {
-            case "state41":
-                if (retreiveResults5.length < 82) {
-                    var retreiveResults6 = " " + retreiveResults5;
-                } else {
-                    var retreiveResults6 = retreiveResults5;
-                };
-                break;
-            case "state39":
-                if (retreiveResults5.length < 78) {
-                    var retreiveResults6 = " " + retreiveResults5;
-                } else {
-                    var retreiveResults6 = retreiveResults5;
-                };
-                break;
-            default:
-                if (retreiveResults5.length < 74) {
-                    var retreiveResults6 = " " + retreiveResults5;
-                } else {
-                    var retreiveResults6 = retreiveResults5;
-                };
+                case "state41":
+                    if (retreiveResults5.length < 82) {
+                        var retreiveResults6 = " " + retreiveResults5;
+                    } else {
+                        var retreiveResults6 = retreiveResults5;
+                    };
+                    break;
+                case "state39":
+                    if (retreiveResults5.length < 78) {
+                        var retreiveResults6 = " " + retreiveResults5;
+                    } else {
+                        var retreiveResults6 = retreiveResults5;
+                    };
+                    break;
+                default:
+                    if (retreiveResults5.length < 74) {
+                        var retreiveResults6 = " " + retreiveResults5;
+                    } else {
+                        var retreiveResults6 = retreiveResults5;
+                    };
             }; // end switch
 
             var retrieveRespondentCode = localStorage.getItem("respondentCodeId");
@@ -802,38 +802,48 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             var prepPinkSet = localStorage.getItem("pinkReview");
             var pinkSet = JSON.parse(prepPinkSet);
 
-            if ((retrieveGreenComments === null) && (retrieveGrayComments === null) && (retrievePinkComments === null)) {} else {
+            if ((retrieveGreenComments === null) && (retrieveGrayComments === null) && (retrievePinkComments ===
+                    null)) {} else {
 
                 var retrieveRespondentCommentCode = localStorage.getItem("respondentCodeId");
-                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; AGREE; " + greenSet + "; " + retrieveGreenComments + "</li>");
-                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; AMBIV;  " + graySet + "; " + retrieveGrayComments + "</li>");
-                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; DISAGREE; " + pinkSet + "; " + retrievePinkComments + "</li>");
+                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; AGREE; " + greenSet +
+                    "; " + retrieveGreenComments + "</li>");
+                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; AMBIV;  " + graySet +
+                    "; " + retrieveGrayComments + "</li>");
+                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; DISAGREE; " + pinkSet +
+                    "; " + retrievePinkComments + "</li>");
                 var currentComments = $("#incomingComments").html();
                 localStorage.setItem('currentComments', currentComments);
             }
         };
 
         var pullEmailHeader = function () {
-                // crude hack to get number respondents
-                var numberRespondentResults = $("#incomingComments li").length / 3;
-                var paddedNumberRespondentResults = pad(numberRespondentResults, 3);
-                var studyName1 = localStorage.getItem('studyName');
-                var activeRadioValue = localStorage.getItem("activeRadio");
-                switch (activeRadioValue) {
+            // crude hack to get number respondents
+            var numberRespondentResults = $("#incomingComments li").length / 3;
+            var paddedNumberRespondentResults = pad(numberRespondentResults, 3);
+            var studyName1 = localStorage.getItem('studyName');
+            var activeRadioValue = localStorage.getItem("activeRadio");
+            switch (activeRadioValue) {
                 case "state37":
-                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 37 " + studyName1 + "</pre>");
-                    $("#emailHeader").append("<pre> -3  3  0  0  0  4  5  6  7  6  5  4  0  0  0  0  0  0  0  0  0  0</pre>");
+                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 37 " + studyName1 +
+                        "</pre>");
+                    $("#emailHeader").append(
+                        "<pre> -3  3  0  0  0  4  5  6  7  6  5  4  0  0  0  0  0  0  0  0  0  0</pre>");
                     break;
                 case "state39":
-                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 39 " + studyName1 + "</pre>");
-                    $("#emailHeader").append("<pre> -3  3  0  0  0  5  5  6  7  6  5  5  0  0  0  0  0  0  0  0  0  0</pre>");
+                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 39 " + studyName1 +
+                        "</pre>");
+                    $("#emailHeader").append(
+                        "<pre> -3  3  0  0  0  5  5  6  7  6  5  5  0  0  0  0  0  0  0  0  0  0</pre>");
                     break;
                 default:
-                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 41 " + studyName1 + "</pre>");
-                    $("#emailHeader").append("<pre> -3  3  0  0  0  5  6  6  7  6  6  5  0  0  0  0  0  0  0  0  0  0</pre>");
-                }; // end switch
+                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 41 " + studyName1 +
+                        "</pre>");
+                    $("#emailHeader").append(
+                        "<pre> -3  3  0  0  0  5  6  6  7  6  6  5  0  0  0  0  0  0  0  0  0  0</pre>");
+            }; // end switch
 
-            } // end pullEmailHeader function
+        } // end pullEmailHeader function
 
         //****  adds variable # padding 0s to respon. numbers to keep ******************
         //****  pqmethod spacing requirements ******************************************
@@ -872,7 +882,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 var respondentCode = prompt('Please enter an 8 character Respondent Code.');
                 $(this).focus();
                 while ((respondentCode.length < 8) || (respondentCode.length > 8)) {
-                    var respondentCode = prompt('Please re-enter the Respondent Code. It must be exactly 8 characters in length.');
+                    var respondentCode = prompt(
+                        'Please re-enter the Respondent Code. It must be exactly 8 characters in length.');
                 };
                 localStorage.setItem("respondentCodeId", respondentCode);
                 $('nav a:nth-child(4)').trigger('touchstart');
@@ -910,12 +921,15 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         (function ($) {
             $.extend({
                 stayInWebApp: function (b) {
-                    "standalone" in window.navigator && window.navigator.standalone && (b || (b = "a"), $("body").delegate(b, "touchstart", function (b) {
-                        if ($(this).attr("target") == void 0 || $(this).attr("target") == "" || $(this).attr("target") == "_self") {
-                            var c = $(this).attr("href");
-                            if (!c.match(/^http(s?)/g)) b.preventDefault(), self.location = c
-                        }
-                    }))
+                    "standalone" in window.navigator && window.navigator.standalone && (b || (b = "a"),
+                        $("body").delegate(b, "touchstart", function (b) {
+                            if ($(this).attr("target") == void 0 || $(this).attr("target") ==
+                                "" || $(this).attr("target") == "_self") {
+                                var c = $(this).attr("href");
+                                if (!c.match(/^http(s?)/g)) b.preventDefault(), self.location =
+                                    c
+                            }
+                        }))
                 }
             })
         })(jQuery);

@@ -6,7 +6,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
 -->
 
-<html manifest="qsort.appcache">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -33,7 +33,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
     <style>
         /*  *************** page specific styles*/
-        
+
         .pep {
             color: #000;
             width: 138px;
@@ -41,7 +41,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         word-wrap: break-word;
         white-space: normal;
 */
-            
             font: 15px AvenirNextCondensed-Regular;
             line-height: 1.1em;
             text-align: center;
@@ -52,31 +51,30 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             padding-right: 1px;
             padding-top: 1px;
         }
-        
+
         .position1 {
             position: absolute;
             left: 5px;
             top: 650px;
         }
-        
+
         .position2 {
             position: absolute;
             left: 152px;
             top: 650px;
         }
-        
+
         .position3 {
             position: absolute;
             left: 299px;
             top: 650px;
         }
-        
+
         .pepDot {
             content: "";
             position: absolute;
             /*		height: 100%;*/
             /*		width: 20px;*/
-            
             top: 0px;
             left: 0px;
             background-image: radial-gradient(circle at 33% 33%, #1985c5 7px, transparent 4px);
@@ -84,7 +82,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             background-position: top left;
             background-repeat: no-repeat;
         }
-        
+
         .holder {
             display: table-cell;
             text-align: center;
@@ -92,7 +90,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             width: 138px;
             height: 96px;
         }
-        
+
         .holderShort {
             width: 138px;
             height: 96px;
@@ -101,7 +99,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             vertical-align: middle;
             /*			padding-bottom: 10px;*/
         }
-        
+
         #textDiv {
             position: absolute;
             display: inline-block;
@@ -109,70 +107,69 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             top: 670px;
             display: none;
         }
-        
+
         .body37 {
             background-image: url('http://banasick.net/mq-revised/images/37cards-retina.png');
             background-size: cover;
             background-repeat: no-repeat;
             /*background-position: 50% 1%;*/
         }
-        
+
         .body39 {
             background-image: url('http://banasick.net/mq-revised/images/39cards-retina.png');
             background-size: cover;
             background-repeat: no-repeat;
         }
-        
+
         .body41 {
             background-image: url('http://banasick.net/mq-revised/images/41cards-retina.png');
             background-size: cover;
             background-repeat: no-repeat;
         }
-        
+
         .grayBody37 {
             background-image: url('http://banasick.net/mq-revised/images/37cards-retinaG.png');
             background-size: cover;
             background-repeat: no-repeat;
             /*background-position: 50% 1%;*/
         }
-        
+
         .grayBody39 {
             background-image: url('http://banasick.net/mq-revised/images/39cards-retinaG.png');
             background-size: cover;
             background-repeat: no-repeat;
         }
-        
+
         .grayBody41 {
             background-image: url('http://banasick.net/mq-revised/images/41cards-retinaG.png');
             background-size: cover;
             background-repeat: no-repeat;
         }
-        
+
         .greenSortCard {
             background-color: #99cc99;
             z-index: 3;
         }
-        
+
         .pinkSortCard {
             background-color: #ff9999;
             z-index: 2;
         }
-        
+
         .graySortCard {
             background-color: #cccccc;
             z-index: 1;
         }
         /* *****************  end page specific styles*/
-        
+
         body {
             /* On modern browsers, prevent the whole page to bounce */
-            
             width: 100%;
             height: 100%;
             overflow: hidden;
         }
         /* Nav menu styling */
-        
+
         nav {
             position: absolute;
             bottom: 5px;
@@ -180,7 +177,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             border-spacing: 0px;
             margin-top: 5px;
         }
-        
+
         nav a {
             padding: 5px 15px 15px 15px;
             text-align: center;
@@ -191,12 +188,12 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             margin-right: -4px;
             margin-left: -4px;
         }
-        
+
         nav a.selected {
             background-color: white;
             color: #1985c5;
         }
-        
+
         a {
             color: #2d343c;
             text-align: center;
@@ -204,7 +201,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             font-family: HelveticaNeue-CondensedBlack;
         }
         /* changes the color of the a links */
-        
+
         .button {
             position: absolute;
             right: 61px;
@@ -225,232 +222,231 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             display: none;
             padding-top: 12px;
         }
-        
+
         .button:active {
             border: 3px solid #ffffff;
         }
-        
+
         #delayContainer {
             display: none
         }
-        
+
         .drop-target {
             /*			border: 3px solid #f5b188;*/
-            
             height: 98px;
             width: 139px;
             position: absolute;
         }
-        
+
         .drop-target.pep-dpa {
             /*			background: #ffedc4;*/
         }
-        
+
         .drop-target.r1c1 {
             top: 51px;
             left: 0px;
         }
-        
+
         .drop-target.r1c2 {
             top: 51px;
             left: 147px;
         }
-        
+
         .drop-target.r1c3 {
             top: 51px;
             left: 293px;
         }
-        
+
         .drop-target.r1c4 {
             top: 51px;
             left: 439px;
         }
-        
+
         .drop-target.r1c5 {
             top: 51px;
             left: 585px;
         }
-        
+
         .drop-target.r1c6 {
             top: 51px;
             left: 731px;
         }
-        
+
         .drop-target.r1c7 {
             top: 51px;
             left: 877px;
         }
-        
+
         .drop-target.r2c1 {
             top: 153px;
             left: 0px;
         }
-        
+
         .drop-target.r2c2 {
             top: 153px;
             left: 147px;
         }
-        
+
         .drop-target.r2c3 {
             top: 153px;
             left: 293px;
         }
-        
+
         .drop-target.r2c4 {
             top: 153px;
             left: 439px;
         }
-        
+
         .drop-target.r2c5 {
             top: 153px;
             left: 585px;
         }
-        
+
         .drop-target.r2c6 {
             top: 153px;
             left: 731px;
         }
-        
+
         .drop-target.r2c7 {
             top: 153px;
             left: 877px;
         }
-        
+
         .drop-target.r3c1 {
             top: 256px;
             left: 0px;
         }
-        
+
         .drop-target.r3c2 {
             top: 256px;
             left: 147px;
         }
-        
+
         .drop-target.r3c3 {
             top: 256px;
             left: 293px;
         }
-        
+
         .drop-target.r3c4 {
             top: 256px;
             left: 439px;
         }
-        
+
         .drop-target.r3c5 {
             top: 256px;
             left: 585px;
         }
-        
+
         .drop-target.r3c6 {
             top: 256px;
             left: 731px;
         }
-        
+
         .drop-target.r3c7 {
             top: 256px;
             left: 877px;
         }
-        
+
         .drop-target.r4c1 {
             top: 359px;
             left: 0px;
         }
-        
+
         .drop-target.r4c2 {
             top: 359px;
             left: 147px;
         }
-        
+
         .drop-target.r4c3 {
             top: 359px;
             left: 293px;
         }
-        
+
         .drop-target.r4c4 {
             top: 359px;
             left: 439px;
         }
-        
+
         .drop-target.r4c5 {
             top: 359px;
             left: 585px;
         }
-        
+
         .drop-target.r4c6 {
             top: 359px;
             left: 731px;
         }
-        
+
         .drop-target.r4c7 {
             top: 359px;
             left: 877px;
         }
-        
+
         .drop-target.r5c1 {
             top: 461px;
             left: 0px;
         }
-        
+
         .drop-target.r5c2 {
             top: 461px;
             left: 147px;
         }
-        
+
         .drop-target.r5c3 {
             top: 461px;
             left: 293px;
         }
-        
+
         .drop-target.r5c4 {
             top: 461px;
             left: 439px;
         }
-        
+
         .drop-target.r5c5 {
             top: 461px;
             left: 585px;
         }
-        
+
         .drop-target.r5c6 {
             top: 461px;
             left: 731px;
         }
-        
+
         .drop-target.r5c7 {
             top: 461px;
             left: 877px;
         }
-        
+
         .drop-target.r6c2 {
             top: 563px;
             left: 147px;
         }
-        
+
         .drop-target.r6c3 {
             top: 563px;
             left: 293px;
         }
-        
+
         .drop-target.r6c4 {
             top: 563px;
             left: 439px;
         }
-        
+
         .drop-target.r6c5 {
             top: 563px;
             left: 585px;
         }
-        
+
         .drop-target.r6c6 {
             top: 563px;
             left: 731px;
         }
-        
+
         .drop-target.r7c4 {
             top: 665px;
             left: 439px;
         }
-        
+
         .hidden {
             display: none;
         }
@@ -1533,38 +1529,40 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                     console.log("yes branch");
 
                     switch (activeRadioValue) {
-                    case "state41":
-                        $('div.myCards div').removeClass('holder').addClass('holderShort');
-                        $('body').addClass('body41');
-                        console.log("display 41 color");
-                        break;
-                    case "state39":
-                        $("#40, #41, #dropHideRow6a, #dropHideRow6b").remove();
-                        $('body').addClass('body39');
-                        console.log("display 39 color");
-                        break;
-                    default:
-                        $("#38, #39, #40, #41, #dropHideRow5a, #dropHideRow5b, #dropHideRow6a, #dropHideRow6b").remove();
-                        $('body').addClass('body37');
-                        console.log("display 37 color");
+                        case "state41":
+                            $('div.myCards div').removeClass('holder').addClass('holderShort');
+                            $('body').addClass('body41');
+                            console.log("display 41 color");
+                            break;
+                        case "state39":
+                            $("#40, #41, #dropHideRow6a, #dropHideRow6b").remove();
+                            $('body').addClass('body39');
+                            console.log("display 39 color");
+                            break;
+                        default:
+                            $("#38, #39, #40, #41, #dropHideRow5a, #dropHideRow5b, #dropHideRow6a, #dropHideRow6b")
+                                .remove();
+                            $('body').addClass('body37');
+                            console.log("display 37 color");
                     }; // end switch
                 } else {
                     console.log("gray branch");
                     switch (activeRadioValue) {
-                    case "state41":
-                        $('div.myCards div').removeClass('holder').addClass('holderShort');
-                        $('body').addClass('grayBody41');
-                        console.log("display 41 gray");
-                        break;
-                    case "state39":
-                        $("#40, #41, #dropHideRow6a, #dropHideRow6b").remove();
-                        $('body').addClass('grayBody39');
-                        console.log("display 39 gray");
-                        break;
-                    default:
-                        $("#38, #39, #40, #41, #dropHideRow5a, #dropHideRow5b, #dropHideRow6a, #dropHideRow6b").remove();
-                        $('body').addClass('grayBody37');
-                        console.log("display 37 gray");
+                        case "state41":
+                            $('div.myCards div').removeClass('holder').addClass('holderShort');
+                            $('body').addClass('grayBody41');
+                            console.log("display 41 gray");
+                            break;
+                        case "state39":
+                            $("#40, #41, #dropHideRow6a, #dropHideRow6b").remove();
+                            $('body').addClass('grayBody39');
+                            console.log("display 39 gray");
+                            break;
+                        default:
+                            $("#38, #39, #40, #41, #dropHideRow5a, #dropHideRow5b, #dropHideRow6a, #dropHideRow6b")
+                                .remove();
+                            $('body').addClass('grayBody37');
+                            console.log("display 37 gray");
                     }; // end switch
                 }
             })();
@@ -1577,7 +1575,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             $("div.myCards div").sort(function () {
                 return Math.random() * 10 > 5 ? 1 : -1;
             }).each(function () {
-                $(this).addClass(statementPositions[Math.floor(Math.random() * statementPostiionlength)]).appendTo($(this).parent());
+                $(this).addClass(statementPositions[Math.floor(Math.random() * statementPostiionlength)]).appendTo(
+                    $(this).parent());
             });
         </script>
 
@@ -1615,12 +1614,15 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         (function ($) {
             $.extend({
                 stayInWebApp: function (b) {
-                    "standalone" in window.navigator && window.navigator.standalone && (b || (b = "a"), $("body").delegate(b, "touchstart", function (b) {
-                        if ($(this).attr("target") == void 0 || $(this).attr("target") == "" || $(this).attr("target") == "_self") {
-                            var c = $(this).attr("href");
-                            if (!c.match(/^http(s?)/g)) b.preventDefault(), self.location = c
-                        }
-                    }))
+                    "standalone" in window.navigator && window.navigator.standalone && (b || (b = "a"),
+                        $("body").delegate(b, "touchstart", function (b) {
+                            if ($(this).attr("target") == void 0 || $(this).attr("target") ==
+                                "" || $(this).attr("target") == "_self") {
+                                var c = $(this).attr("href");
+                                if (!c.match(/^http(s?)/g)) b.preventDefault(), self.location =
+                                    c
+                            }
+                        }))
                 }
             })
         })(jQuery);
@@ -1719,48 +1721,48 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
             // pep functionality
             function handleCentering(ev, obj) {
-                    if (obj.activeDropRegions.length > 0) {
-                        centerWithin(obj);
-                    }
+                if (obj.activeDropRegions.length > 0) {
+                    centerWithin(obj);
                 }
-                // pep functionality
+            }
+            // pep functionality
             function centerWithin(obj) {
-                    var $parent = obj.activeDropRegions[0];
-                    var pTop = $parent.position().top;
-                    var pLeft = $parent.position().left;
-                    var pHeight = $parent.outerHeight();
-                    var pWidth = $parent.outerWidth();
+                var $parent = obj.activeDropRegions[0];
+                var pTop = $parent.position().top;
+                var pLeft = $parent.position().left;
+                var pHeight = $parent.outerHeight();
+                var pWidth = $parent.outerWidth();
 
-                    var oTop = obj.$el.position().top;
-                    var oLeft = obj.$el.position().left;
-                    var oHeight = obj.$el.outerHeight();
-                    var oWidth = obj.$el.outerWidth();
+                var oTop = obj.$el.position().top;
+                var oLeft = obj.$el.position().left;
+                var oHeight = obj.$el.outerHeight();
+                var oWidth = obj.$el.outerWidth();
 
-                    var cTop = pTop + (pHeight / 2);
-                    var cLeft = pLeft + (pWidth / 2);
+                var cTop = pTop + (pHeight / 2);
+                var cLeft = pLeft + (pWidth / 2);
 
-                    if (!obj.noCenter) {
-                        if (!obj.shouldUseCSSTranslation()) {
-                            var moveTop = cTop - (oHeight / 2);
-                            var moveLeft = cLeft - (oWidth / 2);
-                            obj.$el.animate({
-                                top: moveTop,
-                                left: moveLeft
-                            }, 50);
-                        } else {
-                            var moveTop = (cTop - oTop) - oHeight / 2;
-                            var moveLeft = (cLeft - oLeft) - oWidth / 2;
+                if (!obj.noCenter) {
+                    if (!obj.shouldUseCSSTranslation()) {
+                        var moveTop = cTop - (oHeight / 2);
+                        var moveLeft = cLeft - (oWidth / 2);
+                        obj.$el.animate({
+                            top: moveTop,
+                            left: moveLeft
+                        }, 50);
+                    } else {
+                        var moveTop = (cTop - oTop) - oHeight / 2;
+                        var moveLeft = (cLeft - oLeft) - oWidth / 2;
 
-                            obj.moveToUsingTransforms(moveTop, moveLeft);
-                        }
-
-                        obj.noCenter = true;
-                        return;
+                        obj.moveToUsingTransforms(moveTop, moveLeft);
                     }
 
-                    obj.noCenter = false;
+                    obj.noCenter = true;
+                    return;
                 }
-                // pep functionality
+
+                obj.noCenter = false;
+            }
+            // pep functionality
             function rotate($obj, deg) {
                 $obj.css({
                     "-webkit-transform": "rotate(" + deg + "deg)",
@@ -1834,53 +1836,53 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
                 var activeRadioValueFinishDisplay = localStorage.getItem("activeRadio");
                 switch (activeRadioValueFinishDisplay) {
-                case "state41":
-                    var arrayCheck41 = {
-                        "0": 7,
-                        "1": 6,
-                        "2": 6,
-                        "3": 5,
-                        "-3": 5,
-                        "-2": 6,
-                        "-1": 6
-                    };
-                    if (_.isEqual(positionCounts, arrayCheck41)) {
-                        $("#finishButton, #textDiv").show();
-                    } else {
-                        $("#finishButton, #textDiv").hide();
-                    };
-                    break;
-                case "state39":
-                    var arrayCheck39 = {
-                        "0": 7,
-                        "1": 6,
-                        "2": 5,
-                        "3": 5,
-                        "-3": 5,
-                        "-2": 5,
-                        "-1": 6
-                    };
-                    if (_.isEqual(positionCounts, arrayCheck39)) {
-                        $("#finishButton, #textDiv").show();
-                    } else {
-                        $("#finishButton, #textDiv").hide();
-                    };
-                    break;
-                default:
-                    var arrayCheck37 = {
-                        "0": 7,
-                        "1": 6,
-                        "2": 5,
-                        "3": 4,
-                        "-3": 4,
-                        "-2": 5,
-                        "-1": 6
-                    };
-                    if (_.isEqual(positionCounts, arrayCheck37)) {
-                        $("#finishButton, #textDiv").show();
-                    } else {
-                        $("#finishButton, #textDiv").hide();
-                    };
+                    case "state41":
+                        var arrayCheck41 = {
+                            "0": 7,
+                            "1": 6,
+                            "2": 6,
+                            "3": 5,
+                            "-3": 5,
+                            "-2": 6,
+                            "-1": 6
+                        };
+                        if (_.isEqual(positionCounts, arrayCheck41)) {
+                            $("#finishButton, #textDiv").show();
+                        } else {
+                            $("#finishButton, #textDiv").hide();
+                        };
+                        break;
+                    case "state39":
+                        var arrayCheck39 = {
+                            "0": 7,
+                            "1": 6,
+                            "2": 5,
+                            "3": 5,
+                            "-3": 5,
+                            "-2": 5,
+                            "-1": 6
+                        };
+                        if (_.isEqual(positionCounts, arrayCheck39)) {
+                            $("#finishButton, #textDiv").show();
+                        } else {
+                            $("#finishButton, #textDiv").hide();
+                        };
+                        break;
+                    default:
+                        var arrayCheck37 = {
+                            "0": 7,
+                            "1": 6,
+                            "2": 5,
+                            "3": 4,
+                            "-3": 4,
+                            "-2": 5,
+                            "-1": 6
+                        };
+                        if (_.isEqual(positionCounts, arrayCheck37)) {
+                            $("#finishButton, #textDiv").show();
+                        } else {
+                            $("#finishButton, #textDiv").hide();
+                        };
                 }; // end switch
 
             }); // end of touchend function
