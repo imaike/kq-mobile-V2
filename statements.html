@@ -256,7 +256,7 @@
 				<h1>Q Sort Statement Input</h1>
 				<h2>Directly input or paste statements for your project</h2>
 
-				<textarea rows='1' id="inputBox" placeholder='Paste Statements' class="pep scroller"></textarea>
+				<textarea rows='1' id="inputBox" placeholder='paste statements here' class="pep scroller"></textarea>
 
 				<div class="flexcontainer" id="statementPasteBox">
 					<div class='warningDiv'>
@@ -350,6 +350,7 @@
 				console.log(this.id);
 				for (var k = 0; k < input.length; k++) {
 					if (this.id === "clearStatementsButton") {
+						$("#inputBox").val("");
 						input[k].value = "";
 					} else {
 						input[k].value = statementText[k];
