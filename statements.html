@@ -65,17 +65,11 @@
 		}
 
 		.pasteStatements {
-			float: right;
-			margin-right: 12%;
 			-webkit-appearance: none;
-			-moz-appearance: none;
 			font-family: HelveticaNeue-CondensedBlack;
 			appearance: none;
-			margin-left: 5px;
-			width: 200px;
+			width: auto;
 			margin-top: 2px;
-			padding-top: 5px;
-			padding-bottom: 0px;
 			height: 40px;
 			background: #1985c5;
 			border: 0px solid #666;
@@ -191,6 +185,33 @@
 			border: 6px solid #1985c5;
 		}
 
+		.flexcontainer {
+			width: 90%;
+			margin-left: 5%;
+			display: -webkit-flex;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		.warningDiv {
+			-webkit-appearance: none;
+			font-family: HelveticaNeue-CondensedBlack;
+			appearance: none;
+			width: 250px;
+			padding-bottom: 18px;
+			padding-left: 35px;
+			height: 30px;
+			background: yellow;
+			border: 2px solid #666;
+			cursor: pointer;
+			-webkit-border-radius: 5px;
+			font-size: 120%;
+			color: black;
+			letter-spacing: .80px;
+			visibility: hidden;
+		}
+
 		#delayContainer {
 			display: none
 		}
@@ -235,9 +256,12 @@
 				<h1>Q Sort Statement Input</h1>
 				<h2>Directly input or paste statements for your project</h2>
 
+				<textarea rows='1' id="inputBox" placeholder='Paste Statements' class="pep scroller"></textarea>
 
-				<div id="statementPasteBox">
-					<textarea rows='1' id="inputBox" placeholder='Paste Statements'></textarea>
+				<div class="flexcontainer" id="statementPasteBox">
+					<div class='warningDiv'>
+						<p>Wrong number of statements.</p>
+					</div>
 					<button class="pasteStatements" id="pasteStatementsButton">Add Statements</button>
 				</div>
 
@@ -282,9 +306,13 @@
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$("#delayContainer").fadeIn(500);
+			$("#delayContainer").fadeIn(300);
 
 			var activeRadioValue = localStorage.getItem("activeRadio");
+			if (isNaN(activeRadioValue)) {
+				activeRadioValue = 'state37';
+			}
+			console.log(activeRadioValue);
 			switch (activeRadioValue) {
 				case "state41":
 					break;
@@ -296,7 +324,7 @@
 			};
 
 			// get number of statements from local storage value - default to 37
-			var stateNum = activeRadioValue.slice(5, 7) || 37;
+			var stateNum = activeRadioValue.slice(5, 7);
 			// loop and append to DOM
 			for (var i = 0; i < stateNum; i++) {
 				var sNumber = i + 1;
@@ -320,6 +348,14 @@
 				for (var k = 0; k < input.length; k++) {
 					input[k].value = statementText[k];
 					localStorage.setItem(input[k].name, input[k].value);
+				}
+				if (stateNum !== statementText.length) {
+					console.log(stateNum, statementText.length)
+					var warning = document.getElementsByClassName("warningDiv");
+					warning[0].style.visibility = "visible";
+					setTimeout(function () {
+						warning[0].style.visibility = "hidden";
+					}, 5000);
 				}
 			})
 
