@@ -13,7 +13,7 @@
 	<!-- load iscroll5 -->
 	<script type="text/javascript" src="iscroll-lite.js"></script>
 	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
-
+	<script type="text/javascript" src="jquery.pep.min.js"></script>
 	<!-- initialize iscroll5 -->
 	<script type="text/javascript">
 		var myScroll;
@@ -349,7 +349,7 @@
 					input[k].value = statementText[k];
 					localStorage.setItem(input[k].name, input[k].value);
 				}
-				if (stateNum !== statementText.length) {
+				if (stateNum != statementText.length) {
 					console.log(stateNum, statementText.length)
 					var warning = document.getElementsByClassName("warningDiv");
 					warning[0].style.visibility = "visible";
