@@ -413,32 +413,30 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         <div class="drop-target row3 col6 plus2"></div>
         <div class="drop-target row3 col7 plus3"></div>
 
-        <!--        <div class="drop-target row4 col1 minus3"></div>-->
+        <div class="drop-target row4 col1 minus3"></div>
         <div class="drop-target row4 col2 minus2"></div>
         <div class="drop-target row4 col3 minus1"></div>
         <div class="drop-target row4 col4 zero"></div>
         <div class="drop-target row4 col5 plus1"></div>
         <div class="drop-target row4 col6 plus2"></div>
-        <!--     <div class="drop-target row4 col7 plus3"></div>-->
+        <div class="drop-target row4 col7 plus3"></div>
 
 
-        <!--        <div class="drop-target row5 col1 minus3" id="dropHideRow5a"></div>-->
-        <!--        <div class="drop-target row5 col2 minus2"></div>-->
+        <div class="drop-target row5 col1 minus3" id="dropHideRow5a"></div>
+        <div class="drop-target row5 col2 minus2"></div>
         <div class="drop-target row5 col3 minus1"></div>
         <div class="drop-target row5 col4 zero"></div>
         <div class="drop-target row5 col5 plus1"></div>
-        <!--
         <div class="drop-target row5 col6 plus2"></div>
         <div class="drop-target row5 col7 plus3" id="dropHideRow5b"></div>
--->
 
-        <!--        <div class="drop-target row6 col2 minus2" id="dropHideRow6a"></div>-->
-        <!--        <div class="drop-target row6 col3 minus1"></div>-->
+        <div class="drop-target row6 col2 minus2" id="dropHideRow6a"></div>
+        <div class="drop-target row6 col3 minus1"></div>
         <div class="drop-target row6 col4 zero"></div>
-        <!--        <div class="drop-target row6 col5 plus1"></div>-->
-        <!--        <div class="drop-target row6 col6 plus2" id="dropHideRow6b"></div>-->
+        <div class="drop-target row6 col5 plus1"></div>
+        <div class="drop-target row6 col6 plus2" id="dropHideRow6b"></div>
 
-        <!--        <div class="drop-target row7 col4 zero"></div>-->
+        <div class="drop-target row7 col4 zero"></div>
 
 
         <div class="myCards" id="myCardsDiv"></div>
@@ -449,17 +447,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         <script type="text/javascript">
         </script>
 
-        <!-- Randomize the order and position of the statement cards -->
-        <script type="text/javascript">
-            var statementPositions = new Array('position1', 'position2', 'position3');
-            var statementPostiionlength = statementPositions.length;
-            $("div.myCards div").sort(function () {
-                return Math.random() * 10 > 5 ? 1 : -1;
-            }).each(function () {
-                $(this).addClass(statementPositions[Math.floor(Math.random() * statementPostiionlength)]).appendTo(
-                    $(this).parent());
-            });
-        </script>
 
 
         <!-- respondent code display-->
@@ -541,16 +528,18 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 sNumber = i + 1;
                 text = localStorage.getItem('state' + sNumber);
                 setBackColor = localStorage.getItem('psCard' + sNumber);
+                var statementPositions = ['position1', 'position2', 'position3'];
+                var position = statementPositions[Math.floor(Math.random() * statementPositions.length)];
 
                 if (setBackColor) {
                     if (setBackColor == "green") {
-                        cardStyle = "pep greenSortCard";
+                        cardStyle = "pep greenSortCard " + position;
                     };
                     if (setBackColor == "pink") {
-                        cardStyle = "pep pinkSortCard";
+                        cardStyle = "pep pinkSortCard " + position;
                     };
                 } else {
-                    cardStyle = "pep graySortCard";
+                    cardStyle = "pep graySortCard " + position;
                 };
                 if (!text) {
                     text = "No statement entered yet! Please input statement " + sNumber;
@@ -558,11 +547,21 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
                 console.log(text, cardStyle);
 
+                var statementPostiionlength = statementPositions.length;
+
                 $("#myCardsDiv").append('<div class="' + cardStyle + '" id="' + sNumber +
                     '"><span class="holder" id="hold' +
                     sNumber + '">' + text + '</span></div>')
             }
 
+
+            // $("div.myCards div").sort(function () {
+            //     return Math.random() * 10 > 5 ? 1 : -1;
+            // }).each(function () {
+            //     $(this).addClass(statementPositions[Math.floor(Math.random() * statementPostiionlength)])
+            //         .appendTo(
+            //             $(this).parent());
+            // });
 
 
 
