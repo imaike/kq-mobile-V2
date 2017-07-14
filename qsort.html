@@ -5,7 +5,10 @@ Copyright © 2015, by Shawn Banasick. All rights reserved.
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -->
+<!--
 
+<html manifest="qsort.appcache">
+-->
 <html>
 
 <head>
@@ -13,7 +16,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
     <!-- apple viewport standalone -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black" />-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
@@ -21,6 +25,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
     <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="jquery.pep.min.js"></script>
     <script type="text/javascript" src="lodash.js"></script>
+
+
 
     <!-- prevent default scroll -->
     <script type="text/javascript">
@@ -60,13 +66,13 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
         .position2 {
             position: absolute;
-            left: 152px;
+            left: 150px;
             top: 650px;
         }
 
         .position3 {
             position: absolute;
-            left: 299px;
+            left: 295px;
             top: 650px;
         }
 
@@ -109,39 +115,35 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         }
 
         .body37 {
-            background-image: url('http://banasick.net/mq-revised/images/37cards-retina.png');
+            background: url(images/header-image.png) no-repeat center center fixed;
             background-size: cover;
-            background-repeat: no-repeat;
             /*background-position: 50% 1%;*/
         }
 
         .body39 {
-            background-image: url('http://banasick.net/mq-revised/images/39cards-retina.png');
+            background: url(images/header-image.png) no-repeat center center fixed;
             background-size: cover;
-            background-repeat: no-repeat;
         }
 
         .body41 {
-            background-image: url('http://banasick.net/mq-revised/images/41cards-retina.png');
+            background: url(images/header-image.png) no-repeat center center fixed;
             background-size: cover;
-            background-repeat: no-repeat;
         }
 
         .grayBody37 {
-            background-image: url('http://banasick.net/mq-revised/images/37cards-retinaG.png');
+            background-image: url('http://banasick.net/ken-q---client/images/37cards-retinaG.png');
             background-size: cover;
             background-repeat: no-repeat;
             /*background-position: 50% 1%;*/
         }
 
         .grayBody39 {
-            background-image: url('http://banasick.net/mq-revised/images/39cards-retinaG.png');
             background-size: cover;
             background-repeat: no-repeat;
         }
 
         .grayBody41 {
-            background-image: url('http://banasick.net/mq-revised/images/41cards-retinaG.png');
+            background-image: url('http://banasick.net/ken-q---client/images/41cards-retinaG.png');
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -205,7 +207,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         .button {
             position: absolute;
             right: 61px;
-            top: 695px;
+            top: 665px;
             font-size: 20px;
             text-align: center;
             height: 70px;
@@ -234,7 +236,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         .drop-target {
             /*			border: 3px solid #f5b188;*/
             height: 98px;
-            width: 139px;
+            width: 142px;
             position: absolute;
         }
 
@@ -242,209 +244,123 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             /*			background: #ffedc4;*/
         }
 
-        .drop-target.r1c1 {
-            top: 51px;
-            left: 0px;
+        .header {
+            display: table;
+            text-align: center;
+            position: absolute;
+            height: 24px;
+            width: 142px;
+            top: 20px;
         }
 
-        .drop-target.r1c2 {
-            top: 51px;
+        .header span {
+            display: table-cell;
+            vertical-align: middle;
+            font-size: 25px;
+            font-family: HelveticaNeue-CondensedBlack;
+            line-height: 1.1em;
+        }
+
+        .header-bar {
+            position: absolute;
+            left: 0px;
+            top: 45px;
+            height: 3px;
+            background-color: black;
+            width: 100%;
+        }
+
+        .top-header-bar {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            height: 20px;
+            background-color: black;
+            width: 100%;
+        }
+
+        .col1 {
+            left: 1px;
+        }
+
+        .col2 {
             left: 147px;
         }
 
-        .drop-target.r1c3 {
-            top: 51px;
+        .col3 {
             left: 293px;
         }
 
-        .drop-target.r1c4 {
-            top: 51px;
+        .col4 {
             left: 439px;
         }
 
-        .drop-target.r1c5 {
-            top: 51px;
+        .col5 {
             left: 585px;
         }
 
-        .drop-target.r1c6 {
-            top: 51px;
+        .col6 {
             left: 731px;
         }
 
-        .drop-target.r1c7 {
-            top: 51px;
+        .col7 {
             left: 877px;
         }
 
-        .drop-target.r2c1 {
+        .minus3 {
+            background-color: #ffadad;
+        }
+
+        .minus2 {
+            background-color: #ffd9d9;
+        }
+
+        .minus1 {
+            background-color: #ffe8e8;
+        }
+
+        .zero {
+            background-color: #e3e3e3;
+        }
+
+        .plus1 {
+            background-color: #e8ffe8;
+        }
+
+        .plus2 {
+            background-color: #d9ffd9;
+        }
+
+        .plus3 {
+            background-color: #adffad;
+        }
+
+        .row1 {
+            top: 51px;
+        }
+
+        .row2 {
             top: 153px;
-            left: 0px;
         }
 
-        .drop-target.r2c2 {
-            top: 153px;
-            left: 147px;
+        .row3 {
+            top: 255px;
         }
 
-        .drop-target.r2c3 {
-            top: 153px;
-            left: 293px;
+        .row4 {
+            top: 357px;
         }
 
-        .drop-target.r2c4 {
-            top: 153px;
-            left: 439px;
-        }
-
-        .drop-target.r2c5 {
-            top: 153px;
-            left: 585px;
-        }
-
-        .drop-target.r2c6 {
-            top: 153px;
-            left: 731px;
-        }
-
-        .drop-target.r2c7 {
-            top: 153px;
-            left: 877px;
-        }
-
-        .drop-target.r3c1 {
-            top: 256px;
-            left: 0px;
-        }
-
-        .drop-target.r3c2 {
-            top: 256px;
-            left: 147px;
-        }
-
-        .drop-target.r3c3 {
-            top: 256px;
-            left: 293px;
-        }
-
-        .drop-target.r3c4 {
-            top: 256px;
-            left: 439px;
-        }
-
-        .drop-target.r3c5 {
-            top: 256px;
-            left: 585px;
-        }
-
-        .drop-target.r3c6 {
-            top: 256px;
-            left: 731px;
-        }
-
-        .drop-target.r3c7 {
-            top: 256px;
-            left: 877px;
-        }
-
-        .drop-target.r4c1 {
-            top: 359px;
-            left: 0px;
-        }
-
-        .drop-target.r4c2 {
-            top: 359px;
-            left: 147px;
-        }
-
-        .drop-target.r4c3 {
-            top: 359px;
-            left: 293px;
-        }
-
-        .drop-target.r4c4 {
-            top: 359px;
-            left: 439px;
-        }
-
-        .drop-target.r4c5 {
-            top: 359px;
-            left: 585px;
-        }
-
-        .drop-target.r4c6 {
-            top: 359px;
-            left: 731px;
-        }
-
-        .drop-target.r4c7 {
-            top: 359px;
-            left: 877px;
-        }
-
-        .drop-target.r5c1 {
+        .row5 {
             top: 461px;
-            left: 0px;
         }
 
-        .drop-target.r5c2 {
-            top: 461px;
-            left: 147px;
-        }
-
-        .drop-target.r5c3 {
-            top: 461px;
-            left: 293px;
-        }
-
-        .drop-target.r5c4 {
-            top: 461px;
-            left: 439px;
-        }
-
-        .drop-target.r5c5 {
-            top: 461px;
-            left: 585px;
-        }
-
-        .drop-target.r5c6 {
-            top: 461px;
-            left: 731px;
-        }
-
-        .drop-target.r5c7 {
-            top: 461px;
-            left: 877px;
-        }
-
-        .drop-target.r6c2 {
+        .row6 {
             top: 563px;
-            left: 147px;
         }
 
-        .drop-target.r6c3 {
-            top: 563px;
-            left: 293px;
-        }
-
-        .drop-target.r6c4 {
-            top: 563px;
-            left: 439px;
-        }
-
-        .drop-target.r6c5 {
-            top: 563px;
-            left: 585px;
-        }
-
-        .drop-target.r6c6 {
-            top: 563px;
-            left: 731px;
-        }
-
-        .drop-target.r7c4 {
+        .row7 {
             top: 665px;
-            left: 439px;
         }
 
         .hidden {
@@ -459,48 +375,72 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
     <div id="delayContainer">
 
+        <div class="top-header-bar"></div>
+
+        <div class="header col1 minus3"><span><strong>-3</strong></span></div>
+        <div class="header col2 minus2"><span><strong>-2</strong></span></div>
+        <div class="header col3 minus1"><span><strong>-1</strong></span></div>
+        <div class="header col4 zero"><span><strong>0</strong></span></div>
+        <div class="header col5 plus1"><span><strong>+1</strong></span></div>
+        <div class="header col6 plus2"><span><strong>+2</strong></span></div>
+        <div class="header col7 plus3"><span><strong>+3</strong></span></div>
+
+        <div class="header-bar"></div>
+
         <!--  pep drop zones-->
-        <div class='drop-target r1c1'></div>
-        <div class='drop-target r1c2'></div>
-        <div class='drop-target r1c3'></div>
-        <div class='drop-target r1c4'></div>
-        <div class='drop-target r1c5'></div>
-        <div class='drop-target r1c6'></div>
-        <div class='drop-target r1c7'></div>
-        <div class='drop-target r2c1'></div>
-        <div class='drop-target r2c2'></div>
-        <div class='drop-target r2c3'></div>
-        <div class='drop-target r2c4'></div>
-        <div class='drop-target r2c5'></div>
-        <div class='drop-target r2c6'></div>
-        <div class='drop-target r2c7'></div>
-        <div class='drop-target r3c1'></div>
-        <div class='drop-target r3c2'></div>
-        <div class='drop-target r3c3'></div>
-        <div class='drop-target r3c4'></div>
-        <div class='drop-target r3c5'></div>
-        <div class='drop-target r3c6'></div>
-        <div class='drop-target r3c7'></div>
-        <div class='drop-target r4c1'></div>
-        <div class='drop-target r4c2'></div>
-        <div class='drop-target r4c3'></div>
-        <div class='drop-target r4c4'></div>
-        <div class='drop-target r4c5'></div>
-        <div class='drop-target r4c6'></div>
-        <div class='drop-target r4c7'></div>
-        <div class='drop-target r5c1' id='dropHideRow5a'></div>
-        <div class='drop-target r5c2'></div>
-        <div class='drop-target r5c3'></div>
-        <div class='drop-target r5c4'></div>
-        <div class='drop-target r5c5'></div>
-        <div class='drop-target r5c6'></div>
-        <div class='drop-target r5c7' id='dropHideRow5b'></div>
-        <div class='drop-target r6c2' id='dropHideRow6a'></div>
-        <div class='drop-target r6c3'></div>
-        <div class='drop-target r6c4'></div>
-        <div class='drop-target r6c5'></div>
-        <div class='drop-target r6c6' id='dropHideRow6b'></div>
-        <div class='drop-target r7c4'></div>
+        <div class="drop-target row1 col1 minus3"></div>
+        <div class="drop-target row1 col2 minus2"></div>
+        <div class="drop-target row1 col3 minus1"></div>
+        <div class="drop-target row1 col4 zero"></div>
+        <div class="drop-target row1 col5 plus1"></div>
+        <div class="drop-target row1 col6 plus2"></div>
+        <div class="drop-target row1 col7 plus3"></div>
+
+        <div class="drop-target row2 col1 minus3"></div>
+        <div class="drop-target row2 col2 minus2"></div>
+        <div class="drop-target row2 col3 minus1"></div>
+        <div class="drop-target row2 col4 zero"></div>
+        <div class="drop-target row2 col5 plus1"></div>
+        <div class="drop-target row2 col6 plus2"></div>
+        <div class="drop-target row2 col7 plus3"></div>
+
+
+        <div class="drop-target row3 col1 minus3"></div>
+        <div class="drop-target row3 col2 minus2"></div>
+        <div class="drop-target row3 col3 minus1"></div>
+        <div class="drop-target row3 col4 zero"></div>
+        <div class="drop-target row3 col5 plus1"></div>
+        <div class="drop-target row3 col6 plus2"></div>
+        <div class="drop-target row3 col7 plus3"></div>
+
+        <!--        <div class="drop-target row4 col1 minus3"></div>-->
+        <div class="drop-target row4 col2 minus2"></div>
+        <div class="drop-target row4 col3 minus1"></div>
+        <div class="drop-target row4 col4 zero"></div>
+        <div class="drop-target row4 col5 plus1"></div>
+        <div class="drop-target row4 col6 plus2"></div>
+        <!--     <div class="drop-target row4 col7 plus3"></div>-->
+
+
+        <!--        <div class="drop-target row5 col1 minus3" id="dropHideRow5a"></div>-->
+        <!--        <div class="drop-target row5 col2 minus2"></div>-->
+        <div class="drop-target row5 col3 minus1"></div>
+        <div class="drop-target row5 col4 zero"></div>
+        <div class="drop-target row5 col5 plus1"></div>
+        <!--
+        <div class="drop-target row5 col6 plus2"></div>
+        <div class="drop-target row5 col7 plus3" id="dropHideRow5b"></div>
+-->
+
+        <!--        <div class="drop-target row6 col2 minus2" id="dropHideRow6a"></div>-->
+        <!--        <div class="drop-target row6 col3 minus1"></div>-->
+        <div class="drop-target row6 col4 zero"></div>
+        <!--        <div class="drop-target row6 col5 plus1"></div>-->
+        <!--        <div class="drop-target row6 col6 plus2" id="dropHideRow6b"></div>-->
+
+        <!--        <div class="drop-target row7 col4 zero"></div>-->
+
+
 
         <div class="myCards">
 
@@ -1057,7 +997,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 </script>
             </div>
 
-            <div class="pep" id="24" class="remove23">
+            <div class="pep remove23" id="24">
                 <span class="holder" id="hold24"></span>
                 <script>
                     var tile24 = localStorage.getItem('state24');
@@ -1081,7 +1021,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 </script>
             </div>
 
-            <div class="pep" id="25" class="remove23">
+            <div class="pep remove23" id="25">
                 <span class="holder" id="hold25"></span>
                 <script>
                     var tile25 = localStorage.getItem('state25');
@@ -1105,7 +1045,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 </script>
             </div>
 
-            <div class="pep" id="26" class="remove23">
+            <div class="pep remove23" id="26">
                 <span class="holder" id="hold26"></span>
                 <script>
                     var tile26 = localStorage.getItem('state26');
@@ -1129,7 +1069,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 </script>
             </div>
 
-            <div class="pep" id="27" class="remove23">
+            <div class="pep remove23" id="27">
                 <span class="holder" id="hold27"></span>
                 <script>
                     var tile27 = localStorage.getItem('state27');
@@ -1153,7 +1093,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 </script>
             </div>
 
-            <div class="pep" id="28" class="remove23">
+            <div class="pep remove23" id="28">
                 <span class="holder" id="hold28"></span>
                 <script>
                     var tile28 = localStorage.getItem('state28');
@@ -1177,7 +1117,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 </script>
             </div>
 
-            <div class="pep" id="29" class="remove23">
+            <div class="pep remove23" id="29">
                 <span class="holder" id="hold29"></span>
                 <script>
                     var tile29 = localStorage.getItem('state29');
@@ -1202,7 +1142,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             </div>
 
 
-            <div class="pep" id="30" class="remove23">
+            <div class="pep remove23" id="30">
                 <span class="holder" id="hold30"></span>
                 <script>
                     var tile30 = localStorage.getItem('state30');
@@ -1226,270 +1166,271 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 </script>
             </div>
 
-            <div class="pep" id="31" class="remove23">
-                <span class="holder" id="hold31"></span>
-                <script>
-                    var tile31 = localStorage.getItem('state31');
-                    var setBackColor = localStorage.getItem('psCard31');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("31").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("31").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("31").className += " graySortCard";
-                    };
-                    if (tile31) {
-                        document.getElementById("hold31").innerHTML = tile31;
-                    } else {
-                        var stateNull31 = "No statement entered yet! Please input statement 31.";
-                        document.getElementById("hold31").innerHTML = stateNull31;
-                    }
-                </script>
-            </div>
+            <!--
+<div class="pep remove23" id="31">
+    <span class="holder" id="hold31"></span>
+    <script>
+        var tile31 = localStorage.getItem('state31');
+        var setBackColor = localStorage.getItem('psCard31');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("31").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("31").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("31").className += " graySortCard";
+        };
+        if (tile31) {
+            document.getElementById("hold31").innerHTML = tile31;
+        } else {
+            var stateNull31 = "No statement entered yet! Please input statement 31.";
+            document.getElementById("hold31").innerHTML = stateNull31;
+        }
+    </script>
+</div>
 
-            <div class="pep" id="32" class="remove23">
-                <span class="holder" id="hold32"></span>
-                <script>
-                    var tile32 = localStorage.getItem('state32');
-                    var setBackColor = localStorage.getItem('psCard32');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("32").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("32").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("32").className += " graySortCard";
-                    };
-                    if (tile32) {
-                        document.getElementById("hold32").innerHTML = tile32;
-                    } else {
-                        var stateNull32 = "No statement entered yet! Please input statement 32.";
-                        document.getElementById("hold32").innerHTML = stateNull32;
-                    }
-                </script>
-            </div>
+<div class="pep remove23" id="32">
+    <span class="holder" id="hold32"></span>
+    <script>
+        var tile32 = localStorage.getItem('state32');
+        var setBackColor = localStorage.getItem('psCard32');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("32").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("32").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("32").className += " graySortCard";
+        };
+        if (tile32) {
+            document.getElementById("hold32").innerHTML = tile32;
+        } else {
+            var stateNull32 = "No statement entered yet! Please input statement 32.";
+            document.getElementById("hold32").innerHTML = stateNull32;
+        }
+    </script>
+</div>
 
-            <div class="pep" id="33" class="remove23">
-                <span class="holder" id="hold33"></span>
-                <script>
-                    var tile33 = localStorage.getItem('state33');
-                    var setBackColor = localStorage.getItem('psCard33');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("33").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("33").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("33").className += " graySortCard";
-                    };
-                    if (tile33) {
-                        document.getElementById("hold33").innerHTML = tile33;
-                    } else {
-                        var stateNull33 = "No statement entered yet! Please input statement 33.";
-                        document.getElementById("hold33").innerHTML = stateNull33;
-                    }
-                </script>
-            </div>
+<div class="pep remove23" id="33">
+    <span class="holder" id="hold33"></span>
+    <script>
+        var tile33 = localStorage.getItem('state33');
+        var setBackColor = localStorage.getItem('psCard33');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("33").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("33").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("33").className += " graySortCard";
+        };
+        if (tile33) {
+            document.getElementById("hold33").innerHTML = tile33;
+        } else {
+            var stateNull33 = "No statement entered yet! Please input statement 33.";
+            document.getElementById("hold33").innerHTML = stateNull33;
+        }
+    </script>
+</div>
 
-            <div class="pep" id="34" class="remove23">
-                <span class="holder" id="hold34"></span>
-                <script>
-                    var tile34 = localStorage.getItem('state34');
-                    var setBackColor = localStorage.getItem('psCard34');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("34").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("34").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("34").className += " graySortCard";
-                    };
-                    if (tile34) {
-                        document.getElementById("hold34").innerHTML = tile34;
-                    } else {
-                        var stateNull34 = "No statement entered yet! Please input statement 34.";
-                        document.getElementById("hold34").innerHTML = stateNull34;
-                    }
-                </script>
-            </div>
+<div class="pep remove23" id="34">
+    <span class="holder" id="hold34"></span>
+    <script>
+        var tile34 = localStorage.getItem('state34');
+        var setBackColor = localStorage.getItem('psCard34');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("34").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("34").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("34").className += " graySortCard";
+        };
+        if (tile34) {
+            document.getElementById("hold34").innerHTML = tile34;
+        } else {
+            var stateNull34 = "No statement entered yet! Please input statement 34.";
+            document.getElementById("hold34").innerHTML = stateNull34;
+        }
+    </script>
+</div>
 
-            <div class="pep" id="35" class="remove23">
-                <span class="holder" id="hold35"></span>
-                <script>
-                    var tile35 = localStorage.getItem('state35');
-                    var setBackColor = localStorage.getItem('psCard35');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("35").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("35").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("35").className += " graySortCard";
-                    };
-                    if (tile35) {
-                        document.getElementById("hold35").innerHTML = tile35;
-                    } else {
-                        var stateNull35 = "No statement entered yet! Please input statement 35.";
-                        document.getElementById("hold35").innerHTML = stateNull35;
-                    }
-                </script>
-            </div>
+<div class="pep remove23" id="35">
+    <span class="holder" id="hold35"></span>
+    <script>
+        var tile35 = localStorage.getItem('state35');
+        var setBackColor = localStorage.getItem('psCard35');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("35").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("35").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("35").className += " graySortCard";
+        };
+        if (tile35) {
+            document.getElementById("hold35").innerHTML = tile35;
+        } else {
+            var stateNull35 = "No statement entered yet! Please input statement 35.";
+            document.getElementById("hold35").innerHTML = stateNull35;
+        }
+    </script>
+</div>
 
-            <div class="pep" id="36" class="remove23">
-                <span class="holder" id="hold36"></span>
-                <script>
-                    var tile36 = localStorage.getItem('state36');
-                    var setBackColor = localStorage.getItem('psCard36');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("36").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("36").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("36").className += " graySortCard";
-                    };
-                    if (tile36) {
-                        document.getElementById("hold36").innerHTML = tile36;
-                    } else {
-                        var stateNull36 = "No statement entered yet! Please input statement 36.";
-                        document.getElementById("hold36").innerHTML = stateNull36;
-                    }
-                </script>
-            </div>
+<div class="pep remove23" id="36">
+    <span class="holder" id="hold36"></span>
+    <script>
+        var tile36 = localStorage.getItem('state36');
+        var setBackColor = localStorage.getItem('psCard36');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("36").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("36").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("36").className += " graySortCard";
+        };
+        if (tile36) {
+            document.getElementById("hold36").innerHTML = tile36;
+        } else {
+            var stateNull36 = "No statement entered yet! Please input statement 36.";
+            document.getElementById("hold36").innerHTML = stateNull36;
+        }
+    </script>
+</div>
 
 
-            <div class="pep" id="37" class="remove23">
-                <span class="holder" id="hold37"></span>
-                <script>
-                    var tile37 = localStorage.getItem('state37');
-                    var setBackColor = localStorage.getItem('psCard37');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("37").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("37").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("37").className += " graySortCard";
-                    };
-                    if (tile37) {
-                        document.getElementById("hold37").innerHTML = tile37;
-                    } else {
-                        var stateNull37 = "No statement entered yet! Please input statement 37.";
-                        document.getElementById("hold37").innerHTML = stateNull37;
-                    }
-                </script>
-            </div>
+<div class="pep remove23" id="37">
+    <span class="holder" id="hold37"></span>
+    <script>
+        var tile37 = localStorage.getItem('state37');
+        var setBackColor = localStorage.getItem('psCard37');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("37").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("37").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("37").className += " graySortCard";
+        };
+        if (tile37) {
+            document.getElementById("hold37").innerHTML = tile37;
+        } else {
+            var stateNull37 = "No statement entered yet! Please input statement 37.";
+            document.getElementById("hold37").innerHTML = stateNull37;
+        }
+    </script>
+</div>
 
-            <div class="pep" id="38" class="remove23">
-                <span class="holder" id="hold38"></span>
-                <script>
-                    var tile38 = localStorage.getItem('state38');
-                    var setBackColor = localStorage.getItem('psCard38');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("38").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("38").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("38").className += " graySortCard";
-                    };
-                    if (tile38) {
-                        document.getElementById("hold38").innerHTML = tile38;
-                    } else {
-                        var stateNull38 = "No statement entered yet! Please input statement 38.";
-                        document.getElementById("hold38").innerHTML = stateNull38;
-                    }
-                </script>
-            </div>
+<div class="pep remove23" id="38">
+    <span class="holder" id="hold38"></span>
+    <script>
+        var tile38 = localStorage.getItem('state38');
+        var setBackColor = localStorage.getItem('psCard38');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("38").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("38").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("38").className += " graySortCard";
+        };
+        if (tile38) {
+            document.getElementById("hold38").innerHTML = tile38;
+        } else {
+            var stateNull38 = "No statement entered yet! Please input statement 38.";
+            document.getElementById("hold38").innerHTML = stateNull38;
+        }
+    </script>
+</div>
 
-            <div class="pep" id="39" class="remove23">
-                <span class="holder" id="hold39"></span>
-                <script>
-                    var tile39 = localStorage.getItem('state39');
-                    var setBackColor = localStorage.getItem('psCard39');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("39").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("39").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("39").className += " graySortCard";
-                    };
-                    if (tile39) {
-                        document.getElementById("hold39").innerHTML = tile39;
-                    } else {
-                        var stateNull39 = "No statement entered yet! Please input statement 39.";
-                        document.getElementById("hold39").innerHTML = stateNull39;
-                    }
-                </script>
-            </div>
+<div class="pep remove23" id="39">
+    <span class="holder" id="hold39"></span>
+    <script>
+        var tile39 = localStorage.getItem('state39');
+        var setBackColor = localStorage.getItem('psCard39');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("39").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("39").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("39").className += " graySortCard";
+        };
+        if (tile39) {
+            document.getElementById("hold39").innerHTML = tile39;
+        } else {
+            var stateNull39 = "No statement entered yet! Please input statement 39.";
+            document.getElementById("hold39").innerHTML = stateNull39;
+        }
+    </script>
+</div>
 
-            <div class="pep" id="40" class="remove23">
-                <span class="holder" id="hold40"></span>
-                <script>
-                    var tile40 = localStorage.getItem('state40');
-                    var setBackColor = localStorage.getItem('psCard40');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("40").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("40").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("40").className += " graySortCard";
-                    };
-                    if (tile40) {
-                        document.getElementById("hold40").innerHTML = tile40;
-                    } else {
-                        var stateNull40 = "No statement entered yet! Please input statement 40.";
-                        document.getElementById("hold40").innerHTML = stateNull40;
-                    }
-                </script>
-            </div>
+<div class="pep remove23" id="40">
+    <span class="holder" id="hold40"></span>
+    <script>
+        var tile40 = localStorage.getItem('state40');
+        var setBackColor = localStorage.getItem('psCard40');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("40").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("40").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("40").className += " graySortCard";
+        };
+        if (tile40) {
+            document.getElementById("hold40").innerHTML = tile40;
+        } else {
+            var stateNull40 = "No statement entered yet! Please input statement 40.";
+            document.getElementById("hold40").innerHTML = stateNull40;
+        }
+    </script>
+</div>
 
-            <div class="pep" id="41" class="remove23">
-                <span class="holder" id="hold41"></span>
-                <script>
-                    var tile41 = localStorage.getItem('state41');
-                    var setBackColor = localStorage.getItem('psCard41');
-                    if (setBackColor) {
-                        if (setBackColor == "green") {
-                            document.getElementById("41").className += " greenSortCard";
-                        };
-                        if (setBackColor == "pink") {
-                            document.getElementById("41").className += " pinkSortCard";
-                        };
-                    } else {
-                        document.getElementById("41").className += " graySortCard";
-                    };
-                    if (tile41) {
-                        document.getElementById("hold41").innerHTML = tile41;
-                    } else {
-                        var stateNull41 = "No statement entered yet! Please input statement 41.";
-                        document.getElementById("hold41").innerHTML = stateNull41;
-                    }
-                </script>
-            </div>
+<div class="pep remove 23" id="41">
+    <span class="holder" id="hold41"></span>
+    <script>
+        var tile41 = localStorage.getItem('state41');
+        var setBackColor = localStorage.getItem('psCard41');
+        if (setBackColor) {
+            if (setBackColor == "green") {
+                document.getElementById("41").className += " greenSortCard";
+            };
+            if (setBackColor == "pink") {
+                document.getElementById("41").className += " pinkSortCard";
+            };
+        } else {
+            document.getElementById("41").className += " graySortCard";
+        };
+        if (tile41) {
+            document.getElementById("hold41").innerHTML = tile41;
+        } else {
+            var stateNull41 = "No statement entered yet! Please input statement 41.";
+            document.getElementById("hold41").innerHTML = stateNull41;
+        }
+    </script>
+</div>-->
 
 
         </div>
@@ -1500,72 +1441,70 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
         <!-- detach elements by sort type -->
         <script type="text/javascript">
-            (function () {
-                var activeRadioValue = localStorage.getItem("activeRadio");
-                var shouldUseColorGrid = localStorage.getItem("useColorGrid");
-
-                if ($('body').hasClass('body37')) {
-                    $('body').removeClass('body37');
-                };
-                if ($('body').hasClass('body39')) {
-                    $('body').removeClass('body39');
-                };
-                if ($('body').hasClass('body41')) {
-                    $('body').removeClass('body41');
-                };
-                if ($('body').hasClass('grayBody37')) {
-                    $('body').removeClass('grayBody37');
-                };
-                if ($('body').hasClass('grayBody39')) {
-                    $('body').removeClass('grayBody39');
-                };
-                if ($('body').hasClass('grayBody41')) {
-                    $('body').removeClass('grayBody41');
-                };
-
-                console.log(shouldUseColorGrid);
-                if (shouldUseColorGrid === "yes") {
-
-                    console.log("yes branch");
-
-                    switch (activeRadioValue) {
-                        case "state41":
-                            $('div.myCards div').removeClass('holder').addClass('holderShort');
-                            $('body').addClass('body41');
-                            console.log("display 41 color");
-                            break;
-                        case "state39":
-                            $("#40, #41, #dropHideRow6a, #dropHideRow6b").remove();
-                            $('body').addClass('body39');
-                            console.log("display 39 color");
-                            break;
-                        default:
-                            $("#38, #39, #40, #41, #dropHideRow5a, #dropHideRow5b, #dropHideRow6a, #dropHideRow6b")
-                                .remove();
-                            $('body').addClass('body37');
-                            console.log("display 37 color");
-                    }; // end switch
-                } else {
-                    console.log("gray branch");
-                    switch (activeRadioValue) {
-                        case "state41":
-                            $('div.myCards div').removeClass('holder').addClass('holderShort');
-                            $('body').addClass('grayBody41');
-                            console.log("display 41 gray");
-                            break;
-                        case "state39":
-                            $("#40, #41, #dropHideRow6a, #dropHideRow6b").remove();
-                            $('body').addClass('grayBody39');
-                            console.log("display 39 gray");
-                            break;
-                        default:
-                            $("#38, #39, #40, #41, #dropHideRow5a, #dropHideRow5b, #dropHideRow6a, #dropHideRow6b")
-                                .remove();
-                            $('body').addClass('grayBody37');
-                            console.log("display 37 gray");
-                    }; // end switch
-                }
-            })();
+            //            (function() {
+            //                var activeRadioValue = localStorage.getItem("activeRadio");
+            //                var shouldUseColorGrid = localStorage.getItem("useColorGrid");
+            //
+            //                if ($('body').hasClass('body37')) {
+            //                    $('body').removeClass('body37');
+            //                };
+            //                if ($('body').hasClass('body39')) {
+            //                    $('body').removeClass('body39');
+            //                };
+            //                if ($('body').hasClass('body41')) {
+            //                    $('body').removeClass('body41');
+            //                };
+            //                if ($('body').hasClass('grayBody37')) {
+            //                    $('body').removeClass('grayBody37');
+            //                };
+            //                if ($('body').hasClass('grayBody39')) {
+            //                    $('body').removeClass('grayBody39');
+            //                };
+            //                if ($('body').hasClass('grayBody41')) {
+            //                    $('body').removeClass('grayBody41');
+            //                };
+            //
+            //                console.log(shouldUseColorGrid);
+            //                if (shouldUseColorGrid === "yes") {
+            //
+            //                    console.log("yes branch");
+            //
+            //                    switch (activeRadioValue) {
+            //                        case "state41":
+            //                            $('div.myCards div').removeClass('holder').addClass('holderShort');
+            //                            $('body').addClass('body41');
+            //                            console.log("display 41 color");
+            //                            break;
+            //                        case "state39":
+            //                            $("#40, #41, #dropHideRow6a, #dropHideRow6b").remove();
+            //                            $('body').addClass('body39');
+            //                            console.log("display 39 color");
+            //                            break;
+            //                        default:
+            //                            $("#38, #39, #40, #41, #dropHideRow5a, #dropHideRow5b, #dropHideRow6a, #dropHideRow6b").remove();
+            //                            $('body').addClass('body37');
+            //                            console.log("display 37 color");
+            //                    }; // end switch
+            //                } else {
+            //                    console.log("gray branch");
+            //                    switch (activeRadioValue) {
+            //                        case "state41":
+            //                            $('div.myCards div').removeClass('holder').addClass('holderShort');
+            //                            $('body').addClass('grayBody41');
+            //                            console.log("display 41 gray");
+            //                            break;
+            //                        case "state39":
+            //                            $("#40, #41, #dropHideRow6a, #dropHideRow6b").remove();
+            //                            $('body').addClass('grayBody39');
+            //                            console.log("display 39 gray");
+            //                            break;
+            //                        default:
+            //                            $("#38, #39, #40, #41, #dropHideRow5a, #dropHideRow5b, #dropHideRow6a, #dropHideRow6b").remove();
+            //                            $('body').addClass('grayBody37');
+            //                            console.log("display 37 gray");
+            //                    }; // end switch
+            //                }
+            //            })();
         </script>
 
         <!-- Randomize the order and position of the statement cards -->
@@ -1592,7 +1531,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
 
         <!-- Toggle the nav menu - button -->
-        <div class="button" id="finishButton">Confirm</br>Positions</div>
+        <div class="button" id="finishButton">Confirm
+            <br>Positions</div>
 
         <nav>
             <a href="information.html">Information</a>
@@ -1600,7 +1540,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             <a href="statements.html">Q Statements</a>
             <a href="presort.html">Presort</a>
             <a href="qsort.html">Sort</a>
-            <a href="postsort.html">Postsort</a>
+            <a class="stay" href="postsort2.html">Postsort</a>
         </nav>
 
     </div>
@@ -1627,13 +1567,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             })
         })(jQuery);
         $(function () {
-            $.stayInWebApp();
+            $.stayInWebApp('a.stay');
         });
         // This use only links with the class stay.
         // $(function() { $.stayInWebApp('a.stay');});
         // end stay standalone
+    </script>
 
-
+    <script>
         // lodash helper script for sorting
         sortByName = function (array) {
             return _.sortBy(array, "card");
@@ -1642,6 +1583,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
         // <!-- get results, set draggable, enable transparent after drag -->
         $(document).ready(function () {
+
+            // screenLog.init();
+
             $("#delayContainer").fadeIn(500);
             $("nav").hide();
 
@@ -1680,6 +1624,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
 
                 $('nav a:nth-child(6)').trigger('touchstart'); // go to next page
+                // alert("function call");
             }; // ****  End finish button touchstart ******
 
 
@@ -1762,6 +1707,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
                 obj.noCenter = false;
             }
+
             // pep functionality
             function rotate($obj, deg) {
                 $obj.css({
@@ -1805,13 +1751,13 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                     } else if (loc > 218 && loc < 364) {
                         qValue = -1;
                     } else if (loc > 363 && loc < 509) {
-                        qValue = 0;
+                        qValue = +0;
                     } else if (loc > 508 && loc < 654) {
-                        qValue = 1;
+                        qValue = +1;
                     } else if (loc > 653 && loc < 819) {
-                        qValue = 2;
+                        qValue = +2;
                     } else {
-                        qValue = 3;
+                        qValue = +3;
                     };
                     var statementId = $(this).attr('id');
                     var statementIdNumber = parseInt(statementId);
@@ -1832,6 +1778,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 console.log(JSON.stringify(positionCounts)); // this works but clear!
                 var results = _.pluck(result2, 'pos');
                 localStorage.setItem("theResults", JSON.stringify(results));
+                for (var ii = 0, iiLen = results.length; ii < iiLen; ii++) {
+                    if (results[ii] > -1) {
+                        results[ii] = "+" + results[ii];
+                    }
+                }
+                var resultsAsString = results.toString();
+                console.log(JSON.stringify(resultsAsString));
+                localStorage.setItem("resultsAsString", resultsAsString);
 
 
                 var activeRadioValueFinishDisplay = localStorage.getItem("activeRadio");
@@ -1849,7 +1803,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                         if (_.isEqual(positionCounts, arrayCheck41)) {
                             $("#finishButton, #textDiv").show();
                         } else {
-                            $("#finishButton, #textDiv").hide();
+                            $("#finishButton, #textDiv").show();
                         };
                         break;
                     case "state39":
@@ -1865,18 +1819,18 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                         if (_.isEqual(positionCounts, arrayCheck39)) {
                             $("#finishButton, #textDiv").show();
                         } else {
-                            $("#finishButton, #textDiv").hide();
+                            $("#finishButton, #textDiv").show();
                         };
                         break;
                     default:
                         var arrayCheck37 = {
-                            "0": 7,
-                            "1": 6,
-                            "2": 5,
-                            "3": 4,
-                            "-3": 4,
-                            "-2": 5,
-                            "-1": 6
+                            "0": 6,
+                            "1": 5,
+                            "2": 4,
+                            "3": 3,
+                            "-3": 3,
+                            "-2": 4,
+                            "-1": 5
                         };
                         if (_.isEqual(positionCounts, arrayCheck37)) {
                             $("#finishButton, #textDiv").show();
