@@ -305,11 +305,13 @@
 		$(document).ready(function () {
 			$("#delayContainer").fadeIn(300);
 
+			// pull number of statements from local storage
 			var activeRadioValue = localStorage.getItem("activeRadio");
-			if (isNaN(activeRadioValue)) {
+			if (activeRadioValue == 'undefined') {
 				activeRadioValue = 'state37';
 			}
-			console.log(activeRadioValue);
+
+			// adjust the number of statements 
 			switch (activeRadioValue) {
 				case "state41":
 					break;
@@ -322,6 +324,7 @@
 
 			// get number of statements from local storage value - default to 37
 			var stateNum = activeRadioValue.slice(5, 7);
+
 			// loop and append to DOM
 			for (var i = 0; i < stateNum; i++) {
 				var sNumber = i + 1;
@@ -343,7 +346,6 @@
 				statementText = statementText.filter(function (e) {
 					return e;
 				});
-				console.log(this.id);
 				for (var k = 0; k < input.length; k++) {
 					if (this.id === "clearStatementsButton") {
 						$("#inputBox").val("");
@@ -362,7 +364,7 @@
 				}
 			})
 
-			　
+			// on input, add new statement to local storage　
 			$('.outer-persisted-text').on('input propertychange change', function () {　
 				for (var i = 0; i < input.length; i++) {
 					localStorage.setItem(input[i].name, input[i].value);　
