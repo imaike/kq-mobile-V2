@@ -324,6 +324,7 @@
 
 			// get number of statements from local storage value - default to 37
 			var stateNum = activeRadioValue.slice(5, 7);
+			localStorage.setItem("numStates", stateNum);
 
 			// loop and append to DOM
 			for (var i = 0; i < stateNum; i++) {
