@@ -106,18 +106,14 @@
 			height: 748px;
 			width: 100%;
 			overflow: hidden;
-
-
 			/* Prevent native touch events on Windows */
 			-ms-touch-action: none;
-
 			/* Prevent the callout on tap-hold and text selection */
 			-webkit-touch-callout: none;
 			-webkit-user-select: none;
 			-moz-user-select: none;
 			-ms-user-select: none;
 			user-select: none;
-
 			/* Prevent text resize on orientation change, useful for web-apps */
 			-webkit-text-size-adjust: none;
 			-moz-text-size-adjust: none;
@@ -128,10 +124,8 @@
 
 		#scroller {
 			position: absolute;
-
 			/* Prevent elements to be highlighted on tap */
 			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
 			/* Put the scroller into the HW Compositing layer right from the start */
 			-webkit-transform: translateZ(0);
 			-moz-transform: translateZ(0);
@@ -256,7 +250,9 @@
 				<h1>Q Sort Statement Input</h1>
 				<h2>Directly input or paste statements for your project</h2>
 
-				<textarea rows='1' id="inputBox" placeholder='paste statements here' class="pep scroller"></textarea>
+				<div class="pep" id="textAreaDiv">
+					<textarea rows='1' id="inputBox" placeholder='paste statements here'></textarea>
+				</div>
 
 				<div class="flexcontainer" id="statementPasteBox">
 					<div class='warningDiv'>
@@ -372,11 +368,85 @@
 					localStorage.setItem(input[i].name, input[i].value);　
 				}　　　
 			});
-
 		}); // end document ready function
 	</script>
 
+	<!-- PEP SCROLLER REQUIRED JS - DO NOT MODIFY  ******************************* -->
+	<script>
+		// Apply pep to the object.
+		$('#textAreaDiv').pep({
+			axis: "y",
+			easeDuration: 500,
+			drag: handlePull,
+			useCSSTranslation: false,
+			stop: function (ev, obj) {
+				hidePull(ev, obj);
+				outOfBounds(ev, obj);
+				handleLoader(ev, obj);
+			},
+			rest: function (ev, obj) {
+				outOfBounds(ev, obj)
+			}
+		});
 
-</body>
+		// Fill in our loader and pull to refresh divs.
+		$('.results.scroller .loading').text('loading...');
+		$('.results.scroller .pull').text('pull to refresh');
 
-</html>
+		// Stop propagation for some elements like links.
+		$('.results.scroller .pep').find('a').on('touchstart mousedown MSPointerDown', function (e) {
+			e.stopPropagation();
+			// alert('You clicked on me, I feel special!')
+		})
+
+		// Check if the text went outside its parent
+		function outOfBounds(ev, obj) {
+
+			if (-obj.$el.position().top > (obj.$el.outerHeight() - obj.$el.parent().outerHeight())) {
+				obj.$el.css({
+					top: -obj.$el.outerHeight() + obj.$el.parent().outerHeight()
+				})
+			}
+
+			if (obj.$el.position().top > 0) {
+				setTimeout(function () {
+					obj.$el.css({
+						top: 0
+					});
+				}, 500);
+			}
+		}
+
+		function handleLoader(ev, obj) {
+			if (obj.$el.position().top > 50) {
+				var $loading = obj.$el.css({
+					top: 50
+				}).parent().find('.loading').addClass('shown');
+
+				setTimeout(function () {
+					$loading.removeClass('shown');
+				}, 500);
+			}
+		}
+
+
+		function handlePull(ev, obj) {
+			if (obj.$el.position().top > 0) {
+				var $pull = obj.$el.parent().find('.pull').addClass('shown');
+			}
+		}
+
+		function hidePull(ev, obj) {
+			obj.$el.parent().find('.pull').removeClass('shown');
+		}
+
+
+
+
+
+
+		<
+		/body>
+
+		<
+		/html>
