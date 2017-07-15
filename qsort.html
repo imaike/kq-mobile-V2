@@ -520,93 +520,43 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
             // append drag divs to dom
             var numStates = localStorage.getItem("numStates");
-            console.log(numStates);
 
             // // get statements from memory and randomize
             var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
-            var sortObjArrayShuffled = shuffleArray(sortObjArray);
+            if (sortObjArray != null) {
+                var sortObjArrayShuffled = shuffleArray(sortObjArray);
 
-            // loop and append to DOM
-            var cardStyle, text, setBackColor, sNumber;
-            for (var i = 0; i < numStates; i++) {
-                sNumber = i + 1;
-                // text = localStorage.getItem('state' + sNumber);
-                text = sortObjArrayShuffled[i].statement;
-                setBackColor = localStorage.getItem('psCard' + sNumber);
-                var statementPositions = ['position1', 'position2', 'position3'];
-                var position = statementPositions[Math.floor(Math.random() * statementPositions.length)];
 
-                if (setBackColor) {
-                    if (setBackColor == "green") {
-                        cardStyle = "pep greenSortCard " + position;
+                // loop and append to DOM
+                var cardStyle, text, setBackColor, sNumber;
+                for (var i = 0; i < numStates; i++) {
+                    sNumber = i + 1;
+                    text = sortObjArrayShuffled[i].statement;
+                    setBackColor = localStorage.getItem('psCard' + sNumber);
+                    var statementPositions = ['position1', 'position2', 'position3'];
+                    var position = statementPositions[Math.floor(Math.random() * statementPositions.length)];
+                    if (setBackColor) {
+                        if (setBackColor == "green") {
+                            cardStyle = "pep greenSortCard " + position;
+                        };
+                        if (setBackColor == "pink") {
+                            cardStyle = "pep pinkSortCard " + position;
+                        };
+                    } else {
+                        cardStyle = "pep graySortCard " + position;
                     };
-                    if (setBackColor == "pink") {
-                        cardStyle = "pep pinkSortCard " + position;
-                    };
-                } else {
-                    cardStyle = "pep graySortCard " + position;
-                };
-                if (!text) {
-                    text = "No statement entered yet! Please input statement " + sNumber;
+                    if (!text) {
+                        text = "No statement entered yet! Please input statement " + sNumber;
+                    }
+                    var statementPostiionlength = statementPositions.length;
+                    $("#myCardsDiv").append('<div class="' + cardStyle + '" id="c' + sortObjArrayShuffled[i].cardNumber +
+                        '"><span class="holder" id="hold' +
+                        sNumber + '">' + text + '</span></div>')
                 }
-
-                console.log(text, cardStyle);
-
-                var statementPostiionlength = statementPositions.length;
-
-                $("#myCardsDiv").append('<div class="' + cardStyle + '" id="' + sNumber +
-                    '"><span class="holder" id="hold' +
-                    sNumber + '">' + text + '</span></div>')
-            }
-
-
-            // $("div.myCards div").sort(function () {
-            //     return Math.random() * 10 > 5 ? 1 : -1;
-            // }).each(function () {
-            //     $(this).addClass(statementPositions[Math.floor(Math.random() * statementPostiionlength)])
-            //         .appendTo(
-            //             $(this).parent());
-            // });
-
+            } // end if not null
 
 
             var sortResults = [];
-
-
-            function single_tap() {};
-
-            function double_tap() {
-
-                var findGreenPrep = _.filter(sortResults, {
-                    'pos': 3
-                });
-                var findGreenPrep2 = sortByName(findGreenPrep);
-                var findGreenPrep3 = _.pluck(findGreenPrep2, 'card');
-                localStorage.setItem("greenReview", JSON.stringify(findGreenPrep3));
-                // alert(JSON.stringify(findGreenPrep3));
-
-                var findGrayPrep = _.filter(sortResults, {
-                    'pos': 0
-                });
-                var findGrayPrep2 = sortByName(findGrayPrep);
-                var findGrayPrep3 = _.pluck(findGrayPrep2, 'card');
-                localStorage.setItem("grayReview", JSON.stringify(findGrayPrep3));
-
-                var findPinkPrep = _.filter(sortResults, {
-                    'pos': -3
-                });
-                var findPinkPrep2 = sortByName(findPinkPrep);
-                var findPinkPrep3 = _.pluck(findPinkPrep2, 'card');
-                localStorage.setItem("pinkReview", JSON.stringify(findPinkPrep3));
-
-                localStorage.removeItem("responseGreenState1");
-                localStorage.removeItem("responseGrayState1");
-                localStorage.removeItem("responsePinkState1");
-
-
-                $('nav a:nth-child(6)').trigger('touchstart'); // go to next page
-                // alert("function call");
-            }; // ****  End finish button touchstart ******
 
 
             var tapped = false;
@@ -827,6 +777,41 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
     </script>
 
     <script>
+        function single_tap() {};
+
+        // to end sort process - double tap anywhere on end button
+        function double_tap() {
+            var findGreenPrep = _.filter(sortResults, {
+                'pos': 3
+            });
+            var findGreenPrep2 = sortByName(findGreenPrep);
+            var findGreenPrep3 = _.pluck(findGreenPrep2, 'card');
+            localStorage.setItem("greenReview", JSON.stringify(findGreenPrep3));
+            // alert(JSON.stringify(findGreenPrep3));
+
+            var findGrayPrep = _.filter(sortResults, {
+                'pos': 0
+            });
+            var findGrayPrep2 = sortByName(findGrayPrep);
+            var findGrayPrep3 = _.pluck(findGrayPrep2, 'card');
+            localStorage.setItem("grayReview", JSON.stringify(findGrayPrep3));
+
+            var findPinkPrep = _.filter(sortResults, {
+                'pos': -3
+            });
+            var findPinkPrep2 = sortByName(findPinkPrep);
+            var findPinkPrep3 = _.pluck(findPinkPrep2, 'card');
+            localStorage.setItem("pinkReview", JSON.stringify(findPinkPrep3));
+
+            localStorage.removeItem("responseGreenState1");
+            localStorage.removeItem("responseGrayState1");
+            localStorage.removeItem("responsePinkState1");
+
+            $('nav a:nth-child(6)').trigger('touchstart'); // go to next page
+            // alert("function call");
+        }; // ****  End finish button touchstart ******
+
+
         /**
          * Randomize array element order in-place.
          * Using Durstenfeld shuffle algorithm.
