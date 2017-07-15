@@ -374,6 +374,18 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
     <!-- show / hide presorts according to persisted activeRadio -->
     <script type="text/javascript">
         $(document).ready(function () {
+
+            // use to setup in progress mode later
+            var presortProgress = "newStart";
+            var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
+
+            if (presortProgress = "newStart") {
+                for (var j = 0; j < sortObjArray.length; j++) {
+                    sortObjArray[j].setBackColor = "";
+                }
+                localStorage.setItem("sortObjArray", JSON.stringify(sortObjArray));
+            }
+
             var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
             if (sortObjArray != null) {
                 var text, sNumber;
@@ -489,7 +501,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 }
             }
             localStorage.setItem("sortObjArray", JSON.stringify(sortObjArray));
-            console.log(JSON.stringify(sortObjArray));
         }
     </script>
 

@@ -532,7 +532,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 for (var i = 0; i < numStates; i++) {
                     sNumber = i + 1;
                     text = sortObjArrayShuffled[i].statement;
-                    setBackColor = localStorage.getItem('psCard' + sNumber);
+                    setBackColor = sortObjArrayShuffled[i].setBackColor;
                     var statementPositions = ['position1', 'position2', 'position3'];
                     var position = statementPositions[Math.floor(Math.random() * statementPositions.length)];
                     if (setBackColor) {
@@ -599,6 +599,12 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             function handleCentering(ev, obj) {
                 if (obj.activeDropRegions.length > 0) {
                     centerWithin(obj);
+                    var classInfo = obj.activeDropRegions[0].context.getAttribute('class');
+                    var dropZonePositionTop = obj.activeDropRegions[0].context.offsetTop;
+                    var dropZonePositionLeft = obj.activeDropRegions[0].context.offsetLeft;
+                    console.log(obj.activeDropRegions[0].context);
+                    var cardId = obj.el.id;
+                    recordCardInfo(classInfo, dropZonePositionLeft, dropZonePositionTop, cardId);
                 }
             }
             // pep functionality
@@ -651,134 +657,70 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             }
 
             $("div.myCards div").on('touchmove', function (e) {
-                $(this).addClass('pepDot');
+                var card = $(this);
+                card.addClass('pepDot');
+                card.css('z-index', 3000);
             });
 
             $("div.myCards div").on('touchend', function (e) {
-                $(this).css('background-color', 'transparent');
-                $(this).removeClass('pepDot');
-
-                var both = undefined;
-                var result = undefined;
-                var result2 = undefined;
-                var results = undefined;
-                var positionCounts = undefined;
-                localStorage.setItem("sortResults2", "");
-                localStorage.setItem("theResults", "");
-                var getSortResults2 = undefined;
-                while (sortResults.length > 0) {
-                    sortResults.pop();
-                }; // empty array
-
-
-                $("div.myCards div").each(function () {
-                    var p = $(this);
-                    var position = p.position(); // position is this.position
-                    var loc = position.left;
-                    if (loc < 74) {
-                        qValue = -3;
-                    } else if (loc > 73 && loc < 219) {
-                        qValue = -2;
-                    } else if (loc > 218 && loc < 364) {
-                        qValue = -1;
-                    } else if (loc > 363 && loc < 509) {
-                        qValue = +0;
-                    } else if (loc > 508 && loc < 654) {
-                        qValue = +1;
-                    } else if (loc > 653 && loc < 819) {
-                        qValue = +2;
-                    } else {
-                        qValue = +3;
-                    };
-                    var statementId = $(this).attr('id');
-                    var statementIdNumber = parseInt(statementId);
-
-                    var both = {};
-                    both.card = statementIdNumber;
-                    both.pos = qValue;
-                    sortResults.push(both);
-                    console.log(JSON.stringify(sortResults));
-                    localStorage.setItem("sortResults2", JSON.stringify(sortResults));
-                }); // end  each function of myCards
-
-                var getSortResults2 = JSON.parse(localStorage.getItem("sortResults2"));
-                var result = _.pluck(getSortResults2, 'pos');
-                var result2 = sortByName(sortResults);
-                console.log(JSON.stringify(result));
-                var positionCounts = _.countBy(result2, 'pos');
-                console.log(JSON.stringify(positionCounts)); // this works but clear!
-                var results = _.pluck(result2, 'pos');
-                localStorage.setItem("theResults", JSON.stringify(results));
-                for (var ii = 0, iiLen = results.length; ii < iiLen; ii++) {
-                    if (results[ii] > -1) {
-                        results[ii] = "+" + results[ii];
-                    }
-                }
-                var resultsAsString = results.toString();
-                console.log(JSON.stringify(resultsAsString));
-                localStorage.setItem("resultsAsString", resultsAsString);
-
-
-                var activeRadioValueFinishDisplay = localStorage.getItem("activeRadio");
-                switch (activeRadioValueFinishDisplay) {
-                    case "state41":
-                        var arrayCheck41 = {
-                            "0": 7,
-                            "1": 6,
-                            "2": 6,
-                            "3": 5,
-                            "-3": 5,
-                            "-2": 6,
-                            "-1": 6
-                        };
-                        if (_.isEqual(positionCounts, arrayCheck41)) {
-                            $("#finishButton, #textDiv").show();
-                        } else {
-                            $("#finishButton, #textDiv").show();
-                        };
-                        break;
-                    case "state39":
-                        var arrayCheck39 = {
-                            "0": 7,
-                            "1": 6,
-                            "2": 5,
-                            "3": 5,
-                            "-3": 5,
-                            "-2": 5,
-                            "-1": 6
-                        };
-                        if (_.isEqual(positionCounts, arrayCheck39)) {
-                            $("#finishButton, #textDiv").show();
-                        } else {
-                            $("#finishButton, #textDiv").show();
-                        };
-                        break;
-                    default:
-                        var arrayCheck37 = {
-                            "0": 6,
-                            "1": 5,
-                            "2": 4,
-                            "3": 3,
-                            "-3": 3,
-                            "-2": 4,
-                            "-1": 5
-                        };
-                        if (_.isEqual(positionCounts, arrayCheck37)) {
-                            $("#finishButton, #textDiv").show();
-                        } else {
-                            $("#finishButton, #textDiv").hide();
-                        };
-                }; // end switch
-
+                var card = $(this);
+                console.log(card);
+                card.css({
+                    'background-color': 'transparent',
+                    'z-index': '10'
+                });
+                card.removeClass('pepDot');
             }); // end of touchend function
-
 
         }); // end of document ready function
     </script>
 
     <script>
-        function single_tap() {};
+        function recordCardInfo(classInfo, dropZonePositionLeft, dropZonePositionTop, cardId) {
+            var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
+            var classArray = classInfo.split(" ");
+            var valueString = classArray[3];
+            var qSortVal = qLookUp[valueString]();
+            cardId = cardId.slice(1);
+            console.log(cardId);
+            for (var i = 0; i < sortObjArray.length; i++) {
+                if (parseInt(sortObjArray[i].cardNumber) === parseInt(cardId)) {
+                    sortObjArray[i].qSortVal = qSortVal;
+                    sortObjArray[i].top = dropZonePositionTop;
+                    sortObjArray[i].left = dropZonePositionLeft;
+                    console.log(sortObjArray[i]);
+                }
+            }
+            localStorage.setItem("sortObjArray", JSON.stringify(sortObjArray));
+            console.log(sortObjArray);
+        }
 
+
+        var qLookUp = {
+            "minus3": function () {
+                return -3;
+            },
+            "minus2": function () {
+                return -2;
+            },
+            "minus1": function () {
+                return -1;
+            },
+            "zero": function () {
+                return 0;
+            },
+            "plus1": function () {
+                return 1;
+            },
+            "plus2": function () {
+                return 2;
+            },
+            "plus3": function () {
+                return 3;
+            }
+        };
+
+        function single_tap() {};
         // to end sort process - double tap anywhere on end button
         function double_tap() {
             var findGreenPrep = _.filter(sortResults, {
