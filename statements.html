@@ -326,6 +326,8 @@
 			var stateNum = activeRadioValue.slice(5, 7);
 			localStorage.setItem("numStates", stateNum);
 
+
+
 			// loop and append to DOM
 			for (var i = 0; i < stateNum; i++) {
 				var sNumber = i + 1;
@@ -365,11 +367,27 @@
 				}
 			})
 
+			function SortObj(cardNumber, statement) {
+				this.cardNumber = cardNumber;
+				this.statement = statement;
+				this.preSortVal = "";
+				this.qSortVal = "";
+				this.xVal = "";
+				this.yVal = "";
+			}
+
 			// on input, add new statement to local storage　
+			var cardNumber;
 			$('.outer-persisted-text').on('input propertychange change', function () {　
+				var sortObjArray = [];
 				for (var i = 0; i < input.length; i++) {
+					cardNumber = i + 1;
+					var tempObj = new SortObj(cardNumber, input[i].value);
+					sortObjArray.push(tempObj);
 					localStorage.setItem(input[i].name, input[i].value);　
-				}　　　
+				}
+				localStorage.setItem("sortObjArray", JSON.stringify(sortObjArray));　
+				console.log(sortObjArray.length);　　
 			});
 		}); // end document ready function
 	</script>

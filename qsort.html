@@ -522,11 +522,16 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             var numStates = localStorage.getItem("numStates");
             console.log(numStates);
 
+            // // get statements from memory and randomize
+            var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
+            var sortObjArrayShuffled = shuffleArray(sortObjArray);
+
             // loop and append to DOM
             var cardStyle, text, setBackColor, sNumber;
             for (var i = 0; i < numStates; i++) {
                 sNumber = i + 1;
-                text = localStorage.getItem('state' + sNumber);
+                // text = localStorage.getItem('state' + sNumber);
+                text = sortObjArrayShuffled[i].statement;
                 setBackColor = localStorage.getItem('psCard' + sNumber);
                 var statementPositions = ['position1', 'position2', 'position3'];
                 var position = statementPositions[Math.floor(Math.random() * statementPositions.length)];
@@ -821,6 +826,21 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         }); // end of document ready function
     </script>
 
+    <script>
+        /**
+         * Randomize array element order in-place.
+         * Using Durstenfeld shuffle algorithm.
+         */
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        }
+    </script>
 
 
 </body>
