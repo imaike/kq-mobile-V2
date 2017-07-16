@@ -21,12 +21,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
-    <!-- load libraries-->
-    <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="jquery.pep.min.js"></script>
-    <script type="text/javascript" src="lodash.js"></script>
-
-
 
     <!-- prevent default scroll -->
     <script type="text/javascript">
@@ -271,6 +265,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         }
 
         .top-header-bar {
+            display: webkit-flex;
+            -webkit-flex-direction: row;
+            -webkit-justify-content: flex-end;
             position: absolute;
             left: 0px;
             top: 0px;
@@ -366,6 +363,24 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         .hidden {
             display: none;
         }
+
+        .sortCompleteText {
+            visibility: hidden;
+            font-family: HelveticaNeue-CondensedBlack;
+            color: black;
+            /* border: 2px solid red; */
+            float: right;
+            margin-right: 60px;
+            margin-left: 80px;
+        }
+
+        .pointerSymbol {
+            visibility: hidden;
+            /* border: 2px solid red; */
+            margin-right: 0;
+            float: right;
+            color: black;
+        }
         /*	todo - proper class separation and percent rather than pixels */
     </style>
 
@@ -375,7 +390,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
     <div id="delayContainer">
 
-        <div class="top-header-bar"></div>
+        <div class="top-header-bar"><span class="pointerSymbol">&#x25BA &#x25BA &#x25BA</span><span class="sortCompleteText"> Sort Complete - Tap sort numbers to go to next page</span>            <span class="pointerSymbol">&#x25BA &#x25BA &#x25BA</span></div>
 
         <div class="header col1 minus3"><span><strong>-3</strong></span></div>
         <div class="header col2 minus2"><span><strong>-2</strong></span></div>
@@ -443,19 +458,13 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         <!-- end of mycards div -->
 
 
-        <!-- detach elements by sort type -->
-        <script type="text/javascript">
-        </script>
-
-
-
         <!-- respondent code display-->
-        <div id="textDiv"></div>
+        <!-- <div id="textDiv"></div> -->
         <script>
-            (function () {
-                var sortRespondentId = localStorage.getItem("respondentCodeId");
-                $('#textDiv').append(sortRespondentId);
-            })();
+            // (function () {
+            //     var sortRespondentId = localStorage.getItem("respondentCodeId");
+            //     $('#textDiv').append(sortRespondentId);
+            // })();
         </script>
 
 
@@ -476,6 +485,12 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
     <!-- end of delay fadeIn div   -->
 
     <!--</body>-->
+
+    <!-- load libraries-->
+    <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="jquery.pep.min.js"></script>
+    <!-- <script type="text/javascript" src="lodash.js"></script> -->
+
 
     <script>
         // stay standalone
@@ -504,16 +519,13 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
     </script>
 
     <script>
-        // lodash helper script for sorting
-        sortByName = function (array) {
-            return _.sortBy(array, "card");
-        };
-
-
-        // <!-- get results, set draggable, enable transparent after drag -->
         $(document).ready(function () {
-
-            // screenLog.init();
+            // temp - remove when functionality added to controls
+            localStorage.setItem("sortStatus", "inProgress");
+            localStorage.setItem("qSortPattern41", JSON.stringify([-3, -3, -3, -3, -3, -2, -2, -2, -2, -2, -2, -
+                1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3,
+                3, 3, 3, 3,
+            ]));
 
             $("#delayContainer").fadeIn(500);
             $("nav").hide();
@@ -523,9 +535,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
             // // get statements from memory and randomize
             var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
+            console.log(sortObjArray);
             if (sortObjArray != null) {
                 var sortObjArrayShuffled = shuffleArray(sortObjArray);
-
 
                 // loop and append to DOM
                 var cardStyle, text, setBackColor, sNumber;
@@ -575,6 +587,17 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 e.preventDefault()
             });
 
+            $(".header").on("touchstart", function (e) {
+                var isFinished = localStorage.getItem("sortStatus");
+                if (isFinished === "complete") {
+                    console.log("go to next page");
+                    $('nav a:nth-child(6)').trigger('touchstart'); // go to next page
+                } else {
+                    console.log("header clicked");
+                }
+            });
+
+
 
             $('.pep').pep({
                 useCSSTranslation: false,
@@ -590,7 +613,26 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                     // rotate(obj.$el, rot)
                 },
                 stop: function (ev, obj) {
-                    // rotate(obj.$el, 0)
+                    var cardId = obj.el.id;
+                    if (obj.activeDropRegions[0] === undefined) {
+                        removeOffGridData(cardId);
+                        $(".top-header-bar").css({
+                            "background-color": "black"
+                        });
+                        $(".sortCompleteText").css({
+                            "visibility": "hidden"
+                        });
+                        $(".pointerSymbol").css({
+                            "visibility": "hidden"
+                        });
+
+                    } else {
+                        var classInfo = obj.activeDropRegions[0].context.getAttribute('class');
+                        var dropZonePositionTop = obj.activeDropRegions[0].context.offsetTop;
+                        var dropZonePositionLeft = obj.activeDropRegions[0].context.offsetLeft;
+                        recordCardInfo(classInfo, dropZonePositionLeft, dropZonePositionTop, cardId);
+                        checkIfSortComplete();
+                    }
                 },
                 rest: handleCentering
             }); // end pep controls
@@ -599,12 +641,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             function handleCentering(ev, obj) {
                 if (obj.activeDropRegions.length > 0) {
                     centerWithin(obj);
-                    var classInfo = obj.activeDropRegions[0].context.getAttribute('class');
-                    var dropZonePositionTop = obj.activeDropRegions[0].context.offsetTop;
-                    var dropZonePositionLeft = obj.activeDropRegions[0].context.offsetLeft;
-                    console.log(obj.activeDropRegions[0].context);
-                    var cardId = obj.el.id;
-                    recordCardInfo(classInfo, dropZonePositionLeft, dropZonePositionTop, cardId);
                 }
             }
             // pep functionality
@@ -634,14 +670,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                     } else {
                         var moveTop = (cTop - oTop) - oHeight / 2;
                         var moveLeft = (cLeft - oLeft) - oWidth / 2;
-
                         obj.moveToUsingTransforms(moveTop, moveLeft);
                     }
-
                     obj.noCenter = true;
                     return;
                 }
-
                 obj.noCenter = false;
             }
 
@@ -664,7 +697,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
             $("div.myCards div").on('touchend', function (e) {
                 var card = $(this);
-                console.log(card);
                 card.css({
                     'background-color': 'transparent',
                     'z-index': '10'
@@ -676,6 +708,47 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
     </script>
 
     <script>
+        function checkIfSortComplete() {
+            var qSortPattern = JSON.parse(localStorage.getItem("qSortPattern41"));
+            var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
+            var testArray = [];
+            for (var i = 0; i < sortObjArray.length; i++) {
+                testArray.push(sortObjArray[i].qSortVal);
+            }
+            testArray = testArray.sort();
+            qSortPattern = qSortPattern.sort();
+            if (testArray.join() === qSortPattern.join()) {
+                console.log("complete sort");
+                $(".top-header-bar").css({
+                    "background-color": "#0BFF01"
+                });
+                $(".sortCompleteText").css({
+                    "visibility": "visible"
+                });
+                $(".pointerSymbol").css({
+                    "visibility": "visible"
+                });
+                localStorage.setItem("sortStatus", "complete");
+            } else {
+                localStorage.setItem("sortStatus", "inProgress");
+                return;
+            }
+        }
+
+
+        function removeOffGridData(cardId) {
+            var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
+            cardId = cardId.slice(1);
+            for (var j = 0; j < sortObjArray.length; j++) {
+                if (parseInt(sortObjArray[j].cardNumber) === parseInt(cardId)) {
+                    sortObjArray[j].qSortVal = "";
+                    sortObjArray[j].top = "";
+                    sortObjArray[j].left = "";
+                }
+            }
+            localStorage.setItem("sortObjArray", JSON.stringify(sortObjArray));
+        }
+
         function recordCardInfo(classInfo, dropZonePositionLeft, dropZonePositionTop, cardId) {
             var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
             var classArray = classInfo.split(" ");
@@ -688,13 +761,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                     sortObjArray[i].qSortVal = qSortVal;
                     sortObjArray[i].top = dropZonePositionTop;
                     sortObjArray[i].left = dropZonePositionLeft;
-                    console.log(sortObjArray[i]);
                 }
             }
             localStorage.setItem("sortObjArray", JSON.stringify(sortObjArray));
-            console.log(sortObjArray);
+            return;
         }
-
 
         var qLookUp = {
             "minus3": function () {
@@ -750,6 +821,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             localStorage.removeItem("responsePinkState1");
 
             $('nav a:nth-child(6)').trigger('touchstart'); // go to next page
+            return;
             // alert("function call");
         }; // ****  End finish button touchstart ******
 
