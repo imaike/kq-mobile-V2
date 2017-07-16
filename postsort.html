@@ -12,7 +12,6 @@
 
 	<!-- load iscroll5 -->
 	<script type="text/javascript" src="iscroll-lite.js"></script>
-	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
 
 
 	<!-- initialize iscroll5 -->
@@ -147,17 +146,14 @@
 			width: 100%;
 			overflow: hidden;
 			margin-left: 15px;
-
 			/* Prevent native touch events on Windows */
 			-ms-touch-action: none;
-
 			/* Prevent the callout on tap-hold and text selection */
 			-webkit-touch-callout: none;
 			-webkit-user-select: none;
 			-moz-user-select: none;
 			-ms-user-select: none;
 			user-select: none;
-
 			/* Prevent text resize on orientation change, useful for web-apps */
 			-webkit-text-size-adjust: none;
 			-moz-text-size-adjust: none;
@@ -168,10 +164,8 @@
 
 		#scroller {
 			position: absolute;
-
 			/* Prevent elements to be highlighted on tap */
 			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
 			/* Put the scroller into the HW Compositing layer right from the start */
 			-webkit-transform: translateZ(0);
 			-moz-transform: translateZ(0);
@@ -216,6 +210,7 @@
 
 		#postsortFinishButton {
 			position: absolute;
+			display: block;
 			font-family: HelveticaNeue-CondensedBlack;
 			right: 20px;
 			bottom: 20px;
@@ -233,13 +228,24 @@
 			color: #ffffff;
 		}
 
-		#endButton {
-			display: block;
-			color: #ffffff;
-			text-decoration: none;
+		.top-header-bar {
+			display: webkit-flex;
+			-webkit-flex-direction: row;
+			-webkit-justify-content: flex-end;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			height: 20px;
+			background-color: black;
 			width: 100%;
-			height: 100%;
-			padding-top: 27px;
+		}
+
+		.finishButtonDiv {
+			width: 100%;
+			display: block;
+			height: 200px;
+			margin-top: 20px;
+			margin-bottom: 100px;
 		}
 
 		#delayContainer {
@@ -252,152 +258,41 @@
 
 <body onload="loaded()">
 
+	<div class="top-header-bar">></div>
+
 	<div id="delayContainer">
 
 		<div id="wrapper">
 			<!--container for iscroll5 -->
 			<div id="scroller">
 
-				<div class="divSpacer"></div>
-
-				<h1 style="font-size:74px;  font-family: HelveticaNeue-CondensedBlack;">Post Q-Sort Interview</h1>
-
-				<div class="divSpacer"></div>
-
-
-				<!--       data-persist="garlic" method="POST" -->
+				<h1 style="font-size:74px;  font-family: HelveticaNeue-CondensedBlack;">Sort Comments</h1>
 
 				<form id="commentInputBox">
-					<div style="width:100%; float:right">
-					</div>
-					<span><p style="font-size: 35px" margin-bottom="-25px;"><strong>Position +3 Cards</strong></p></span>
-					<div style="width:100%; float:right">
-					</div>
-					<div style="width:100%; float:right">
-					</div>
-
 
 					<!-- START GREEN CARD REVIEW -->
-					<div>
-						<!--  green card wrapper  -->
-						<div class="greenReportCard">
-							<span class="stateCenter" id="greenReportCard1" style="margin-left: 20px;"></span>
-						</div>
-						<div class="greenReportCard">
-							<p class="stateCenter" id="greenReportCard2"></p>
-							</br>
-						</div>
-						<div class="greenReportCard" id="gReport3">
-							<p class="stateCenter" id="greenReportCard3"></p>
-							</br>
-						</div>
-						<div class="greenReportCard" id="gReport4">
-							<p class="stateCenter" id="greenReportCard4"></p>
-							</br>
-						</div>
-						<div class="greenReportCard" id="gReport5">
-							<p class="stateCenter" id="greenReportCard5"></p>
-							</br>
-						</div>
-						<span></span>
-
-						<textarea type="input" id="greenCardCommentBox" name="responseGreenState1" style="width: 100%; height: 125px; font-size: 16px;"></textarea>
-
-					</div>
-					<!-- end green card wrapper -->
-
-					<!-- END GREEN CARD REVIEW -->
-
-					<span><p style="font-size: 35px"><strong>Position -3 Cards</strong></p></span>
+					<span><p style="font-size: 35px" margin-bottom="-25px;"><strong>Position +3 Cards</strong></p></span>
+					<div id="greenCardWrapper"></div>
+					<textarea type="input" id="greenCardCommentBox" name="responseGreenState1" style="width: 100%; height: 125px; font-size: 16px;"></textarea>
 
 					<!-- START PINK CARD REVIEW -->
-					<span style="width:100%"></span>
-					<div class="pinkReportCard">
-						<span class="stateCenter" id="pinkReportCard1"></span>
-					</div>
-					<div class="pinkReportCard">
-						<p class="stateCenter" id="pinkReportCard2"></p>
-						</br>
-					</div>
-					<div class="pinkReportCard" id="pReport3">
-						<p class="stateCenter" id="pinkReportCard3"></p>
-						</br>
-					</div>
-					<div class="pinkReportCard" id="pReport4">
-						<p class="stateCenter" id="pinkReportCard4"></p>
-						</br>
-					</div>
-					<div class="pinkReportCard" id="pReport5">
-						<p class="stateCenter" id="pinkReportCard5"></p>
-						</br>
-					</div>
-					<span></span>
-
+					<span><p style="font-size: 35px"><strong>Position -3 Cards</strong></p></span>
+					<div id="pinkCardWrapper"></div>
 					<textarea type="input" id="pinkCardCommentBox" name="responsePinkState1" style=" width: 100%; height: 125px; font-size: 16px;"></textarea>
 
-
-					<!-- END PINK CARD REVIEW -->
-
-					<span><p style="font-size: 35px"><strong>Position 0 Cards</strong></p></span>
 					<!-- START GRAY CARD REVIEW -->
-					<span style="width:100%"></span>
-					<div class="grayReportCard">
-						<span class="grayStateCenter" id="grayReportCard1"></span>
-					</div>
-					<div class="grayReportCard">
-						<p class="grayStateCenter" id="grayReportCard2"></p>
-						</br>
-					</div>
-					<div class="grayReportCard">
-						<p class="grayStateCenter" id="grayReportCard3"></p>
-						</br>
-					</div>
-					<div class="grayReportCard">
-						<p class="grayStateCenter" id="grayReportCard4"></p>
-						</br>
-					</div>
-					<div class="grayReportCard">
-						<p class="grayStateCenter" id="grayReportCard5"></p>
-						</br>
-					</div>
-					<div class="grayReportCard" id="grReport6">
-						<p class="grayStateCenter" id="grayReportCard6"></p>
-						</br>
-					</div>
-					<div class="grayReportCard" id="grReport7">
-						<p class="grayStateCenter" id="grayReportCard7"></p>
-						</br>
-					</div>
-
-					<span></span>
-
+					<span><p style="font-size: 35px"><strong>Position 0 Cards</strong></p></span>
+					<div id="grayCardWrapper"></div>
 					<textarea type="input" id="grayCardCommentBox" name="responseGrayState1" style=" width: 100%; height: 125px; font-size: 16px;"></textarea>
 
 				</form>
-
-				<button type="submit" id="postsortFinishButton" ontouchstart="fireFinishPostsortButton()">End Sort</button>
-
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-				</br>
-
+				<div class="finishButtonDiv">
+					<button id="postsortFinishButton">End Sort</button>
+				</div>
 			</div>
 			<!--end scroller for iscroll5 -->
 		</div>
 		<!--end wrapper for iscroll5-->
-
-
 
 		<nav>
 			<a href="information.html">Information</a>
@@ -411,112 +306,112 @@
 	</div>
 	<!-- end delay fadeIn container -->
 
+	<!-- load libraries-->
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+
 	<script>
-		(function () {
-			$("#delayContainer").fadeIn(500);
-
-			$("nav").hide();
-
-			localStorage.setItem("responseGreenState1", "");
-			localStorage.setItem("responsePinkState1", "");
-			localStorage.setItem("responseGrayState1", "");
-			// $('commentInputBox').garlic('destroy');
-			// $('greenCardCommentBox').garlic('destroy');
-			// $('pinkCardCommentBox').garlic('destroy');
-			// $('grayCardCommentBox').garlic('destroy');
-
-			var prepGreenResults = localStorage.getItem("greenReview");
-			var retreiveGreenResults = JSON.parse(prepGreenResults);
-			console.log(JSON.stringify(retreiveGreenResults));
-			if (retreiveGreenResults) {
-				for (var i = 0; i < retreiveGreenResults.length; i++) {
-					var k = i + 1;
-					var tempHolder1 = retreiveGreenResults[i];
-					$("#greenReportCard" + k).append(localStorage.getItem('state' + tempHolder1));
-				};
-
-				//		var greenReviewCard1 = retreiveGreenResults[0];
-				//		var greenReviewCard2 = retreiveGreenResults[1];
-				//		var greenReviewCard3 = retreiveGreenResults[2];
-				//		var greenReviewCard4 = retreiveGreenResults[3];
-				//
-				//		$("#greenReportCard1").append(localStorage.getItem('state' + greenReviewCard1));
-				//		$("#greenReportCard2").append(localStorage.getItem('state' + greenReviewCard2));
-				//		$("#greenReportCard3").append(localStorage.getItem('state' + greenReviewCard3));
-				//		$("#greenReportCard4").append(localStorage.getItem('state' + greenReviewCard4));
-
-
-				var prepPinkResults = localStorage.getItem("pinkReview");
-				var retreivePinkResults = JSON.parse(prepPinkResults);
-
-				for (var l = 0; l < retreivePinkResults.length; l++) {
-					var m = l + 1;
-					var tempHolder2 = retreivePinkResults[l];
-					$("#pinkReportCard" + m).append(localStorage.getItem('state' + tempHolder2));
-				};
-
-				//		var pinkReviewCard1 = retreivePinkResults[0];
-				//		var pinkReviewCard2 = retreivePinkResults[1];
-				//		var pinkReviewCard3 = retreivePinkResults[2];
-				//		var pinkReviewCard4 = retreivePinkResults[3];
-				//
-				//		$("#pinkReportCard1").append(localStorage.getItem('state' + pinkReviewCard1));
-				//		$("#pinkReportCard2").append(localStorage.getItem('state' + pinkReviewCard2));
-				//		$("#pinkReportCard3").append(localStorage.getItem('state' + pinkReviewCard3));
-				//		$("#pinkReportCard4").append(localStorage.getItem('state' + pinkReviewCard4));
-
-
-
-				var prepGrayResults = localStorage.getItem("grayReview");
-				var retreiveGrayResults = JSON.parse(prepGrayResults);
-				var grayReviewCard1 = retreiveGrayResults[0];
-				var grayReviewCard2 = retreiveGrayResults[1];
-				var grayReviewCard3 = retreiveGrayResults[2];
-				var grayReviewCard4 = retreiveGrayResults[3];
-				var grayReviewCard5 = retreiveGrayResults[4];
-				var grayReviewCard6 = retreiveGrayResults[5];
-				var grayReviewCard7 = retreiveGrayResults[6];
-
-
-				$("#grayReportCard1").append(localStorage.getItem('state' + grayReviewCard1));
-				$("#grayReportCard2").append(localStorage.getItem('state' + grayReviewCard2));
-				$("#grayReportCard3").append(localStorage.getItem('state' + grayReviewCard3));
-				$("#grayReportCard4").append(localStorage.getItem('state' + grayReviewCard4));
-				$("#grayReportCard5").append(localStorage.getItem('state' + grayReviewCard5));
-				$("#grayReportCard6").append(localStorage.getItem('state' + grayReviewCard6));
-				$("#grayReportCard7").append(localStorage.getItem('state' + grayReviewCard7));
-
-			}
-		})();
+		// set STATE - todo - link with controls and remove 
+		localStorage.setItem("maxSortValue", 3);
+		localStorage.setItem("minSortValue", -3);
+		localStorage.setItem("numMaxValCards", 5);
+		localStorage.setItem("numMinValCards", 5);
+		localStorage.setItem("numZeroValCards", 7);
 
 
 		$(document).ready(function () {
 
-			var activeRadioValue = localStorage.getItem("activeRadio");
-			switch (activeRadioValue) {
-				case "state41":
-					break;
-				case "state39":
-					break;
-				default: // state37
-					$('#pReport5').hide();
-					$('#gReport5').hide();
-			};
+			// page functions
+			$("#delayContainer").fadeIn(300);
+			$("nav").hide();
+
+			// set event listeners
+			$("#postsortFinishButton").on("touchstart", function () {
+				// confirm end
+				var answer = confirm("End Q-sort?");
+				if (answer) {
+					$('nav a:nth-child(2)').trigger('touchstart');
+				}
+				// save comment data to results
+				// clear comment data
+			});
+
+			$('#greenCardCommentBox, #pinkCardCommentBox, #grayCardCommentBox').on('input propertychange change', function () {
+				localStorage.setItem(this.name, this.value);　　　
+			});
+
+
+			// push cards to DOM
+			var sortObjArray = JSON.parse(localStorage.getItem("sortObjArray"));
+			console.log(sortObjArray);
+			// setup green cards
+			setupGreenCards(sortObjArray);
+			// setup pink cards
+			setupPinkCards(sortObjArray);
+			// setup gray cards
+			setupGrayCards(sortObjArray);
+
+
 		});
 	</script>
-
 
 	<script>
-		var fireFinishPostsortButton = function () {
-			$('nav a:nth-child(2)').trigger('touchstart');
-		};
+		function setupGreenCards(sortObjArray) {
+			// get state
+			var maxSortValue = localStorage.getItem("maxSortValue"); // 3
+			var numMaxValCards = localStorage.getItem("numMaxValCards"); // 5
+			// get statement text
+			var statementArray = [];
+			for (var j = 0; j < sortObjArray.length; j++) {
+				console.log(sortObjArray[j].qSortVal);
+				console.log(maxSortValue);
+				if (parseInt(sortObjArray[j].qSortVal) === parseInt(maxSortValue)) {
+					statementArray.push(sortObjArray[j].statement);
+				}
+			}
+			// append to DOM
+			for (var i = 0; i < numMaxValCards; i++) {
+				var loopNum = i + 1;
+				$("#greenCardWrapper").append('<div class="greenReportCard"><span class="stateCenter" id="greenReportCard' +
+					loopNum +
+					'" style="margin-left: 20px;">' + statementArray[i] + '</span></div>');
+			}
+		}
 
-		$('#greenCardCommentBox, #pinkCardCommentBox, #grayCardCommentBox').on('input propertychange change', function () {
-			localStorage.setItem(this.name, this.value);　　　
-		});
+		function setupPinkCards(sortObjArray) {
+			var minSortValue = localStorage.getItem("minSortValue"); // -3
+			var numMinValCards = localStorage.getItem("numMinValCards"); // 5
+			// get statement text
+			var statementArray = [];
+			for (var j = 0; j < sortObjArray.length; j++) {
+				if (parseInt(sortObjArray[j].qSortVal) === parseInt(minSortValue)) {
+					statementArray.push(sortObjArray[j].statement);
+				}
+			}
+			for (var i = 0; i < numMinValCards; i++) {
+				var loopNum = i + 1;
+				$("#pinkCardWrapper").append('<div class="pinkReportCard"><span class="stateCenter" id="pinkReportCard' +
+					loopNum +
+					'" style="margin-left: 20px;">' + statementArray[i] + '</span></div>');
+			}
+		}
+
+		function setupGrayCards(sortObjArray) {
+			var numZeroValCards = localStorage.getItem("numZeroValCards"); // 5
+			// get statement text
+			var statementArray = [];
+			for (var j = 0; j < sortObjArray.length; j++) {
+				if (sortObjArray[j].qSortVal === 0) {
+					statementArray.push(sortObjArray[j].statement);
+				}
+			}
+			for (var i = 0; i < numZeroValCards; i++) {
+				var loopNum = i + 1;
+				$("#grayCardWrapper").append('<div class="grayReportCard"><span class="stateCenter" id="grayReportCard' +
+					loopNum +
+					'" style="margin-left: 20px;">' + statementArray[i] + '</span></div>');
+			}
+		}
 	</script>
-
-
 
 	<script type="text/javascript">
 		// stay standalone
@@ -542,7 +437,6 @@
 		// $(function() { $.stayInWebApp('a.stay');});
 		// end stay standalone
 	</script>
-
 
 </body>
 
