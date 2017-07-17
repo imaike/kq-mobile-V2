@@ -176,10 +176,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         #sortResultsDisplay {
             position: absolute;
             margin-left: 27px;
-            top: 291px;
+            top: 300px;
             background: #ffffff;
             width: 953px;
-            height: 185px;
+            height: 385px;
             border: 1px solid;
         }
 
@@ -378,7 +378,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
             background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
             background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0);
+            /* filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0); */
             margin: 5px 5px;
             margin-top: 34px;
             -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
@@ -404,7 +404,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             background: -o-linear-gradient(top, #222 0%, #45484d 100%);
             background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
             background: linear-gradient(top, #222 0%, #45484d 100%);
-            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d', GradientType=0);
+            /* filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d', GradientType=0); */
         }
         /*        green dot */
 
@@ -576,19 +576,18 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         <p id="resultsLabel">Q-Sort Results</p>
         <div id="sortResultsDisplay" class='results scroller'>
             <div class='loading'></div>
-
             <div class='pep'>
                 <p id="incomingResults" class="displayBox"></p>
             </div>
         </div>
-        <p id="commentsLabel">Q-Sort Comments</p>
+        <!-- <p id="commentsLabel">Q-Sort Comments</p>
         <div id="sortCommentsDisplay" class='results scroller'>
             <div class='loading'></div>
             <div class='pull'></div>
             <div class='pep'>
                 <ul id="incomingComments"></ul>
             </div>
-        </div>
+        </div> -->
 
         <ul id="statementHolder" style="visibility:hidden; list-style:none"></ul>
         <p id="emailHeader" style="visibility:hidden"> </p>
@@ -624,18 +623,41 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         document.addEventListener('touchmove', function (e) {
             e.preventDefault();
         }, false);
-    </script>
 
-    <script>
         $(document).ready(function () {
             $("#delayContainer").fadeIn(300);
-
             $('nav a:nth-child(7)').hide();
             $('nav a:nth-child(8)').hide();
 
+            //**** stay standalone ***********************************************************
+            //https://github.com/mrmoses/jQuery.stayInWebApp
+            (function ($) {
+                $.extend({
+                    stayInWebApp: function (b) {
+                        "standalone" in window.navigator && window.navigator.standalone && (b ||
+                            (b = "a"),
+                            $("body").delegate(b, "touchstart", function (b) {
+                                if ($(this).attr("target") == void 0 || $(this).attr(
+                                        "target") ==
+                                    "" || $(this).attr("target") == "_self") {
+                                    var c = $(this).attr("href");
+                                    if (!c.match(/^http(s?)/g)) b.preventDefault(),
+                                        self.location =
+                                        c
+                                }
+                            }))
+                    }
+                })
+            })(jQuery);
+            $(function () {
+                $.stayInWebApp('a.stay');
+            });
+            // This use only links with the class stay.
+            // $(function() { $.stayInWebApp('a.stay');});
+            // end stay standalone
 
-            checkNewResults();
-        });
+            displayResults();
+        }); // end of document ready
 
 
         // **** set event handlers ***************************************************
@@ -710,7 +732,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         // alert("radio button function complete");
 
 
-        //* * * * check color grid checkbox status * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+        //* * * * check color grid checkbox status * * * * * * * * * * * * * ** * * * * * * * * * * *
 
         $('input[type="checkbox"]').click(function () {
 
@@ -726,139 +748,45 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
         //**** pull results in localStorage from Q-sort page ****************************
 
-
-        var checkNewResults = function () {
-            var respondentCode = localStorage.getItem("respondentCodeId");
-            var respondentCodeCheck = localStorage.getItem("respondentCodeCheck");
-            // alert("respondent variables loaded");
-            //  $('#incomingComments').html(localStorage.getItem('currentComments'));
-            // $('#incomingResults').html(localStorage.getItem('currentResults'));
-            if ((respondentCode === null) || (respondentCode === respondentCodeCheck)) {} else {
-                $('#incomingResults').html(localStorage.getItem('currentResults'));
-                // alert("ready to pullResults");
-                pullResults();
-                pullComments();
-                var respondentCodeCheck = respondentCode;
-                localStorage.setItem("respondentCodeCheck", respondentCodeCheck);
+        function displayResults() {
+            var results = JSON.parse(localStorage.getItem("results"));
+            if (results === null && typeof results === "object") {
+                $("#incomingResults").append("<br/><br/><strong>No Results</strong>");
+            } else {
+                var statements = JSON.parse(localStorage.getItem("statementsArray"));
+                console.log(JSON.stringify(results));
+                // var tempArraySorts = [];
+                // var tempArrayComments = [];
+                // var tempArrayStatements = [];
+                var target = $("#incomingResults");
+                target.append("<br/><br/><strong>Q-Sort Pattern</strong>");
+                target.append("<br/><br/><strong>Q-Sorts  -  " + results.length + " respondents</strong>");
+                for (var i = 0; i < results.length; i++) {
+                    var combined = results[i].sortData;
+                    combined.unshift(results[i].respondent);
+                    var combinedText = combined.join();
+                    target.append("<pre>" + combinedText + "</pre>");
+                }
+                target.append("<br/><br/><strong>Q-Sort Comments</strong><br/>");
+                for (var j = 0; j < results.length; j++) {
+                    var positiveComments = results[j].respondent + "- Max Sort Value Comments - " + results[j].maxQsortValComments;
+                    var negativeComments = results[j].respondent + "- Min Sort Value Comments - " + results[j].minQsortValComments;
+                    var zeroComments = results[j].respondent + "- Zero Sort Value Comments - " + results[j].zeroValComments;
+                    target.append(positiveComments + "<br/>");
+                    target.append(negativeComments + "<br/>");
+                    target.append(zeroComments + "<br/>");
+                }
+                target.append("<br/><br/><strong>Statements<br/></strong>");
+                for (var k = 0; k < statements.length; k++) {
+                    var num = k + 1;
+                    target.append(num + '. ' + statements[k] + "<br/>");
+                }
             }
-        };
-
-        var pullResults = function () {
-            // $('#incomingResults').html(localStorage.getItem('currentResults'));
-            // alert("pull results function fired");
-            // var prepRetreiveResults = localStorage.getItem("theResults");
-            // var retreiveResults = JSON.parse(prepRetreiveResults);
-            var retreiveResults1 = localStorage.getItem("theResults");
-            // alert("retreiveResults1 = " + retreiveResults1);
-            var retreiveResults2 = retreiveResults1.replace(/,/g, " ");
-            // alert("retreiveResults2 = " + retreiveResults2);
-            var retreiveResults3 = retreiveResults2.replace(/ -/g, "-");
-            // alert("retreiveResults3 = " + retreiveResults3);
-            var retreiveResults4 = retreiveResults3.replace(/[\[\]']+/g, '');
-
-            //****  add spacers between results and respondent name
-            var cardLength = localStorage.getItem("activeRadio");
-            var retreiveResults5 = String(retreiveResults4);
-            switch (cardLength) {
-                case "state41":
-                    if (retreiveResults5.length < 82) {
-                        var retreiveResults6 = " " + retreiveResults5;
-                    } else {
-                        var retreiveResults6 = retreiveResults5;
-                    };
-                    break;
-                case "state39":
-                    if (retreiveResults5.length < 78) {
-                        var retreiveResults6 = " " + retreiveResults5;
-                    } else {
-                        var retreiveResults6 = retreiveResults5;
-                    };
-                    break;
-                default:
-                    if (retreiveResults5.length < 74) {
-                        var retreiveResults6 = " " + retreiveResults5;
-                    } else {
-                        var retreiveResults6 = retreiveResults5;
-                    };
-            }; // end switch
-
-            var retrieveRespondentCode = localStorage.getItem("respondentCodeId");
-            $("#incomingResults").append("<pre>" + retrieveRespondentCode + "  " + retreiveResults6 + "</br></pre>");
-            var currentResults = $("#incomingResults").html();
-            localStorage.setItem('currentResults', currentResults);
-        };
-
-        var pullComments = function () {
-            // alert("pull comments is fired");
-            // alert("responseGreenState1 - " +  localStorage.getItem("responseGreenState1"));
-            var retrieveGreenComments = localStorage.getItem("responseGreenState1");
-            var retrieveGrayComments = localStorage.getItem("responseGrayState1");
-            var retrievePinkComments = localStorage.getItem("responsePinkState1");
-            // alert("greenReview - " + localStorage.getItem("greenReview");
-            var prepGreenSet = localStorage.getItem("greenReview");
-            var greenSet = JSON.parse(prepGreenSet);
-            var prepGraySet = localStorage.getItem("grayReview");
-            var graySet = JSON.parse(prepGraySet);
-            var prepPinkSet = localStorage.getItem("pinkReview");
-            var pinkSet = JSON.parse(prepPinkSet);
-
-            if ((retrieveGreenComments === null) && (retrieveGrayComments === null) && (retrievePinkComments ===
-                    null)) {} else {
-
-                var retrieveRespondentCommentCode = localStorage.getItem("respondentCodeId");
-                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; AGREE; " + greenSet +
-                    "; " + retrieveGreenComments + "</li>");
-                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; AMBIV;  " + graySet +
-                    "; " + retrieveGrayComments + "</li>");
-                $("#incomingComments").append("<li>" + retrieveRespondentCommentCode + "; DISAGREE; " + pinkSet +
-                    "; " + retrievePinkComments + "</li>");
-                var currentComments = $("#incomingComments").html();
-                localStorage.setItem('currentComments', currentComments);
-            }
-        };
-
-        var pullEmailHeader = function () {
-            // crude hack to get number respondents
-            var numberRespondentResults = $("#incomingComments li").length / 3;
-            var paddedNumberRespondentResults = pad(numberRespondentResults, 3);
-            var studyName1 = localStorage.getItem('studyName');
-            var activeRadioValue = localStorage.getItem("activeRadio");
-            switch (activeRadioValue) {
-                case "state37":
-                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 37 " + studyName1 +
-                        "</pre>");
-                    $("#emailHeader").append(
-                        "<pre> -3  3  0  0  0  4  5  6  7  6  5  4  0  0  0  0  0  0  0  0  0  0</pre>");
-                    break;
-                case "state39":
-                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 39 " + studyName1 +
-                        "</pre>");
-                    $("#emailHeader").append(
-                        "<pre> -3  3  0  0  0  5  5  6  7  6  5  5  0  0  0  0  0  0  0  0  0  0</pre>");
-                    break;
-                default:
-                    $("#emailHeader").append("<pre>  0" + paddedNumberRespondentResults + " 41 " + studyName1 +
-                        "</pre>");
-                    $("#emailHeader").append(
-                        "<pre> -3  3  0  0  0  5  6  6  7  6  6  5  0  0  0  0  0  0  0  0  0  0</pre>");
-            }; // end switch
-
-        } // end pullEmailHeader function
-
-        //****  adds variable # padding 0s to respon. numbers to keep ******************
-        //****  pqmethod spacing requirements ******************************************
-        function pad(n, width, z) {
-            z = z || ' ';
-            n = n + '';
-            return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
         }
-    </script>
 
 
-    <script>
         // *** email qSort results ***********************************************
         var fireEmailResults = function () {
-            pullEmailHeader();
             var link = document.getElementById('email');
             var emailAddress = localStorage.getItem('emailInput');
             link.onclick = function () {
@@ -867,10 +795,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             };
 
             function getBody() {
-                var emailText1 = $("#emailHeader").html();
+                // var emailText1 = $("#emailHeader").html();
                 var emailText2 = $("#incomingResults").html() + "<br><br>";
                 var emailText3 = $("#incomingComments").html();
-                var emailTextResults = emailText1 + emailText2;
+                // var emailTextResults = emailText1 + emailText2;
+                var emailTextResults = emailText2;
                 return [emailTextResults, emailText3];
             }
         };
@@ -889,9 +818,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 $('nav a:nth-child(4)').trigger('touchstart');
             }
         };
-    </script>
 
-    <script>
         // email Statements (call from localStorage on Statements page)****************
         var fireEmailStatements = function () {
             var link2 = document.getElementById('emailStatements');
@@ -916,29 +843,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
     </script>
 
     <script type="text/javascript">
-        //**** stay standalone ***********************************************************
-        //https://github.com/mrmoses/jQuery.stayInWebApp
-        (function ($) {
-            $.extend({
-                stayInWebApp: function (b) {
-                    "standalone" in window.navigator && window.navigator.standalone && (b || (b = "a"),
-                        $("body").delegate(b, "touchstart", function (b) {
-                            if ($(this).attr("target") == void 0 || $(this).attr("target") ==
-                                "" || $(this).attr("target") == "_self") {
-                                var c = $(this).attr("href");
-                                if (!c.match(/^http(s?)/g)) b.preventDefault(), self.location =
-                                    c
-                            }
-                        }))
-                }
-            })
-        })(jQuery);
-        $(function () {
-            $.stayInWebApp('a.stay');
-        });
-        // This use only links with the class stay.
-        // $(function() { $.stayInWebApp('a.stay');});
-        // end stay standalone
     </script>
 
 

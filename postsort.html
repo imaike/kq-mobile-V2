@@ -248,6 +248,15 @@
 			margin-bottom: 100px;
 		}
 
+		span {
+			font-family: AvenirNextCondensed-Medium;
+		}
+
+		.cardReview p {
+			font-family: HelveticaNeue-CondensedBlack;
+			font-size: 35px;
+		}
+
 		#delayContainer {
 			display: none
 		}
@@ -271,17 +280,17 @@
 				<form id="commentInputBox">
 
 					<!-- START GREEN CARD REVIEW -->
-					<span><p style="font-size: 35px" margin-bottom="-25px;"><strong>Position +3 Cards</strong></p></span>
+					<span class="cardReview"><p><strong>Position +3 Cards</strong></p></span>
 					<div id="greenCardWrapper"></div>
 					<textarea type="input" id="greenCardCommentBox" name="responseGreenState1" style="width: 100%; height: 125px; font-size: 16px;"></textarea>
 
 					<!-- START PINK CARD REVIEW -->
-					<span><p style="font-size: 35px"><strong>Position -3 Cards</strong></p></span>
+					<span class="cardReview"><p><strong>Position -3 Cards</strong></p></span>
 					<div id="pinkCardWrapper"></div>
 					<textarea type="input" id="pinkCardCommentBox" name="responsePinkState1" style=" width: 100%; height: 125px; font-size: 16px;"></textarea>
 
 					<!-- START GRAY CARD REVIEW -->
-					<span><p style="font-size: 35px"><strong>Position 0 Cards</strong></p></span>
+					<span class="cardReview"><p><strong>Position 0 Cards</strong></p></span>
 					<div id="grayCardWrapper"></div>
 					<textarea type="input" id="grayCardCommentBox" name="responseGrayState1" style=" width: 100%; height: 125px; font-size: 16px;"></textarea>
 
@@ -316,6 +325,7 @@
 		localStorage.setItem("numMaxValCards", 5);
 		localStorage.setItem("numMinValCards", 5);
 		localStorage.setItem("numZeroValCards", 7);
+		localStorage.setItem("respondentName", "testSubject1");
 
 
 		$(document).ready(function () {
@@ -329,6 +339,7 @@
 				// confirm end
 				var answer = confirm("End Q-sort?");
 				if (answer) {
+					saveRespondentDataToResults();
 					$('nav a:nth-child(2)').trigger('touchstart');
 				}
 				// save comment data to results
@@ -362,8 +373,6 @@
 			// get statement text
 			var statementArray = [];
 			for (var j = 0; j < sortObjArray.length; j++) {
-				console.log(sortObjArray[j].qSortVal);
-				console.log(maxSortValue);
 				if (parseInt(sortObjArray[j].qSortVal) === parseInt(maxSortValue)) {
 					statementArray.push(sortObjArray[j].statement);
 				}
@@ -410,6 +419,47 @@
 					loopNum +
 					'" style="margin-left: 20px;">' + statementArray[i] + '</span></div>');
 			}
+		}
+
+		function saveRespondentDataToResults() {
+			// pull data
+			var respondentName = localStorage.getItem("respondentName");
+			var sortData = JSON.parse(localStorage.getItem("sortObjArray"));
+			var results = JSON.parse(localStorage.getItem("results"));
+			var greenComments = localStorage.getItem("responseGreenState1") || "none";
+			var pinkComments = localStorage.getItem("responsePinkState1") || "none";
+			var grayComments = localStorage.getItem("responseGrayState1") || "none";
+
+			// sort object just to make sure order is correct
+			console.log(JSON.stringify(sortData));
+			sortData.sort(function (a, b) {
+				return parseInt(a.cardNumber) - parseInt(b.cardNumber);
+			});
+			// create Q-sort array for this respondent
+			var tempArray = [];
+			for (var i = 0; i < sortData.length; i++) {
+				tempArray.push(sortData[i].qSortVal);
+			}
+
+			// pull results from storage if present
+			console.log(results);
+			if (results === null) {
+				results = [];
+			}
+			var tempObj = {};
+			tempObj.respondent = respondentName;
+			tempObj.sortData = tempArray;
+			tempObj.maxQsortValComments = greenComments;
+			tempObj.minQsortValComments = pinkComments;
+			tempObj.zeroValComments = grayComments;
+			results.push(tempObj);
+			// add to results array
+			localStorage.setItem("results", JSON.stringify(results));
+			console.log(JSON.stringify(results));
+			// clear input boxes for next respondent
+			localStorage.setItem("responseGreenState1", "");
+			localStorage.setItem("responsePinkState1", "");
+			localStorage.setItem("responseGrayState1", "");
 		}
 	</script>
 
