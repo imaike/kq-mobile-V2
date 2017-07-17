@@ -357,6 +357,7 @@
 					}
 					localStorage.setItem(input[k].name, input[k].value);
 				}
+				// generate warning if statements length doesn't match
 				if (stateNum != statementText.length && this.id !== "clearStatementsButton") {
 					var warning = document.getElementsByClassName("warningDiv");
 					warning[0].style.visibility = "visible";
@@ -364,6 +365,20 @@
 						warning[0].style.visibility = "hidden";
 					}, 5000);
 				}
+				// create sortObjArray for presort
+				var inputs = document.getElementsByClassName('outer-persisted-text');
+				var sortObjArray = [];
+				var statementsArray = [];
+				for (var i = 0; i < inputs.length; i++) {
+					cardNumber = i + 1;
+					var tempObj = new SortObj(cardNumber, inputs[i].value);
+					sortObjArray.push(tempObj);
+					localStorage.setItem(inputs[i].name, inputs[i].value);
+					statementsArray.push(inputs[i].value);　
+				}
+				localStorage.setItem("statementsArray", JSON.stringify(statementsArray));
+				localStorage.setItem("sortObjArray", JSON.stringify(sortObjArray));　
+				console.log(sortObjArray);　　
 			})
 
 			function SortObj(cardNumber, statement) {

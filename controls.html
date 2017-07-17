@@ -52,12 +52,29 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         #qSortButton {
             display: block;
             padding-top: 16px;
-            font-size: 175px;
+            font-size: 135px;
             padding-left: 0px;
             padding-bottom: 9px;
             text-align: center;
             line-height: 1em;
             color: #2d343c;
+        }
+
+        .qsortButtonSubtext1 {
+            font-size: 20px;
+            color: black;
+            margin-left: 5px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+
+        .qsortButtonSubtext2 {
+            font-size: 20px;
+            color: black;
+            float: right;
+            margin-right: 5px;
+            font-style: italic;
         }
 
         .emailResultsButton {
@@ -68,12 +85,12 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             -moz-appearance: none;
             font-family: HelveticaNeue-CondensedBlack;
             appearance: none;
-            margin-left: 5px;
+            /* margin-left: 5px; */
             width: 200px;
             margin-top: 2px;
             padding-top: 0px;
             padding-bottom: 0px;
-            height: 100px;
+            height: 85px;
             background: #1985c5;
             border: 0px solid #666;
             cursor: pointer;
@@ -176,7 +193,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         #sortResultsDisplay {
             position: absolute;
             margin-left: 27px;
-            top: 300px;
+            top: 330px;
             background: #ffffff;
             width: 953px;
             height: 385px;
@@ -204,9 +221,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             margin-left: 5px;
             width: 200px;
             margin-top: 2px;
-            padding-top: 0px;
+            padding-top: 5px;
             padding-bottom: 0px;
-            height: 100px;
+            height: 85px;
             background: #1985c5;
             border: 0px solid #666;
             cursor: pointer;
@@ -220,11 +237,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         .clearDataButton span {
             display: block;
             padding-top: 0px;
-            font-size: 250%;
+            font-size: 300%;
             padding-left: 0px;
             padding-bottom: 9px;
             text-align: center;
-            line-height: 1em;
+            line-height: 1.15em;
             color: #2d343c;
         }
 
@@ -281,6 +298,15 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             width: 150px;
         }
 
+        #qSortPatternInputBox {
+            position: absolute;
+            font-family: HelveticaNeue-CondensedBlack;
+            left: 30px;
+            top: 110px;
+            font-size: 22px;
+            width: 425px;
+        }
+
         .displayBox {
             position: relative;
             margin-left: 20px;
@@ -303,7 +329,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         #resultsLabel {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
-            top: 255px;
+            top: 285px;
             color: #ffffff;
             margin-left: 27px;
         }
@@ -374,16 +400,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             height: 36px;
             background: #fcfff4;
             background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-            background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-            background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-            background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-            background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-            /* filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0); */
             margin: 5px 5px;
             margin-top: 34px;
             -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
-            -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
-            box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
             position: relative;
             left: 22px;
             border-radius: 3px;
@@ -397,13 +416,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             left: 5px;
             top: 5px;
             -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
-            -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
-            box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
             background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
-            background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
-            background: -o-linear-gradient(top, #222 0%, #45484d 100%);
-            background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
-            background: linear-gradient(top, #222 0%, #45484d 100%);
             /* filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d', GradientType=0); */
         }
         /*        green dot */
@@ -418,28 +431,75 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             height: 24px;
             background: #00bf00;
             background: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
-            background: -moz-linear-gradient(top, #00bf00 0%, #009400 100%);
-            background: -o-linear-gradient(top, #00bf00 0%, #009400 100%);
-            background: -ms-linear-gradient(top, #00bf00 0%, #009400 100%);
-            background: linear-gradient(top, #00bf00 0%, #009400 100%);
             top: 1px;
             left: 1px;
             -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
-            -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
             box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .squaredOne label:hover::after {
-            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
             filter: alpha(opacity=30);
             opacity: 0.3;
         }
 
         .squaredOne input[type=checkbox]:checked+label:after {
-            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
             filter: alpha(opacity=100);
             opacity: 1;
         }
+
+
+        .squaredTwo {
+            width: 36px;
+            height: 36px;
+            background: #fcfff4;
+            background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            margin-top: 5px;
+            -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+            position: relative;
+            left: 165px;
+            top: -21px;
+            border-radius: 3px;
+        }
+
+        .squaredTwo label {
+            cursor: pointer;
+            position: absolute;
+            padding-top: 3px;
+            width: 26px;
+            height: 26px;
+            left: 5px;
+            top: 5px;
+            -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+            background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+        }
+        /*        green dot */
+
+        .squaredTwo label:after {
+            filter: alpha(opacity=0);
+            opacity: 0;
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #00bf00;
+            background: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
+            top: 1px;
+            left: 1px;
+            -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .squaredTwo label:hover::after {
+            filter: alpha(opacity=30);
+            opacity: 0.3;
+        }
+
+        .squaredTwo input[type=checkbox]:checked+label:after {
+            filter: alpha(opacity=100);
+            opacity: 1;
+        }
+
+
 
         #colorGridCheckboxLabel {
             padding-left: 5px;
@@ -461,6 +521,28 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             width: 90px;
             height: 80px;
         }
+
+        #forcedSortCheckboxLabel {
+            padding-left: 5px;
+            display: inline-block;
+            width: 175px;
+            color: white;
+            position: relative;
+            top: 10px;
+            left: 0px;
+            font-family: HelveticaNeue-CondensedBlack;
+        }
+
+        #forcedSortCheckboxDiv {
+            border: 3px solid #1985c5;
+            border-radius: 5px;
+            position: absolute;
+            left: 30px;
+            top: 226px;
+            width: 205px;
+            height: 40px;
+        }
+
 
         #squaredOne {
             position: relative;
@@ -505,6 +587,24 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             text-decoration: none;
         }
 
+        .top-header-bar {
+            display: webkit-flex;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            font-family: HelveticaNeue-CondensedBlack;
+            height: 20px;
+            color: white;
+            background-color: black;
+            width: 100%;
+        }
+
+        .top-header-bar span {
+            margin-left: 85px;
+            font-style: italic;
+        }
+
+
         #delayContainer {
             display: none
         }
@@ -516,24 +616,43 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
     <div id="delayContainer">
 
-        <div class="goButton" id="qSortGo"><span id="qSortButton">Q</span>
+        <div class="top-header-bar">
+            <span><strong>Ken-Q Mobile</strong></span>
+        </div>
+
+
+        <div class="goButton" id="qSortGo">
+            <span class="qsortButtonSubtext1">Start</span>
+            <span id="qSortButton">Q</span>
+            <span class="qsortButtonSubtext2">Sort</span>
         </div>
 
 
         <button class="emailResultsButton"><a id="email" href="#"><span>Email<br/>Results</span></a>
         </button>
 
-        <button class="emailStatementsButton"><a id="emailStatements" href="#!"><span>Email<br/>Statements</span></a>
+        <button class="clearDataButton" id="clearData"><span>Delete<br/>Data</span>
         </button>
-
-        <button class="clearDataButton" id="clearData"><span>Delete<br/>Results and<br/>Comments</span>
-        </button>
-
-        <button class="blackWhiteButton" id="blackWhite"><span>Create B/W<br/>Q-sort Images<br/>for Publication</span>
-        </button>
-
 
         <form data-persist="garlic" data-domain="true">
+            <div id="qSortPatternInputBox">
+                <p style="color: white; display: inline-block; height:30px">Q-Sort Pattern:
+                    <input type="text" ; class="outer persisted-text" ; style="width:410px" ; maxlength="15" ; name="qSortPattern" ; autocapitalize="off"
+                        ; autocorrect="off">
+                </p>
+                <p style="color: white; font-size: 11px">Example: -3,-3,-2,-2,-2,-1,-1,-1,-1,0,0,0,0,0,1,1,1,1,2,2,2,3,3</p>
+            </div>
+            <form data-persist="garlic">
+                <div id="forcedSortCheckboxDiv">
+                    <span id="forcedSortCheckboxLabel">Require Forced Q-sorts</span>
+                    <div class="squaredTwo">
+                        <input type="checkbox" value="None" id="squaredTwo" name="checkForced" />
+                        <label for="squaredTwo"></label>
+                    </div>
+                </div>
+            </form>
+
+
             <div id="studyNameInputBox">
                 <p style="color: white; display: inline-block">Project Name:
                     <input type="text" ; class="outer persisted-text" ; style="width:245px" ; maxlength="15" ; name="studyName" ; autocapitalize="off"
@@ -808,12 +927,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         var firePromptRespondentCode = function () {
             var link2 = document.getElementById('qSortGo');
             link2.onclick = function () {
-                var respondentCode = prompt('Please enter an 8 character Respondent Code.');
+                var respondentCode = prompt('Enter Respondent Name');
                 $(this).focus();
-                while ((respondentCode.length < 8) || (respondentCode.length > 8)) {
-                    var respondentCode = prompt(
-                        'Please re-enter the Respondent Code. It must be exactly 8 characters in length.');
-                };
                 localStorage.setItem("respondentCodeId", respondentCode);
                 $('nav a:nth-child(4)').trigger('touchstart');
             }
