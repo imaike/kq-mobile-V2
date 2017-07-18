@@ -464,7 +464,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         .squaredTwo label {
             cursor: pointer;
             position: absolute;
-            padding-top: 3px;
             width: 26px;
             height: 26px;
             left: 5px;
@@ -492,6 +491,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         .squaredTwo label:hover::after {
             filter: alpha(opacity=30);
             opacity: 0.3;
+        }
+
+        .squaredTwo input[type=checkbox] {
+            margin-top: 5px;
+            margin-left: 5px;
         }
 
         .squaredTwo input[type=checkbox]:checked+label:after {
