@@ -27,18 +27,18 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
         .goButton {
             position: absolute;
-            left: 765px;
+            left: 755px;
             top: 30px;
             -webkit-appearance: none;
             -moz-appearance: none;
             font-family: HelveticaNeue-CondensedBlack;
             appearance: none;
             margin-left: 5px;
-            width: 220px;
+            width: 230px;
             margin-top: 2px;
             padding-top: 0px;
             padding-bottom: 0px;
-            height: 220px;
+            height: 230px;
             background: #55b262;
             border: 0px solid #666;
             cursor: pointer;
@@ -193,10 +193,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         #sortResultsDisplay {
             position: absolute;
             margin-left: 27px;
-            top: 330px;
+            top: 360px;
             background: #ffffff;
             width: 953px;
-            height: 385px;
+            height: 355px;
             border: 1px solid;
         }
 
@@ -283,7 +283,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         #studyNameInputBox {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
-            left: 500px;
+            left: 480px;
             top: 10px;
             font-size: 22px;
             width: 250px;
@@ -292,7 +292,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         #emailInputBox {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
-            left: 500px;
+            left: 480px;
             top: 75px;
             font-size: 22px;
             width: 150px;
@@ -302,7 +302,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
             left: 30px;
-            top: 110px;
+            top: 200px;
             font-size: 22px;
             width: 425px;
         }
@@ -329,7 +329,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         #resultsLabel {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
-            top: 285px;
+            top: 325px;
             color: #ffffff;
             margin-left: 27px;
         }
@@ -404,7 +404,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             margin-top: 34px;
             -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
             position: relative;
-            left: 22px;
+            /* adjust label and checkbox */
+            left: 150px;
+            top: -31px;
             border-radius: 3px;
         }
 
@@ -417,12 +419,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             top: 5px;
             -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
             background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
-            /* filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d', GradientType=0); */
+            f
         }
         /*        green dot */
 
         .squaredOne label:after {
-            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
             filter: alpha(opacity=0);
             opacity: 0;
             content: '';
@@ -456,7 +457,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             margin-top: 5px;
             -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
             position: relative;
-            left: 165px;
+            left: 152px;
             top: -21px;
             border-radius: 3px;
         }
@@ -503,16 +504,15 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             opacity: 1;
         }
 
-
-
         #colorGridCheckboxLabel {
             padding-left: 5px;
             float: left;
-            width: 75px;
+            width: 125px;
             color: white;
             position: relative;
-            top: -28px;
-            left: -20px;
+            /* adjust label position */
+            top: 8px;
+            left: -150px;
             font-family: HelveticaNeue-CondensedBlack;
         }
 
@@ -520,16 +520,16 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             border: 3px solid #1985c5;
             border-radius: 5px;
             position: absolute;
-            left: 653px;
-            top: 166px;
-            width: 90px;
-            height: 80px;
+            left: 255px;
+            top: 150px;
+            width: 193px;
+            height: 42px;
         }
 
         #forcedSortCheckboxLabel {
             padding-left: 5px;
             display: inline-block;
-            width: 175px;
+            width: 130px;
             color: white;
             position: relative;
             top: 10px;
@@ -542,8 +542,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             border-radius: 5px;
             position: absolute;
             left: 30px;
-            top: 226px;
-            width: 205px;
+            top: 150px;
+            width: 190px;
             height: 40px;
         }
 
@@ -640,22 +640,19 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
         <form data-persist="garlic" data-domain="true">
             <div id="qSortPatternInputBox">
-                <p style="color: white; display: inline-block; height:30px">Q-Sort Pattern:
-                    <input type="text" ; class="outer persisted-text" ; style="width:410px" ; maxlength="15" ; name="qSortPattern" ; autocapitalize="off"
-                        ; autocorrect="off">
-                </p>
+                <p style="color: white; display: inline-block; height:5px">Q-Sort Pattern:</p>
                 <p style="color: white; font-size: 11px">Example: -3,-3,-2,-2,-2,-1,-1,-1,-1,0,0,0,0,0,1,1,1,1,2,2,2,3,3</p>
+                <input type="text" ; class="outer persisted-text" ; style="width:800px" ; maxlength="15" ; name="qSortPattern" ; autocapitalize="off"
+                    ; autocorrect="off">
             </div>
-            <form data-persist="garlic">
-                <div id="forcedSortCheckboxDiv">
-                    <span id="forcedSortCheckboxLabel">Require Forced Q-sorts</span>
-                    <div class="squaredTwo">
-                        <input type="checkbox" value="None" id="squaredTwo" name="checkForced" />
-                        <label for="squaredTwo"></label>
-                    </div>
-                </div>
-            </form>
 
+            <div id="forcedSortCheckboxDiv">
+                <span id="forcedSortCheckboxLabel">Use Forced Q-sorts</span>
+                <div class="squaredTwo">
+                    <input type="checkbox" value="None" id="squaredTwo" name="checkForced" />
+                    <label for="squaredTwo"></label>
+                </div>
+            </div>
 
             <div id="studyNameInputBox">
                 <p style="color: white; display: inline-block">Project Name:
@@ -689,7 +686,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         <form data-persist="garlic">
             <div id="colorGridCheckboxDiv">
                 <div class="squaredOne">
-                    <span id="colorGridCheckboxLabel">Color Grid</span>
+                    <span id="colorGridCheckboxLabel">Use Color Grid</span>
                     <input type="checkbox" value="None" id="squaredOne" name="check" />
                     <label for="squaredOne"></label>
                 </div>
@@ -703,14 +700,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                 <p id="incomingResults" class="displayBox"></p>
             </div>
         </div>
-        <!-- <p id="commentsLabel">Q-Sort Comments</p>
-        <div id="sortCommentsDisplay" class='results scroller'>
-            <div class='loading'></div>
-            <div class='pull'></div>
-            <div class='pep'>
-                <ul id="incomingComments"></ul>
-            </div>
-        </div> -->
 
         <ul id="statementHolder" style="visibility:hidden; list-style:none"></ul>
         <p id="emailHeader" style="visibility:hidden"> </p>
