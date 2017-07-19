@@ -51,8 +51,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
         #qSortButton {
             display: block;
-            padding-top: 16px;
-            font-size: 135px;
+            padding-top: 14px;
+            font-size: 180px;
             padding-left: 0px;
             padding-bottom: 9px;
             text-align: center;
@@ -63,8 +63,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         .qsortButtonSubtext1 {
             font-size: 20px;
             color: black;
-            margin-left: 5px;
-            margin-top: 5px;
+            position: absolute;
+            left: 8px;
+            top: 6px;
             font-style: italic;
         }
 
@@ -72,8 +73,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         .qsortButtonSubtext2 {
             font-size: 20px;
             color: black;
-            float: right;
-            margin-right: 5px;
+            position: absolute;
+            top: 200px;
+            left: 180px;
             font-style: italic;
         }
 
@@ -192,11 +194,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
 
         #sortResultsDisplay {
             position: absolute;
-            margin-left: 27px;
-            top: 360px;
+            top: 400px;
+            left: 20px;
             background: #ffffff;
-            width: 953px;
-            height: 355px;
+            width: 964px;
+            height: 310px;
             border: 1px solid;
         }
 
@@ -302,7 +304,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
             left: 30px;
-            top: 200px;
+            top: 260px;
             font-size: 22px;
             width: 425px;
         }
@@ -329,9 +331,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         #resultsLabel {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
-            top: 325px;
+            top: 360px;
             color: #ffffff;
-            margin-left: 27px;
+            margin-left: 22px;
+            font-size: 22px;
         }
 
         #commentsLabel {
@@ -343,10 +346,16 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         }
 
         #radioButtonDiv {
+            display: -webkit-flex;
+            flex-direction: row;
             position: absolute;
-            left: 466px;
-            top: 160px;
+            left: 253px;
+            top: 277px;
             cursor: pointer;
+            /* border: 3px solid #1985c5; */
+            border-radius: 5px;
+            height: 30px;
+            padding: 3px 3px;
         }
 
         input[type=radio]:not(old) {
@@ -398,8 +407,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         .squaredOne {
             width: 36px;
             height: 36px;
-            background: #fcfff4;
-            background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: lightgray;
+            /* background: #fcfff4; */
+            /* background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%); */
             margin: 5px 5px;
             margin-top: 34px;
             -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
@@ -417,9 +427,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             height: 26px;
             left: 5px;
             top: 5px;
-            -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
-            background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
-            f
+            /* -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1); */
+            /* background: -webkit-linear-gradient(top, #222 0%, #45484d 100%); */
+            background: #2d343c;
         }
         /*        green dot */
 
@@ -430,8 +440,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             position: absolute;
             width: 24px;
             height: 24px;
-            background: #00bf00;
-            background: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%);
+            background: #55b262;
+            /* background: #00bf00; */
+            /* background: -webkit-linear-gradient(top, #00bf00 0%, #009400 100%); */
             top: 1px;
             left: 1px;
             -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
@@ -608,6 +619,42 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             font-style: italic;
         }
 
+        .controlsText {
+            font-family: HelveticaNeue-CondensedBlack;
+            color: white;
+            font-size: 22px;
+            height: 25px;
+            position: relative;
+            top: 2px;
+        }
+
+        .qPatternDiv {
+            border: 3px solid #1985c5;
+            border-radius: 5px;
+        }
+
+        #fontSizeDiv {
+            position: absolute;
+            font-family: HelveticaNeue-CondensedBlack;
+            top: 213px;
+            left: 30px;
+            color: white;
+            font-size: 18px;
+            border: 3px solid #1985c5;
+            border-radius: 5px;
+            width: 185px;
+            height: 32px;
+            padding-top: 4px;
+            padding-left: 5px;
+            padding-bottom: 7px;
+        }
+
+        #fontSizeDiv input {
+            width: 35px !important;
+            font-size: 16px;
+            margin-left: 10px;
+            margin-bottom: 5px;
+        }
 
         #delayContainer {
             display: none
@@ -639,11 +686,33 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
         </button>
 
         <form data-persist="garlic" data-domain="true">
-            <div id="qSortPatternInputBox">
-                <p style="color: white; display: inline-block; height:5px">Q-Sort Pattern:</p>
-                <p style="color: white; font-size: 11px">Example: -3,-3,-2,-2,-2,-1,-1,-1,-1,0,0,0,0,0,1,1,1,1,2,2,2,3,3</p>
-                <input type="text" ; class="outer persisted-text" ; style="width:800px" ; maxlength="15" ; name="qSortPattern" ; autocapitalize="off"
-                    ; autocorrect="off">
+
+            <div class="qPatternDiv">
+                <div id="radioButtonDiv">
+                    <div>
+                        <span class="controlsText">Use Preset:</span>
+                    </div>
+                    <div>
+                        <input id="radio1" type="radio" name="radio" value="state37" checked="checked">
+                        <label for="radio1"><span><span></span></span>37 Cards</label>
+                    </div>
+                    <div>
+                        <input id="radio2" type="radio" name="radio" value="state39">
+                        <label for="radio2"><span><span></span></span>39 Cards</label>
+                    </div>
+                    <div>
+                        <input id="radio3" type="radio" name="radio" value="state41">
+                        <label for="radio3"><span><span></span></span>41 Cards</label>
+                    </div>
+                </div>
+
+
+                <div id="qSortPatternInputBox">
+                    <p style="color: white; display: inline-block; height:5px">Q-Sort Pattern:</p>
+                    <!-- <p style="color: white; font-size: 11px">Example: -3,-3,-2,-2,-2,-1,-1,-1,-1,0,0,0,0,0,1,1,1,1,2,2,2,3,3</p> -->
+                    <input type="text" ; class="outer persisted-text" ; style="width:957px" ; maxlength="15" ; name="qSortPattern" ; autocapitalize="off"
+                        ; autocorrect="off">
+                </div>
             </div>
 
             <div id="forcedSortCheckboxDiv">
@@ -668,20 +737,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             </div>
         </form>
 
-        <div id="radioButtonDiv">
-            <div>
-                <input id="radio1" type="radio" name="radio" value="state37" checked="checked">
-                <label for="radio1"><span><span></span></span>37 Statements</label>
-            </div>
-            <div>
-                <input id="radio2" type="radio" name="radio" value="state39">
-                <label for="radio2"><span><span></span></span>39 Statements</label>
-            </div>
-            <div>
-                <input id="radio3" type="radio" name="radio" value="state41">
-                <label for="radio3"><span><span></span></span>41 Statements</label>
-            </div>
-        </div>
+
 
         <form data-persist="garlic">
             <div id="colorGridCheckboxDiv">
@@ -693,7 +749,15 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             </div>
         </form>
 
-        <p id="resultsLabel">Q-Sort Results</p>
+
+        <div id="fontSizeDiv">
+            <span>Font Size:</span>
+            <input type="text" ; class="outer persisted-text" ; style="width:245px" ; maxlength="15" ; name="fontSize" ; autocapitalize="off"
+                ; autocorrect="off" ; placeholder="14">
+
+        </div>
+
+        <p id="resultsLabel">Results</p>
         <div id="sortResultsDisplay" class='results scroller'>
             <div class='loading'></div>
             <div class='pep'>
