@@ -633,7 +633,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             border-radius: 5px;
         }
 
-        #fontSizeDiv {
+
+        .row3Options {
             position: absolute;
             font-family: HelveticaNeue-CondensedBlack;
             top: 213px;
@@ -644,17 +645,33 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             border-radius: 5px;
             width: 185px;
             height: 32px;
-            padding-top: 4px;
-            padding-left: 5px;
-            padding-bottom: 7px;
+            padding-top: 15px;
+            padding-left: 15px;
+            padding-bottom: 3px;
         }
 
-        #fontSizeDiv input {
+        .row3Options input {
             width: 35px !important;
             font-size: 16px;
             margin-left: 10px;
             margin-bottom: 5px;
         }
+
+        #fontSizeDiv {
+            top: 213px;
+            left: 30px;
+        }
+
+        #autofitDiv {
+            top: 213px;
+            left: 477px;
+        }
+
+        #lineHeightDiv {
+            top: 213px;
+            left: 254px;
+        }
+
 
         #delayContainer {
             display: none
@@ -716,7 +733,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
             </div>
 
             <div id="forcedSortCheckboxDiv">
-                <span id="forcedSortCheckboxLabel">Use Forced Q-sorts</span>
+                <span id="forcedSortCheckboxLabel">Forced Q-sorts</span>
                 <div class="squaredTwo">
                     <input type="checkbox" value="None" id="squaredTwo" name="checkForced" />
                     <label for="squaredTwo"></label>
@@ -735,27 +752,36 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND 
                     <input type="text" ; class="outer persisted-text" ; name="emailInput" ; style="width:245px" ; autocapitalize="off" ; autocorrect="off">
                 </p>
             </div>
-        </form>
 
-
-
-        <form data-persist="garlic">
             <div id="colorGridCheckboxDiv">
                 <div class="squaredOne">
-                    <span id="colorGridCheckboxLabel">Use Color Grid</span>
+                    <span id="colorGridCheckboxLabel">Color Grid</span>
                     <input type="checkbox" value="None" id="squaredOne" name="check" />
                     <label for="squaredOne"></label>
                 </div>
             </div>
+
+            <div id="fontSizeDiv" class="row3Options">
+                <span>Font Size:</span>
+                <input type="text" ; class="outer persisted-text" ; style="width:245px" ; maxlength="15" ; name="fontSize" ; autocapitalize="off"
+                    ; autocorrect="off" ; placeholder="14">
+            </div>
+
+            <div id="lineHeightDiv" class="row3Options">
+                <span>Line Height:</span>
+                <input type="text" ; class="outer persisted-text" ; style="width:245px" ; maxlength="15" ; name="lineHeight" ; autocapitalize="off"
+                    ; autocorrect="off" ; placeholder="14">
+            </div>
+
+            <div id="autofitDiv" class="row3Options">
+                <span>Autofit Text:</span>
+                <input type="text" ; class="outer persisted-text" ; style="width:245px" ; maxlength="15" ; name="autofit" ; autocapitalize="off"
+                    ; autocorrect="off" ; placeholder="14">
+            </div>
+
         </form>
 
 
-        <div id="fontSizeDiv">
-            <span>Font Size:</span>
-            <input type="text" ; class="outer persisted-text" ; style="width:245px" ; maxlength="15" ; name="fontSize" ; autocapitalize="off"
-                ; autocorrect="off" ; placeholder="14">
-
-        </div>
 
         <p id="resultsLabel">Results</p>
         <div id="sortResultsDisplay" class='results scroller'>
